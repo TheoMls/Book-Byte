@@ -1,0 +1,27 @@
+.header-bar {
+    background-color: #616161;
+}
+
+
+.topnav {
+    background-color: #c9c9c9;
+}
+
+.topnav a {
+    float: left;
+    color: #000000;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.topnav a:hover {
+    background-color: #363636;
+    color: #efefef;
+}
+
+.topnav a.active {
+    background-color: #5c5c5b;
+    color: white;
+}
