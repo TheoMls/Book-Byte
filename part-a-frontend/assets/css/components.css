@@ -1,0 +1,61 @@
+/* Reusable components */
+
+.logo-title {
+    display: flex;
+    align-items: center;
+}
+
+/* Top menu navigation */
+.topnav {
+    display: flex;
+    width: 100%;
+    background-color: #c9c9c9;
+    overflow: auto;
+}
+
+.topnav a {
+    color: #000000;
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.topnav a:hover {
+    background-color: #363636;
+    color: #efefef;
+}
+
+.topnav a.active {
+    background-color: #5c5c5b;
+    color: white;
+}
+
+/* Scrollable suggested content */
+.suggested-menu-container {
+    max-width: 75%;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    /*top-bottom space and left-right space auto=center */
+}
+
+.suggested-menu {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+}
+
+.suggested-menu a {
+    flex: 0 0 auto;
+    padding: 8% 3%;
+    background-color: #c9c9c9;
+    color: #000;
+    text-decoration: none;
+    border-radius: 10px;
+}
+
+.suggested-menu a:hover {
+    background-color: #616161;
+    color: #fff;
+}

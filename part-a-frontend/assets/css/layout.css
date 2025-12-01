@@ -1,0 +1,12 @@
+/*  Layout for diffrent screen sizes */
+
+@media screen and (max-width: 500px) {
+    .topnav {
+        flex-direction: column;
+    }
+
+    .navbar a {
+        float: none;
+        display: block;
+    }
+}
