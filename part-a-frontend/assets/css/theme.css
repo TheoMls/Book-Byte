@@ -1,0 +1,13 @@
+/* Colors, fonts, website aesthetic */
+
+.header-bar {
+    align-items: center;
+    background-color: #616161;
+    padding: 1% 5%;
+}
+
+.header-bar h1 {
+    margin: 0 auto;
+    text-align: center;
+    color: #ffffff;
+}
