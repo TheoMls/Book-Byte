@@ -5,3 +5,8 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+#main {
+    transition: margin-left .5s;
+    padding: 16px;
+}
