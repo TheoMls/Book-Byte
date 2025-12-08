@@ -2,12 +2,23 @@
 
 .header-bar {
     align-items: center;
-    background-color: #616161;
+    background-color: #8a8a8a;
     padding: 1% 5%;
 }
 
 .header-bar h1 {
-    margin: 0 auto;
+    margin: 0 10%;
     text-align: center;
     color: #ffffff;
+}
+
+.header-bar span {
+    float: left;
+    color: #000;
+}
+
+/* main page content for filters and search bar */
+.main-content div {
+    color: #000;
+    background-color: #e6e6e6
 }
