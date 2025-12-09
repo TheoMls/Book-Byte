@@ -1,4 +1,5 @@
 /*  Layout for diffrent screen sizes */
+/* phone: 480px, tablet 768px, laptop 1024px */
 
 @media screen and (max-width: 400px) {
     .topnav {

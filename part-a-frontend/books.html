@@ -27,12 +27,34 @@
         </header>
         <div class="main-content">
             <aside class="filters">
+                <nav class="search-container">
+                    <button type="submit">&#128270;</button>
+                    <input type="text" placeholder="Search..." name="search">
+                </nav>
                 <h2>Filters</h2>
+                <ul class="filter-list">
+                    <li>
+                        <label for="available">available</label>
+                        <input type="checkbox" id="available">
+                    </li>
+                    <li>
+                        <label for="publicationYear">year of publication</label>
+                        <input type="number" max="2025" step="1" value="2025" id="publicationYear">
+                    </li>
+                    <li>
+                        <div class="expanded-content">
+                            <button class="dropbtn">courses</button>
+                            <ul class="expanded-filter-list" id="courses"></ul>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="expanded-content">
+                            <button class="dropbtn">publishers</button>
+                            <ul class="expanded-filter-list" id="publishers"></ul>
+                        </div>
+                    </li>
+                </ul>
             </aside>
-            <nav class="search-container">
-                <input type="text" placeholder="Search..." name="search">
-                <button type="submit">&#128270;</button>
-            </nav>
             <ul class="books-list">
                 <li id="book"></li>
             </ul>
