@@ -35,14 +35,14 @@
 .suggested-menu-container {
     max-width: 75%;
     display: flex;
-    justify-content: center;
     margin: 0 auto;
+    overflow-x: auto;
+    overflow-y: hidden;
 }
 
 .suggested-menu {
     display: flex;
     gap: 10px;
-    overflow-x: auto;
 }
 
 .suggested-menu a {
@@ -210,14 +210,49 @@
 }
 
 /* Books list */
-.books-list {
-    text-align: left;
-    display: flex;
-    float: left;
+.books-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    background-color: #ffffff;
+    /* number of columns */
 }
 
-.books-list li {
-    text-align: left;
-    display: flex;
-    float: left;
+.book-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 5px;
+    padding: 5px;
+    background-color: #f1f1f1;
+    text-align: center;
+    padding: 10px;
+}
+
+.book-container div * {
+    padding: 10px;
+    color: #000000;
+}
+
+.book-container .img {
+    grid-row: 1 / span 2;
+}
+
+.book-info {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: auto;
+    background-color: #f1f1f1;
+    text-align: center;
+    padding: 10px;
+    font-size: 15px;
+}
+
+.book-important-info {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto;
+}
+
+.book-secondary-info {
+    display: grid;
+    grid-template-columns: auto auto;
 }

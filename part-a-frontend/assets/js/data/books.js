@@ -1,6 +1,7 @@
 books = [
-    '{ "id": 1, "Title": "1", "Description": "Test2", "Course": "Course 1", "publicationYear": "2022", "Publisher": "Tziolas", "image": "null", "Availability": 1 }',
-    '{ "id": 2, "Title": "2", "Description": "Test2", "Course": "Course 2", "publicationYear": "2004", "Publisher": "Klidarithmos", "image": "null", "Availability": 0 }'
+    '{ "id": 1, "Title": "Book 1", "Description": "Test", "Course": "Course 1", "publicationYear": "2022", "Publisher": "Tziola", "image": "assets/img/books/book1", "Availability": 0 }',
+    '{ "id": 2, "Title": "Book 2", "Description": "Test", "Course": "Course 2", "publicationYear": "2020", "Publisher": "Klidarithmos", "image": "assets/img/books/book2", "Availability": 1 }',
+    '{ "id": 3, "Title": "Book 3", "Description": "Test", "Course": "Course 3", "publicationYear": "2024", "Publisher": "Pattaki", "image": "assets/img/books/book2", "Availability": 2 }'
 ]
 
 titleList = []
@@ -35,7 +36,7 @@ function load_books(book) {
     availabilityList.push([id, availability])
 
     // show books on page
-    display_book(title, description, course)
+    //display_book(title, description, course)
 }
 
 // TODO: needs rebuilt with cresteElement() not innerHTML 

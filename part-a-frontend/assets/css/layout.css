@@ -22,4 +22,9 @@
         margin: 0;
         padding: 14px;
     }
+
+    .books-container {
+        grid-template-columns: auto;
+        background-color: red;
+    }
 }
