@@ -1,9 +1,22 @@
 /*  Layout for diffrent screen sizes */
 /* phone: 480px, tablet 768px, laptop 1024px */
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 1000px) {
+    html {
+        zoom: 1.5;
+    }
+
     .topnav {
         flex-direction: column;
+    }
+
+    .sidenav a {
+        display: flex;
+        justify-content: center;
+    }
+
+    .sidenav .closebtn {
+        font-size: 60px;
     }
 
     .navbar a {
@@ -23,8 +36,56 @@
         padding: 14px;
     }
 
+    .main-content {
+        flex-direction: column;
+    }
+
+
+    /* Filters nav */
+    .filters-btn {
+        display: block;
+        font-size: 175%;
+        cursor: pointer;
+    }
+
+    .filters {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+        color: #000;
+        background-color: #c4c4c4;
+    }
+
+    .filters .closebtn {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 60px;
+        margin-left: 50px;
+    }
+
+    .filters * {
+        text-decoration: none;
+        color: #121111;
+        transition: 0.3s;
+    }
+
+    .filters h2,
+    .filters nav,
+    .filters .regular-filter,
+    .filters .expanded-filter {
+        display: flex;
+        justify-content: center;
+    }
+
     .books-container {
         grid-template-columns: auto;
-        background-color: red;
     }
 }

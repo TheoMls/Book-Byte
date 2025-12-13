@@ -14,7 +14,7 @@
 
 <body>
     <div id="sideMenu" class="sidenav">
-        <a class="closebtn" onclick="closeNav()">×</a>
+        <a class="closebtn" onclick="closeNav('sideMenu')">×</a>
         <a href="/part-a-frontend/index.html">Home</a>
         <a href="#">Courses</a>
         <a class="active" href="/part-a-frontend/books.html">Books</a>
@@ -22,36 +22,34 @@
     </div>
     <div id="main">
         <header class="header-bar">
-            <span class="sidenav-btn" onclick="openNav()">☰ open</span>
+            <span class="sidenav-btn" onclick="openNav('sideMenu', true)">☰ open</span>
             <h1>Books</h1>
         </header>
         <div class="main-content">
-            <aside class="filters">
+            <h2 class="filters-btn" onclick="openNav('filtersList', false)">Filters</h2>
+            <aside class="filters" id="filtersList">
+                <h2>Filters</h2>
+                <a class="closebtn" onclick="closeNav('filtersList')">×</a>
                 <nav class="search-container">
                     <button type="submit">&#128270;</button>
                     <input type="text" placeholder="Search..." name="search">
                 </nav>
-                <h2>Filters</h2>
                 <ul class="filter-list">
-                    <li>
+                    <li class="regular-filter">
                         <label for="available">available</label>
                         <input type="checkbox" id="available">
                     </li>
-                    <li>
+                    <li class="regular-filter">
                         <label for="publicationYear">year of publication</label>
                         <input type="number" max="2025" step="1" value="2025" id="publicationYear">
                     </li>
-                    <li>
-                        <div class="expanded-content">
-                            <button class="dropbtn">courses</button>
-                            <ul class="expanded-filter-list" id="courses"></ul>
-                        </div>
+                    <li class="expanded-filter">
+                        <button class="dropbtn">courses</button>
+                        <ul class="expanded-filter-list" id="courses"></ul>
                     </li>
-                    <li>
-                        <div class="expanded-content">
-                            <button class="dropbtn">publishers</button>
-                            <ul class="expanded-filter-list" id="publishers"></ul>
-                        </div>
+                    <li class="expanded-filter">
+                        <button class="dropbtn">publishers</button>
+                        <ul class="expanded-filter-list" id="publishers"></ul>
                     </li>
                 </ul>
             </aside>

@@ -69,7 +69,7 @@
     height: 100%;
     width: 0;
     position: fixed;
-    z-index: 1;
+    z-index: 2;
     top: 0;
     left: 0;
     background-color: #7f7f7f;
@@ -108,6 +108,28 @@
     cursor: pointer;
 }
 
+/* Main content */
+.main-content {
+    display: flex;
+    flex-direction: row;
+    float: left;
+}
+
+/* Filters nav */
+.filters-btn {
+    display: none;
+}
+
+.filters .closebtn {
+    display: none;
+}
+
+
+.filters {
+    color: #000;
+    background-color: #c4c4c4;
+}
+
 /* Search bar */
 .search-container {
     display: flex;
@@ -135,18 +157,8 @@
     background: #ccc;
 }
 
-/* Main content */
-.main-content {
-    display: flex;
-    flex-direction: row;
-}
 
-/* Filters */
-.filters {
-    color: #000;
-    background-color: #c4c4c4;
-}
-
+/* Filter list */
 .filter-list {
     display: flex;
     flex-direction: column;
@@ -163,7 +175,7 @@
     padding: 4px;
 }
 
-.expanded-content {
+.expanded-filter {
     position: relative;
     display: inline-block;
 }
@@ -196,12 +208,12 @@
     background-color: #e5e5e5;
 }
 
-.expanded-content:hover .expanded-filter-list {
+.expanded-filter:hover .expanded-filter-list {
     display: block;
     border-radius: 8%;
 }
 
-.expanded-content:hover .dropbtn {
+.expanded-filter:hover .dropbtn {
     background-color: #626262;
 }
 
@@ -220,11 +232,10 @@
 .book-container {
     display: grid;
     grid-template-columns: auto auto;
-    gap: 5px;
-    padding: 5px;
     background-color: #f1f1f1;
     text-align: center;
-    padding: 10px;
+    border-radius: 5%;
+    padding: 5px;
 }
 
 .book-container div * {
