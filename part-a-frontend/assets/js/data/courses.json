@@ -1,0 +1,34 @@
+{
+    "1": {
+        "title": "Introduction to Programming",
+        "category": "Computer Science",
+        "level": 1,
+        "duration": 6,
+        "teacher": "John Doe",
+        "description": "Learn the basics of programming using Python. No prior experience required."
+    },
+    "2": {
+        "title": "Advanced Web Development",
+        "category": "Web Development",
+        "level": 3,
+        "duration": 8,
+        "teacher": "Jane Smith",
+        "description": "Deep dive into modern web development techniques and frameworks."
+    },
+    "3": {
+        "title": "Data Science Fundamentals",
+        "category": "Data Science",
+        "level": 2,
+        "duration": 10,
+        "teacher": "Alice Johnson",
+        "description": "Explore data analysis, visualization, and machine learning concepts."
+    },
+    "4": {
+        "title": "Digital Marketing Strategies",
+        "category": "Marketing",
+        "level": 1,
+        "duration": 5,
+        "teacher": "Bob Brown",
+        "description": "Learn effective digital marketing techniques to grow your business online."
+    }
+}

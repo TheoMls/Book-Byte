@@ -31,6 +31,10 @@
     color: white;
 }
 
+.topnav a:last-child {
+    margin-left: auto;
+}
+
 /* Scrollable suggested content */
 .suggested-menu-container {
     max-width: 75%;
@@ -222,6 +226,53 @@
 }
 
 /* Books list */
+ul.course-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    background-color: #ffffff;
+    /* number of columns */
+}
+
+li.course-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    background-color: #f1f1f1;
+    text-align: center;
+    border-radius: 5%;
+    padding: 5px;
+}
+
+.course-container div * {
+    padding: 10px;
+    color: #000000;
+}
+
+.course-container .img {
+    grid-row: 1 / span 2;
+}
+
+.course-info {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: auto;
+    background-color: #f1f1f1;
+    text-align: center;
+    padding: 10px;
+    font-size: 15px;
+}
+
+.course-important-info {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto;
+}
+
+.course-secondary-info {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+/* Course list */
 .books-container {
     display: grid;
     grid-template-columns: auto auto;

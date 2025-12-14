@@ -37,11 +37,106 @@
 
         main {
             display: flex;
-            /* horizontal centering */
             justify-content: center;
-            /* vertical centering */
             align-items: center;
-            min-height: 50vh
+            min-height: 70vh
+        }
+
+        .requirements-list {
+            list-style: none;
+            padding: 0;
+            margin: 5px 0 15px 0;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        .req-item {
+            color: #d93025;
+            transition: color 0.3s ease;
+        }
+
+        .req-item.valid {
+            color: #188038;
+        }
+
+        .password-wrapper {
+            position: relative;
+            width: 100%;
+            margin: 8px 0;
+        }
+
+        .password-wrapper input {
+            width: 100%;
+            margin: 0;
+            padding-right: 40px;
+            box-sizing: border-box;
+        }
+
+        /* The Eyeball Icon Button */
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 0;
+            margin: 0;
+            width: auto;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-main {
+            background-color: #007bff;
+            color: white;
+            border: none;
+        }
+
+        .btn-main:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-secondary {
+            background-color: #f1f1f1;
+            color: #333;
+            border: 1px solid #ccc;
+        }
+
+        .btn-secondary:hover {
+            background-color: #e2e2e2;
+        }
+
+        #message {
+            margin-top: 10px;
+        }
+
+        @keyframes popIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        #email-step,
+        #login-step,
+        #create-step {
+            animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
     </style>
 </head>
@@ -57,35 +152,54 @@
         </div>
 
     </header>
-    <nav class="topnav">
-        <a class="active" href="#home">Home</a>
+<nav class="topnav">
+        <a href="./index.html">Home</a>
         <a href="#categories">Categories</a>
-        <a href="#books">Books</a>
-        <a href="#about">About</a>
+        <a href="./courses.html">Courses</a>
+        <a href="./books.html">Books</a>
+        <a href="./about.html">About</a>
+        <a class="active" href="./sign_up.html">Sign Up / Sign In</a>
     </nav>
     <main>
         <div>
             <div class="card">
                 <h2>Welcome</h2>
 
-                <div id="email-step">
-                    <input type="email" id="email" placeholder="email" />
-                    <button onclick="checkEmail()">Continue</button>
-                </div>
+                <form id="email-step" onsubmit="event.preventDefault(); checkEmail()">
+                    <input type="email" id="email" placeholder="email" required />
+                    <button type="submit" class="btn-main">Continue</button>
+                </form>
 
 
                 <div id="login-step" class="hidden">
-                    <p>Please enter password:</p>
                     <input type="password" id="login-password" placeholder="Password" />
-                    <button onclick="login()">Login</button>
+                    <button class="btn-main" onclick="login()">Login</button>
+                    <button class="btn-secondary" onclick="goBack()">Back</button>
                 </div>
 
 
                 <div id="create-step" class="hidden">
-                    <p>Sign up!</p>
-                    <input type="password" id="new-password" placeholder="Password" />
+                    <p>Create Account</p>
+
+                    <div class="password-wrapper">
+                        <input type="password" id="new-password" placeholder="Password" />
+                        <button type="button" class="toggle-password" id="show-password"
+                            onclick="toggleVisibility('new-password', this)">
+                            👁️
+                        </button>
+                    </div>
+
+                    <ul class="requirements-list">
+                        <li id="req-length" class="req-item">At least 8 characters</li>
+                        <li id="req-lower" class="req-item">At least one lowercase letter</li>
+                        <li id="req-upper" class="req-item">At least one uppercase letter</li>
+                        <li id="req-num" class="req-item">At least one number</li>
+                    </ul>
+
                     <input type="password" id="confirm-password" placeholder="Confirm Password" />
-                    <button onclick="createAccount()">Create Account</button>
+
+                    <button class="btn-main" onclick="createAccount()">Create Account</button>
+                    <button class="btn-secondary" onclick="goBack()">Back</button>
                 </div>
 
 

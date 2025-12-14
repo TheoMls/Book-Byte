@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Courses</title>
+    <script type="text/javascript" src="assets/js/data/books.js"></script>
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/theme.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+
+<body>
+<body>
+    <header class="header-bar">
+        <div class="logo-title">
+            <a href="index.html">
+                <img src="assets/img/logo.jpg" width="48" height="48">
+            </a>
+            <h1>Title</h1>
+        </div>
+
+    </header>
+    <nav class="topnav">
+        <a href="./index.html">Home</a>
+        <a href="#categories">Categories</a>
+        <a class="active" href="./courses.html">Courses</a>
+        <a href="./books.html">Books</a>
+        <a href="./about.html">About</a>
+        <a href="./sign_up.html">Sign Up / Sign In</a>
+    </nav>
+    <div id="main">
+        <header class="header-bar">
+            <h1>Courses</h1>
+        </header>
+        <div class="main-content">
+            <h2 class="filters-btn" onclick="openNav('filtersList', false)">Filters</h2>
+            <aside class="filters" id="filtersList">
+                <h2>Filters</h2>
+                <a class="closebtn" onclick="closeNav('filtersList')">×</a>
+                <nav class="search-container">
+                    <button type="submit">&#128270;</button>
+                    <input type="text" placeholder="Search..." name="search">
+                </nav>
+                <ul class="filter-list">
+                    <li class="regular-filter">
+                        <label for="available">available</label>
+                        <input type="checkbox" id="available">
+                    </li>
+                    <li class="regular-filter">
+                        <label for="publicationYear">year of publication</label>
+                        <input type="number" max="2025" step="1" value="2025" id="publicationYear">
+                    </li>
+                    <li class="expanded-filter">
+                        <button class="dropbtn">courses</button>
+                        <ul class="expanded-filter-list" id="courses"></ul>
+                    </li>
+                    <li class="expanded-filter">
+                        <button class="dropbtn">publishers</button>
+                        <ul class="expanded-filter-list" id="publishers"></ul>
+                    </li>
+                </ul>
+            </aside>
+            <ul class="course-container" id="courseListUl">
+                <li class="course-container">
+                    <img class="course-img" src="assets/img/books/book1.png">
+                    <div class="course-info">
+                        <div class="course-important-info">
+                            <h3 class="course-title">Title 1</h3>
+                            <p class="course-decr">desc: descr...</p>
+                        </div>
+                        <div class="course-secondary-info">
+                            <p class="course-publisher">publisher1</p>
+                            <p class="course-course">course: course1</p>
+                            <p class="course-publication-year">published at: 2024</p>
+                            <p class="course-availability">avilability: 0</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="course-container">
+                    <img class="course-img" src="assets/img/books/book2.png">
+                    <div class="course-info">
+                        <div class="course-important-info">
+                            <h3 class="course-title">Title 2</h3>
+                            <p class="course-decr">desc: descr...</p>
+                        </div>
+                        <div class="course-secondary-info">
+                            <p class="course-publisher">by publisher2</p>
+                            <p class="course-course">course: course2</p>
+                            <p class="course-publication-year">published at: 2022</p>
+                            <p class="course-availability">avilability: 1</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="course-container">
+                    <img class="course-img" src="assets/img/books/book3.png">
+                    <div class="course-info">
+                        <div class="course-important-info">
+                            <h3 class="course-title">Title 3</h3>
+                            <p class="course-decr">desc: descr...</p>
+                        </div>
+                        <div class="course-secondary-info">
+                            <p class="course-publisher">by publisher3</p>
+                            <p class="course-course">course: course3</p>
+                            <p class="course-publication-year">published at: 2020</p>
+                            <p class="course-availability">avilability: 2</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>
