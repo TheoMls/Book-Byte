@@ -5,145 +5,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign Up</title>
+    <script type="text/javascript" src="assets/js/sign.js"></script>
+    <script type="text/javascript" src="assets/js/ui/menu.js"></script>
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/theme.css">
     <link rel="stylesheet" href="assets/css/components.css">
     <link rel="stylesheet" href="assets/css/layout.css">
-    <style>
-        .card {
-            border: 5px solid #ccc;
-            padding: 20px;
-            border-radius: 12px;
-            width: 300px;
-            max-width: 75%;
-            margin: 0 auto;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        input {
-            width: 100%;
-            margin: 8px 0;
-            padding: 8px;
-        }
-
-        button {
-            width: 100%;
-            padding: 10px;
-            margin-top: 10px;
-        }
-
-        main {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 70vh
-        }
-
-        .requirements-list {
-            list-style: none;
-            padding: 0;
-            margin: 5px 0 15px 0;
-            text-align: left;
-            font-size: 0.9rem;
-        }
-
-        .req-item {
-            color: #d93025;
-            transition: color 0.3s ease;
-        }
-
-        .req-item.valid {
-            color: #188038;
-        }
-
-        .password-wrapper {
-            position: relative;
-            width: 100%;
-            margin: 8px 0;
-        }
-
-        .password-wrapper input {
-            width: 100%;
-            margin: 0;
-            padding-right: 40px;
-            box-sizing: border-box;
-        }
-
-        /* The Eyeball Icon Button */
-        .toggle-password {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 1.2rem;
-            padding: 0;
-            margin: 0;
-            width: auto;
-        }
-
-        button {
-            width: 100%;
-            padding: 10px;
-            margin-top: 10px;
-            border-radius: 5px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn-main {
-            background-color: #007bff;
-            color: white;
-            border: none;
-        }
-
-        .btn-main:hover {
-            background-color: #0056b3;
-        }
-
-        .btn-secondary {
-            background-color: #f1f1f1;
-            color: #333;
-            border: 1px solid #ccc;
-        }
-
-        .btn-secondary:hover {
-            background-color: #e2e2e2;
-        }
-
-        #message {
-            margin-top: 10px;
-        }
-
-        @keyframes popIn {
-            0% {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        #email-step,
-        #login-step,
-        #create-step {
-            animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-    </style>
 </head>
 
 <body>
-    <script src="assets/js/sign.js"></script>
     <header class="header-bar">
+        <span class="sidenav-btn" onclick="openNav('sideMenu')">☰</span>
         <div class="logo-title">
             <a href="index.html">
                 <img src="assets/img/logo.jpg" width="48" height="48">
@@ -152,14 +24,23 @@
         </div>
 
     </header>
-<nav class="topnav">
+
+    <nav class="topnav">
         <a href="./index.html">Home</a>
-        <a href="#categories">Categories</a>
         <a href="./courses.html">Courses</a>
         <a href="./books.html">Books</a>
         <a href="./about.html">About</a>
         <a class="active" href="./sign_up.html">Sign Up / Sign In</a>
     </nav>
+
+    <div id="sideMenu" class="sidenav">
+        <a class="closebtn" onclick="closeNav('sideMenu')">×</a>
+        <a href="./index.html">Home</a>
+        <a href="./courses.html">Courses</a>
+        <a href="./books.html">Books</a>
+        <a href="./about.html">About Us</a>
+        <a class="active" href="./sign_up.html">Sign Up / Sign In</a>
+    </div>
     <main>
         <div>
             <div class="card">
@@ -207,6 +88,7 @@
             </div>
         </div>
     </main>
+    <div id="overlay" onclick="closeNav('sideMenu')"></div>
 </body>
 
 </html>

@@ -35,18 +35,56 @@
     margin-left: auto;
 }
 
+.sidenav-btn {
+    display: none;
+}
+
+.sidenav {
+    display: none;
+}
+
+/* Side menu backdrop blur */
+#overlay {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(4px);
+    z-index: 1;
+}
+
+#overlay.active {
+    display: block;
+}
+
 /* Scrollable suggested content */
 .suggested-menu-container {
     max-width: 75%;
     display: flex;
-    margin: 0 auto;
+    margin: 50px 20px;
     overflow-x: auto;
     overflow-y: hidden;
+
+    /* fade in and out effect */
+    mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
 }
 
 .suggested-menu {
     display: flex;
     gap: 10px;
+}
+
+/* Padding elements to create space for fade effect */
+.suggested-menu::before,
+.suggested-menu::after {
+    content: "";
+    display: block;
+    min-width: 30px;
+    flex-shrink: 0;
 }
 
 .suggested-menu a {
@@ -61,55 +99,6 @@
 .suggested-menu a:hover {
     background-color: #616161;
     color: #fff;
-}
-
-/* Side menu navigation */
-.sidenav-btn {
-    font-size: 175%;
-    cursor: pointer
-}
-
-.sidenav {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 2;
-    top: 0;
-    left: 0;
-    background-color: #7f7f7f;
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-}
-
-.sidenav a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #121111;
-    display: block;
-    transition: 0.3s;
-}
-
-.sidenav a:hover {
-    color: #f1f1f1;
-}
-
-.sidenav a.active {
-    background-color: #5c5c5b;
-    color: white;
-}
-
-.sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-}
-
-.closebtn:hover {
-    cursor: pointer;
 }
 
 /* Main content */
@@ -287,6 +276,7 @@ li.course-container {
     text-align: center;
     border-radius: 5%;
     padding: 5px;
+    margin: 5px 5px;
 }
 
 .book-container div * {
@@ -317,4 +307,130 @@ li.course-container {
 .book-secondary-info {
     display: grid;
     grid-template-columns: auto auto;
+}
+
+
+.card {
+    border: 5px solid #ccc;
+    padding: 20px;
+    border-radius: 12px;
+    width: 300px;
+    max-width: 75%;
+    margin: 50px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
+
+input {
+    width: 100%;
+    margin: 8px 0;
+    padding: 8px;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh
+}
+
+.requirements-list {
+    list-style: none;
+    padding: 0;
+    margin: 5px 0 15px 0;
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+.req-item {
+    color: #d93025;
+    transition: color 0.3s ease;
+}
+
+.req-item.valid {
+    color: #188038;
+}
+
+.password-wrapper {
+    position: relative;
+    width: 100%;
+    margin: 8px 0;
+}
+
+.password-wrapper input {
+    width: 100%;
+    margin: 0;
+    padding-right: 40px;
+    box-sizing: border-box;
+}
+
+/* The Eyeball Icon Button */
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 0;
+    margin: 0;
+    width: auto;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-main {
+    background-color: #007bff;
+    color: white;
+    border: none;
+}
+
+.btn-main:hover {
+    background-color: #0056b3;
+}
+
+.btn-secondary {
+    background-color: #f1f1f1;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+.btn-secondary:hover {
+    background-color: #e2e2e2;
+}
+
+#message {
+    margin-top: 10px;
+}
+
+@keyframes popIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+#email-step,
+#login-step,
+#create-step {
+    animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }

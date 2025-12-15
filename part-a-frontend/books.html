@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Books</title>
     <script type="text/javascript" src="assets/js/ui/menu.js"></script>
     <script type="text/javascript" src="assets/js/data/books.js"></script>
@@ -13,20 +14,39 @@
 </head>
 
 <body>
+    <header class="header-bar">
+        <span class="sidenav-btn" onclick="openNav('sideMenu', false)">☰</span>
+        <div class="logo-title">
+            <a href="index.html">
+                <img src="assets/img/logo.jpg" width="48" height="48">
+            </a>
+            <h1>Title</h1>
+        </div>
+    </header>
+
+    <nav class="topnav">
+        <a href="./index.html">Home</a>
+        <a href="./courses.html">Courses</a>
+        <a class="active" href="./books.html">Books</a>
+        <a href="./about.html">About</a>
+        <a href="./sign_up.html">Sign Up / Sign In</a>
+    </nav>
+
     <div id="sideMenu" class="sidenav">
         <a class="closebtn" onclick="closeNav('sideMenu')">×</a>
         <a href="./index.html">Home</a>
-        <a href="#">Courses</a>
+        <a href="./courses.html">Courses</a>
         <a class="active" href="./books.html">Books</a>
         <a href="./about.html">About Us</a>
+        <a href="./sign_up.html">Sign Up / Sign In</a>
     </div>
+    
     <div id="main">
         <header class="header-bar">
-            <span class="sidenav-btn" onclick="openNav('sideMenu', true)">☰ open</span>
             <h1>Books</h1>
         </header>
         <div class="main-content">
-            <h2 class="filters-btn" onclick="openNav('filtersList', false)">Filters</h2>
+            <h2 class="filters-btn" onclick="openNav('filtersList', false, false)">Filters</h2>
             <aside class="filters" id="filtersList">
                 <h2>Filters</h2>
                 <a class="closebtn" onclick="closeNav('filtersList')">×</a>
@@ -102,6 +122,7 @@
             </ul>
         </div>
     </div>
+    <div id="overlay" onclick="closeNav('sideMenu')"></div>
 </body>
 
 </html>
