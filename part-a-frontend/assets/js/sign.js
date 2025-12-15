@@ -32,7 +32,7 @@ function checkEmail() {
         document.getElementById('new-password').type = "password"
         document.getElementById('show-password').textContent = "👁️"
 
-        document.getElementById('create-step').classList.remove('hidden')
+        document.getElementById('create-pass').classList.remove('hidden')
     }
 
 }
@@ -81,6 +81,27 @@ document.addEventListener('DOMContentLoaded', function () {
             setStatus('req-num', /\d/.test(val))
         })
     }
+
+    const interestsContainer = document.getElementById('interests-container')
+
+    if (interestsContainer) {
+        interestsContainer.innerHTML = ""
+
+        categoriesData.forEach(cat => {
+            const label = document.createElement('label')
+
+            const input = document.createElement('input')
+            input.type = "checkbox"
+            input.name = "interest"
+            input.value = cat.id
+
+            label.appendChild(input)
+            label.appendChild(document.createTextNode(" " + cat.name))
+
+            interestsContainer.appendChild(label)
+        })
+
+    }
 })
 
 function createAccount() {
@@ -103,17 +124,11 @@ function createAccount() {
         return
     }
 
-
+    msg.textContent = ""
     putDb(email, pw)
 
-    document.getElementById('create-step').classList.add('hidden')
-    msg.textContent = "Account created! You can now log in."
-    msg.style.color = "green"
-
-    document.getElementById('email-step').classList.remove('hidden')
-    document.getElementById('email').value = ""
-    document.getElementById('new-password').value = ""
-    document.getElementById('confirm-password').value = ""
+    document.getElementById('create-pass').classList.add('hidden')
+    document.getElementById('create-personal').classList.remove('hidden')
 }
 
 function toggleVisibility(inputId, iconButton) {
@@ -128,14 +143,102 @@ function toggleVisibility(inputId, iconButton) {
     }
 }
 
-function goBack() {
-    document.getElementById('login-step').classList.add('hidden')
-    document.getElementById('create-step').classList.add('hidden')
+function createPersonal() {
+    const dobInput = document.getElementById('dob').value
+    const fname = document.getElementById('fname').value
+    const lname = document.getElementById('lname').value
+    const msg = document.getElementById('message')
 
-    document.getElementById('email-step').classList.remove('hidden')
 
+    if (!fname || !lname || !dobInput) {
+        msg.textContent = "Please fill out all fields."
+        msg.style.color = "red"
+        return
+    }
+
+    const age = Date.now() - new Date(dobInput).getTime()
+
+    // (16 years * 365.25 days (.25 due to 1/4 leap years) * 24 hours * 60 min * 60 sec * 1000 ms)
+    if (age < 16 * 365.25 * 24 * 60 * 60 * 1000) {
+        msg.textContent = "You must be at least 16 years old to create an account."
+        msg.style.color = "red"
+        return
+    } else if (age > 120 * 365.25 * 24 * 60 * 60 * 1000) {
+        msg.textContent = "Seems unlikely."
+        msg.style.color = "red"
+        return
+    }
+
+    msg.textContent = ""
+    document.getElementById('create-personal').classList.add('hidden')
+    document.getElementById('create-interests').classList.remove('hidden')
+}
+
+function createInterests() {
+    const email = document.getElementById('email').value
+    const fname = document.getElementById('fname').value
+    const lname = document.getElementById('lname').value
+    const dob = document.getElementById('dob').value
+
+    const experienceRadio = document.querySelector('input[name="experience"]:checked')
+    const experience = experienceRadio.parentNode.textContent.trim()
+
+    const selectedInterests = Array.from(document.querySelectorAll('input[name="interest"]:checked'))
+        .map(checkbox => checkbox.parentNode.textContent.trim())
+
+    const summaryHTML = `
+        <div class="summary-group">
+            <h4>Personal Details</h4>
+            <p><strong>Name:</strong> ${fname} ${lname}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Date of Birth:</strong> ${dob}</p>
+        </div>
+        
+        <hr style="border: 0; border-top: 1px solid #ddd; margin: 10px 0;">
+
+        <div class="summary-group">
+            <h4>Profile Preferences</h4>
+            <p><strong>Experience Level:</strong> ${experience}</p>
+            <p><strong>Interests:</strong> ${selectedInterests.length > 0 ? selectedInterests.join(', ') : '<i>None selected</i>'}</p>
+        </div>
+    `
+
+    document.getElementById('summary-content').innerHTML = summaryHTML
+
+    document.getElementById('create-interests').classList.add('hidden')
+    document.getElementById('create-review').classList.remove('hidden')
+}
+
+function finalizeAccount() {
+    const termsCheckbox = document.getElementById('terms')
+    const msg = document.getElementById('message')
+    if (!termsCheckbox.checked) {
+        msg.textContent = "You must agree to the Terms and Conditions."
+        msg.style.color = "red"
+        return
+    }
+
+    document.getElementById('create-review').classList.add('hidden')
+    goBack()
+    msg.textContent = "Account successfully created!"
+    msg.style.color = "green"
+}
+
+function goBack(where) {
     document.getElementById('message').textContent = ""
-    document.querySelectorAll('input').forEach(input => {
-        input.value = ""
+
+    document.querySelectorAll('.step').forEach(step => {
+        step.classList.add('hidden')
     })
+
+
+    if (where) {
+        document.getElementById(where).classList.remove('hidden')
+    } else {
+        document.querySelectorAll('input').forEach(input => {
+            input.value = ""
+        })
+        document.getElementById('email-step').classList.remove('hidden')
+    }
+
 }

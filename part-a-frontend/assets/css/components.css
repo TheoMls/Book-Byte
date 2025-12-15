@@ -5,44 +5,6 @@
     align-items: center;
 }
 
-/* Top menu navigation */
-.topnav {
-    display: flex;
-    width: 100%;
-    background-color: #c9c9c9;
-    overflow: auto;
-}
-
-.topnav a {
-    color: #000000;
-    text-align: center;
-    padding: 12px;
-    text-decoration: none;
-    font-size: 20px;
-}
-
-.topnav a:hover {
-    background-color: #363636;
-    color: #efefef;
-}
-
-.topnav a.active {
-    background-color: #5c5c5b;
-    color: white;
-}
-
-.topnav a:last-child {
-    margin-left: auto;
-}
-
-.sidenav-btn {
-    display: none;
-}
-
-.sidenav {
-    display: none;
-}
-
 /* Side menu backdrop blur */
 #overlay {
     position: fixed;
@@ -314,7 +276,7 @@ li.course-container {
     border: 5px solid #ccc;
     padding: 20px;
     border-radius: 12px;
-    width: 300px;
+    width: 50vw;
     max-width: 75%;
     margin: 50px auto;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -335,6 +297,8 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-top: 10vh;
+    padding-bottom: 10vh;
     min-height: 70vh
 }
 
@@ -429,8 +393,92 @@ button {
     }
 }
 
-#email-step,
-#login-step,
-#create-step {
+.card>* {
     animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+category-list-section {
+    max-width: 75%;
+}
+
+.category-list-section h2 {
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.category-links {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 5vh 5vw;
+    justify-content: center;
+}
+
+.category-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #f1f1f1;
+    color: #000;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+    border: 1px solid #ccc;
+}
+
+.category-link:hover {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.radio-group label,
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 6px;
+
+    margin: 8px 0;
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 0.2s;
+}
+
+.radio-group label:hover,
+.checkbox-group label:hover {
+    background-color: #e2e2e2;
+}
+
+.radio-group input,
+.checkbox-group input {
+    margin: 0;
+    width: 18px;
+    height: 18px;
+    accent-color: #007bff;
+}
+
+.summary-box {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+.summary-box strong {
+    color: #333;
+}
+
+.hint {
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: -5px;
+    margin-bottom: 10px;
+    text-align: left;
 }
