@@ -47,7 +47,7 @@
             <div class="card">
                 <h2>Welcome</h2>
 
-                <form id="email-step" class="hidden step" onsubmit="event.preventDefault(); checkEmail()">
+                <form id="email-step" class="step" onsubmit="event.preventDefault(); checkEmail()">
                     <input type="email" id="email" placeholder="email" required />
                     <button type="submit" class="btn-main">Continue</button>
                 </form>
@@ -100,7 +100,7 @@
                     <button class="btn-secondary" onclick="goBack('create-pass')">Back</button>
                 </div>
 
-                <div id="create-interests" class="step">
+                <div id="create-interests" class="hidden step">
                     <h3>Customize your Feed</h3>
 
                     <label><strong>Experience Level:</strong></label>

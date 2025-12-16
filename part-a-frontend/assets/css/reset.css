@@ -6,7 +6,8 @@
     box-sizing: border-box;
 }
 
-#main {
+main {
     transition: margin-left .5s;
     padding: 0px;
+    display: grid;
 }

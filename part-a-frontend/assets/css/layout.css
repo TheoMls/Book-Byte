@@ -2,7 +2,7 @@
 /* phone: 480px, tablet 768px, laptop 1024px */
 
 /* Mobile < 768px - 1 Στήλη */
-.main-grid-layout {
+main {
     display: grid;
     grid-template-columns: 1fr;
     gap: 10px;
@@ -10,7 +10,7 @@
     margin: 0 auto;
 
 }
-.main-grid-layout > * {
+main > * {
     margin: 0 auto;
 }
 
@@ -155,14 +155,14 @@ html {
 
 /* Tablet < 1024px - 2 Στήλες */
 @media screen and (min-width: 768px) {
-    .main-grid-layout {
+    main {
         grid-template-columns: 1fr 1fr;
     }
 }
 
 /* Desktop - 3 Στήλες*/
 @media screen and (min-width: 1024px) {
-    .main-grid-layout {
+    main {
         grid-template-columns: 1fr 1fr 1fr;
         max-width: 1300px;
     }
