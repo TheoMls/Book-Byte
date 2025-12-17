@@ -297,15 +297,6 @@ input {
     padding: 8px;
 }
 
-main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-top: 10vh;
-    padding-bottom: 10vh;
-    min-height: 70vh
-}
-
 .requirements-list {
     list-style: none;
     padding: 0;

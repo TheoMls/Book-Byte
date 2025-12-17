@@ -1,18 +1,33 @@
 /*  Layout for diffrent screen sizes */
 /* phone: 480px, tablet 768px, laptop 1024px */
 
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+    padding-left: 10vw;
+    padding-right: 10vw;
+    min-height: 70vh
+}
+
+main>* {
+    margin: 10px 25px;
+}
+
+.header-bar {
+    display: flex;
+    flex-direction: row;
+}
+
 /* Mobile < 768px - 1 Στήλη */
-main,
 .main-content {
     display: grid;
     grid-template-columns: 1fr;
     width: 100%;
     margin: 0 auto;
 
-}
-
-main>* {
-    margin: 0 auto;
 }
 
 html {
@@ -82,14 +97,6 @@ html {
     cursor: pointer;
 }
 
-#main {
-    transition: margin-left 0.5s;
-}
-
-#main.pushed {
-    margin-left: 40vw;
-}
-
 .search-container {
     float: none;
 }
@@ -142,7 +149,6 @@ html {
 /* Tablet < 1024px - 2 Στήλες */
 @media screen and (min-width: 768px) {
 
-    main,
     .main-content {
         grid-template-columns: 1fr 1fr;
     }
@@ -155,7 +161,6 @@ html {
 /* Desktop - 3 Στήλες*/
 @media screen and (min-width: 1024px) {
 
-    main,
     .main-content {
         grid-template-columns: 1fr 1fr 1fr;
         max-width: 1300px;
