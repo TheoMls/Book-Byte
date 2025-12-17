@@ -22,7 +22,7 @@ function load_books(book) {
     titleList.push([id, title])
     description = book["Description"]
     course = book["Course"]
-    courses.add(course)
+    course.forEach(item => { courses.add(item) })
     publicationYear = book["publicationYear"]
     publicationYearSet.add(publicationYear)
     publisher = book["Publisher"]
@@ -97,7 +97,6 @@ function fixFilters() {
     let publicationYearFilter = document.getElementById('publicationYear')
     publicationYearFilter.setAttribute('min', minPublicationYear)
     publicationYearFilter.setAttribute('max', maxPublicationYear)
-
     courses.forEach(course => updateExpandedFilter(course, 'courses'));
     publishers.forEach(publisher => updateExpandedFilter(publisher, 'publishers'))
 }
