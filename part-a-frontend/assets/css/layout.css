@@ -2,24 +2,21 @@
 /* phone: 480px, tablet 768px, laptop 1024px */
 
 /* Mobile < 768px - 1 Στήλη */
-main {
+main,
+.main-content {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 10px;
     width: 100%;
     margin: 0 auto;
 
 }
-main > * {
+
+main>* {
     margin: 0 auto;
 }
 
 html {
     font-size: 1.2rem;
-}
-
-.main-content {
-    flex-direction: column;
 }
 
 /* Side menu navigation */
@@ -77,8 +74,8 @@ html {
     margin-left: 50px;
 }
 
-.sidenav.open {
-    width: 40vw;
+.open {
+    width: 60vw !important;
 }
 
 .closebtn:hover {
@@ -106,12 +103,6 @@ html {
 }
 
 /* Filters nav */
-.filters-btn {
-    display: block;
-    font-size: 175%;
-    cursor: pointer;
-}
-
 .filters {
     height: 100%;
     width: 0;
@@ -142,33 +133,40 @@ html {
 }
 
 .filters h2,
-.filters nav,
 .filters .regular-filter,
 .filters .expanded-filter {
     display: flex;
     justify-content: center;
 }
 
-.books-container {
-    grid-template-columns: auto;
-}
-
 /* Tablet < 1024px - 2 Στήλες */
 @media screen and (min-width: 768px) {
-    main {
+
+    main,
+    .main-content {
         grid-template-columns: 1fr 1fr;
+    }
+
+    .open {
+        width: 25vw !important;
     }
 }
 
 /* Desktop - 3 Στήλες*/
 @media screen and (min-width: 1024px) {
-    main {
+
+    main,
+    .main-content {
         grid-template-columns: 1fr 1fr 1fr;
         max-width: 1300px;
     }
 
     html {
         font-size: 1rem;
+    }
+
+    .open {
+        width: 17vw !important;
     }
 
     /* Top menu navigation */

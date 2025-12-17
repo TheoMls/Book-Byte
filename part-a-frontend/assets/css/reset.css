@@ -11,3 +11,8 @@ main {
     padding: 0px;
     display: grid;
 }
+
+.header-bar {
+    display: flex;
+    flex-direction: row;
+}

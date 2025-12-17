@@ -63,16 +63,13 @@
     color: #fff;
 }
 
-/* Main content */
-.main-content {
-    display: flex;
-    flex-direction: row;
-    float: left;
-}
-
 /* Filters nav */
 .filters-btn {
-    display: none;
+    font-size: 15px !important;
+    width: 75px;
+    display: block;
+    cursor: pointer;
+
 }
 
 .filters .closebtn {
@@ -85,10 +82,23 @@
     background-color: #c4c4c4;
 }
 
+.filters .apply {
+    margin: 10px;
+    width: 35%;
+    zoom: 0.75;
+    float: right;
+    text-align: center;
+}
+
 /* Search bar */
 .search-container {
-    display: flex;
+    display: grid;
+    grid-template-columns: 75% 25%;
     float: right;
+}
+
+.search-container input {
+    border-radius: 5px;
 }
 
 .search-container input[type=text] {
@@ -141,7 +151,7 @@
     padding: 10px;
     font-size: 15px;
     border: none;
-    border-radius: 7%;
+    border-radius: 5px;
 }
 
 .expanded-filter-list {
@@ -156,7 +166,7 @@
 .expanded-filter-list li {
     color: black;
     padding: 10px 16px;
-    border-radius: 8%;
+    border-radius: 5px;
 }
 
 .expanded-filter-list :hover {
@@ -165,7 +175,7 @@
 
 .expanded-filter:hover .expanded-filter-list {
     display: block;
-    border-radius: 8%;
+    border-radius: 5px;
 }
 
 .expanded-filter:hover .dropbtn {
@@ -189,7 +199,7 @@ li.course-container {
     grid-template-columns: auto auto;
     background-color: #f1f1f1;
     text-align: center;
-    border-radius: 5%;
+    border-radius: 5px;
     padding: 5px;
 }
 
@@ -224,26 +234,14 @@ li.course-container {
 }
 
 /* Course list */
-.books-container {
-    display: grid;
-    grid-template-columns: auto auto;
-    background-color: #ffffff;
-    /* number of columns */
-}
-
 .book-container {
     display: grid;
     grid-template-columns: auto auto;
     background-color: #f1f1f1;
     text-align: center;
-    border-radius: 5%;
+    border-radius: 5px;
     padding: 5px;
     margin: 5px 5px;
-}
-
-.book-container div * {
-    padding: 10px;
-    color: #000000;
 }
 
 .book-container .img {
@@ -256,8 +254,14 @@ li.course-container {
     grid-template-columns: auto;
     background-color: #f1f1f1;
     text-align: center;
-    padding: 10px;
     font-size: 15px;
+}
+
+.book-info * {
+    word-wrap: break-word;
+    max-width: 100px;
+    background-color: #cccccc;
+    color: #1b1b1b;
 }
 
 .book-important-info {

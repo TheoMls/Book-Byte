@@ -7,7 +7,7 @@
 }
 
 .header-bar h1 {
-    margin: 0 10%;
+    margin: 0 auto !important;
     text-align: center;
     color: #ffffff;
 }

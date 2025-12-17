@@ -40,87 +40,40 @@
         <a href="./about.html">About Us</a>
         <a href="./sign_up.html">Sign Up / Sign In</a>
     </div>
-    
+
     <div>
         <header class="header-bar">
+            <button class="filters-btn" onclick="openNav('filtersList', false, false)">Filters</button>
             <h1>Books</h1>
         </header>
-        <div class="main-content">
-            <h2 class="filters-btn" onclick="openNav('filtersList', false, false)">Filters</h2>
-            <aside class="filters" id="filtersList">
-                <h2>Filters</h2>
-                <a class="closebtn" onclick="closeNav('filtersList')">×</a>
-                <nav class="search-container">
-                    <button type="submit">&#128270;</button>
-                    <input type="text" placeholder="Search..." name="search">
-                </nav>
-                <ul class="filter-list">
-                    <li class="regular-filter">
-                        <label for="available">available</label>
-                        <input type="checkbox" id="available">
-                    </li>
-                    <li class="regular-filter">
-                        <label for="publicationYear">year of publication</label>
-                        <input type="number" max="2025" step="1" value="2025" id="publicationYear">
-                    </li>
-                    <li class="expanded-filter">
-                        <button class="dropbtn">courses</button>
-                        <ul class="expanded-filter-list" id="courses"></ul>
-                    </li>
-                    <li class="expanded-filter">
-                        <button class="dropbtn">publishers</button>
-                        <ul class="expanded-filter-list" id="publishers"></ul>
-                    </li>
-                </ul>
-            </aside>
-            <ul class="books-container" id="booksList">
-                <li class="book-container" id="book-container">
-                    <img class="book-img" src="assets/img/books/book1.png">
-                    <div class="book-info">
-                        <div class="book-important-info">
-                            <h3 class="book-title">Title 1</h3>
-                            <p class="book-decr">desc: descr...</p>
-                        </div>
-                        <div class="book-secondary-info">
-                            <p class="book-publisher">publisher1</p>
-                            <p class="book-course">course: course1</p>
-                            <p class="book-publication-year">published at: 2024</p>
-                            <p class="book-availability">avilability: 0</p>
-                        </div>
-                    </div>
+        <aside class="filters" id="filtersList">
+            <h2>Filters</h2>
+            <a class="closebtn" onclick="closeNav('filtersList')">×</a>
+            <nav class="search-container">
+                <input type="text" placeholder="Search..." name="search">
+                <button type="submit">&#128270;</button>
+            </nav>
+            <ul class="filter-list">
+                <li class="regular-filter">
+                    <label for="available">available</label>
+                    <input type="checkbox" id="available">
                 </li>
-                <li class="book-container" id="book-container">
-                    <img class="book-img" src="assets/img/books/book2.png">
-                    <div class="book-info">
-                        <div class="book-important-info">
-                            <h3 class="book-title">Title 2</h3>
-                            <p class="book-decr">desc: descr...</p>
-                        </div>
-                        <div class="book-secondary-info">
-                            <p class="book-publisher">by publisher2</p>
-                            <p class="book-course">course: course2</p>
-                            <p class="book-publication-year">published at: 2022</p>
-                            <p class="book-availability">avilability: 1</p>
-                        </div>
-                    </div>
+                <li class="regular-filter">
+                    <label for="publicationYear"> maximum publication year</label>
+                    <input type="number" max="2025" step="1" id="publicationYear">
                 </li>
-                <li class="book-container" id="book-container">
-                    <img class="book-img" src="assets/img/books/book3.png">
-                    <div class="book-info">
-                        <div class="book-important-info">
-                            <h3 class="book-title">Title 3</h3>
-                            <p class="book-decr">desc: descr...</p>
-                        </div>
-                        <div class="book-secondary-info">
-                            <p class="book-publisher">by publisher3</p>
-                            <p class="book-course">course: course3</p>
-                            <p class="book-publication-year">published at: 2020</p>
-                            <p class="book-availability">avilability: 2</p>
-                        </div>
-                    </div>
+                <li class="expanded-filter">
+                    <button class="dropbtn">courses</button>
+                    <ul class="expanded-filter-list" id="courses"></ul>
+                </li>
+                <li class="expanded-filter">
+                    <button class="dropbtn">publishers</button>
+                    <ul class="expanded-filter-list" id="publishers"></ul>
                 </li>
             </ul>
-        </div>
+            <button class="apply" id="applyBtn">apply</button>
+        </aside>
+        <ul class="books-container main-content" id="booksList"></ul>
     </div>
     <div id="overlay" onclick="closeNav('sideMenu')"></div>
 </body>
