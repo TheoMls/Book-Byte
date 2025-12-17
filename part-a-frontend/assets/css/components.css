@@ -401,7 +401,7 @@ button {
     animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-category-list-section {
+.category-list-section {
     max-width: 75%;
 }
 
@@ -485,4 +485,8 @@ category-list-section {
     margin-top: -5px;
     margin-bottom: 10px;
     text-align: left;
+}
+
+.no-scroll {
+    overflow: hidden;
 }

@@ -8,6 +8,7 @@ function openNav(id, push, blur = true) {
         mainContent?.classList.add('pushed')
     } else if (blur) {
         overlay?.classList.add('active')
+        document.body.classList.add("no-scroll")
     }
 }
 
@@ -19,4 +20,5 @@ function closeNav(id) {
     sidebar.classList.remove('open')
     overlay?.classList.remove('active')
     mainContent?.classList.remove('pushed')
+    document.body.classList.remove("no-scroll")
 }
