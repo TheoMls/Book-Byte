@@ -1,6 +1,6 @@
 const coursesJSON = [
     {
-        "id": "1",
+        "id": 1,
         "title": "Introduction to Programming",
         "category": "cs",
         "level": 1,
@@ -10,7 +10,7 @@ const coursesJSON = [
         "books": [1, 2]
     },
     {
-        "id": "2",
+        "id": 2,
         "title": "Advanced Web Development",
         "category": "webdev",
         "level": 3,
@@ -20,7 +20,7 @@ const coursesJSON = [
         "books": [3, 4]
     },
     {
-        "id": "3",
+        "id": 3,
         "title": "Data Science Fundamentals",
         "category": "data",
         "level": 2,
@@ -30,7 +30,7 @@ const coursesJSON = [
         "books": [5, 6]
     },
     {
-        "id": "4",
+        "id": 4,
         "title": "Digital Marketing Strategies",
         "category": "business",
         "level": 1,
@@ -40,7 +40,7 @@ const coursesJSON = [
         "books": [7]
     },
     {
-        "id": "5",
+        "id": 5,
         "title": "Graphic Design Basics",
         "category": "art",
         "level": 1,
@@ -50,7 +50,7 @@ const coursesJSON = [
         "books": [8]
     },
     {
-        "id": "6",
+        "id": 6,
         "title": "Machine Learning with Python",
         "category": "data",
         "level": 3,
@@ -60,7 +60,7 @@ const coursesJSON = [
         "books": [5, 9]
     },
     {
-        "id": "7",
+        "id": 7,
         "title": "Financial Analysis and Modeling",
         "category": "business",
         "level": 2,
