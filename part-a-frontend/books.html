@@ -16,7 +16,7 @@
 
 <body>
     <header class="header-bar">
-        <span class="sidenav-btn" onclick="openNav('sideMenu', false)">☰</span>
+        <span class="sidenav-btn" onclick="openNav('sideMenu')">☰</span>
         <div class="logo-title">
             <a href="index.html">
                 <img src="assets/img/logo.jpg" width="48" height="48">
@@ -44,16 +44,16 @@
 
     <div>
         <header class="header-bar">
-            <button class="filters-btn" onclick="openNav('filtersList', false, false)">Filters</button>
             <h1>Books</h1>
-        </header>
-        <aside class="filters" id="filtersList">
-            <h2>Filters</h2>
-            <a class="closebtn" onclick="closeNav('filtersList')">×</a>
             <nav class="search-container">
                 <input type="text" placeholder="Search..." name="search">
                 <button type="submit">&#128270;</button>
             </nav>
+            <button class="filters-btn" onclick="openNav('filtersList', false)">✏️</button>
+        </header>
+        <aside class="filters" id="filtersList">
+            <h2>Filters</h2>
+            <a class="closebtn" onclick="closeNav('filtersList')">×</a>
             <ul class="filter-list">
                 <li class="regular-filter">
                     <label for="available">available</label>

@@ -70,7 +70,7 @@ html {
     left: 0;
     background-color: #7f7f7f;
     overflow-x: hidden;
-    transition: 0.5s;
+    transition: 0.2s;
     padding-top: 60px;
 }
 
@@ -122,7 +122,7 @@ html {
     }
 
     .open {
-        width: 25vw;
+        width: 45vw;
     }
 
     .category-list-section {
@@ -166,7 +166,7 @@ html {
     }
 
     .open {
-        width: 20vw;
+        width: 30vw;
     }
 
     /* Top menu navigation */
