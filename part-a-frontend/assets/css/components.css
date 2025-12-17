@@ -464,6 +464,8 @@ button {
     border-radius: 8px;
     text-align: left;
     font-size: 0.95rem;
+    overflow-wrap: break-word;
+    hyphens: auto;
 }
 
 .summary-box strong {

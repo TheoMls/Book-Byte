@@ -53,7 +53,8 @@
 
 
             <form id="login-step" class="hidden step" onsubmit="event.preventDefault(); login()">
-                <input type="password" id="login-password" placeholder="Password" />
+                <input type="password" id="login-password" placeholder="Password"
+                    oninput="this.value = this.value.replace(/\s/g, '')" />
                 <button type="submit" class="btn-main">Login</button>
                 <button type="button" class="btn-secondary" onclick="goBack()">Back</button>
             </form>
@@ -62,7 +63,8 @@
                 <p>Create Account</p>
 
                 <div class="password-wrapper">
-                    <input type="password" id="new-password" placeholder="Password" />
+                    <input type="password" id="new-password" placeholder="Password"
+                        oninput="this.value = this.value.replace(/\s/g, '')" />
                     <button type="button" class="toggle-password" id="show-password"
                         onclick="toggleVisibility('new-password', this)">
                         👁️

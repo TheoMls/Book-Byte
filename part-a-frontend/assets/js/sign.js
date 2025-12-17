@@ -105,7 +105,6 @@ document.addEventListener('DOMContentLoaded', function () {
 })
 
 function createAccount() {
-    const email = document.getElementById('email').value
     const pw = document.getElementById('new-password').value
     const pw2 = document.getElementById('confirm-password').value
     const msg = document.getElementById('message')
@@ -125,7 +124,6 @@ function createAccount() {
     }
 
     msg.textContent = ""
-    putDb(email, pw)
 
     document.getElementById('create-pass').classList.add('hidden')
     document.getElementById('create-personal').classList.remove('hidden')
@@ -218,6 +216,14 @@ function finalizeAccount() {
         return
     }
 
+
+
+    const email = document.getElementById('email').value
+    const pw = document.getElementById('new-password').value
+
+    putDb(email, pw)
+
+
     document.getElementById('create-review').classList.add('hidden')
     goBack()
     msg.textContent = "Account successfully created!"
@@ -236,7 +242,14 @@ function goBack(where) {
         document.getElementById(where).classList.remove('hidden')
     } else {
         document.querySelectorAll('input').forEach(input => {
-            input.value = ""
+            if (['checkbox', 'radio'].includes(input.type)) {
+                input.checked = false
+                if (input.value === "beginner")
+                    input.checked = true
+            } else
+                input.value = ""
+
+
         })
         document.getElementById('email-step').classList.remove('hidden')
     }
