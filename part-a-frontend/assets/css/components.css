@@ -65,7 +65,7 @@
 
 /* Filters nav */
 .filters-btn {
-    font-size: 15px ;
+    font-size: 15px;
     width: 75px;
     display: block;
     cursor: pointer;
@@ -398,39 +398,54 @@ button {
 }
 
 .category-list-section {
-    max-width: 75%;
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 20px 0;
 }
 
 .category-list-section h2 {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     text-align: center;
+    font-size: 1.5rem;
 }
 
 .category-links {
     list-style: none;
     padding: 0;
+    margin: 0;
+    justify-content: center;
+
+
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
     gap: 15px;
-    margin: 5vh 5vw;
-    justify-content: center;
+
 }
+
 
 .category-link {
     display: inline-block;
     padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+
     background-color: #f1f1f1;
     color: #000;
-    text-decoration: none;
-    border-radius: 8px;
-    transition: background-color 0.3s;
     border: 1px solid #ccc;
+    border-radius: 8px;
+
+    transition: all 0.3s ease;
+    transition: background-color 0.3s;
+
 }
 
 .category-link:hover {
     background-color: #007bff;
     color: white;
     border-color: #007bff;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 .radio-group label,
