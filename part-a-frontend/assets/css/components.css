@@ -65,7 +65,7 @@
 
 /* Filters nav */
 .filters-btn {
-    font-size: 15px !important;
+    font-size: 15px ;
     width: 75px;
     display: block;
     cursor: pointer;
@@ -73,7 +73,12 @@
 }
 
 .filters .closebtn {
-    display: none;
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 60px;
+    margin-left: 50px;
 }
 
 
@@ -482,4 +487,46 @@ button {
 
 .no-scroll {
     overflow: hidden;
+}
+
+.search-container {
+    float: none;
+}
+
+.search-container button .search-container input[type=text] {
+    float: none;
+    display: block;
+    text-align: left;
+    margin: 0;
+    padding: 14px;
+}
+
+/* Filters nav */
+.filters {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    color: #000;
+    background-color: #c4c4c4;
+}
+
+
+
+.filters * {
+    text-decoration: none;
+    color: #121111;
+    transition: 0.3s;
+}
+
+.filters h2,
+.filters .regular-filter,
+.filters .expanded-filter {
+    display: flex;
+    justify-content: center;
 }

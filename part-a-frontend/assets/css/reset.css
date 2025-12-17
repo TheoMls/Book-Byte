@@ -5,24 +5,3 @@
     padding: 0;
     box-sizing: border-box;
 }
-
-
-main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-top: 10vh;
-    padding-bottom: 10vh;
-    padding-left: 10vw;
-    padding-right: 10vw;
-    min-height: 70vh
-}
-
-main>* {
-    margin: 10px 25px;
-}
-
-.header-bar {
-    display: flex;
-    flex-direction: row;
-}
