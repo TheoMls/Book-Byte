@@ -43,103 +43,101 @@
         <a class="active" href="./sign_up.html">Sign Up / Sign In</a>
     </div>
     <main>
-        <div>
-            <div class="card">
-                <h2>Welcome</h2>
+        <div class="card">
+            <h2>Welcome</h2>
 
-                <form id="email-step" class="step" onsubmit="event.preventDefault(); checkEmail()">
-                    <input type="email" id="email" placeholder="email" required />
-                    <button type="submit" class="btn-main">Continue</button>
-                </form>
+            <form id="email-step" class="step" onsubmit="event.preventDefault(); checkEmail()">
+                <input type="email" id="email" placeholder="email" required />
+                <button type="submit" class="btn-main">Continue</button>
+            </form>
 
 
-                <form id="login-step" class="hidden step" onsubmit="event.preventDefault(); login()">
-                    <input type="password" id="login-password" placeholder="Password" />
-                    <button type="submit" class="btn-main">Login</button>
-                    <button type="button" class="btn-secondary" onclick="goBack()">Back</button>
-                </form>
+            <form id="login-step" class="hidden step" onsubmit="event.preventDefault(); login()">
+                <input type="password" id="login-password" placeholder="Password" />
+                <button type="submit" class="btn-main">Login</button>
+                <button type="button" class="btn-secondary" onclick="goBack()">Back</button>
+            </form>
 
-                <div id="create-pass" class="hidden step">
-                    <p>Create Account</p>
+            <div id="create-pass" class="hidden step">
+                <p>Create Account</p>
 
-                    <div class="password-wrapper">
-                        <input type="password" id="new-password" placeholder="Password" />
-                        <button type="button" class="toggle-password" id="show-password"
-                            onclick="toggleVisibility('new-password', this)">
-                            👁️
-                        </button>
-                    </div>
-
-                    <ul class="requirements-list">
-                        <li id="req-length" class="req-item">At least 8 characters</li>
-                        <li id="req-lower" class="req-item">At least one lowercase letter</li>
-                        <li id="req-upper" class="req-item">At least one uppercase letter</li>
-                        <li id="req-num" class="req-item">At least one number</li>
-                    </ul>
-
-                    <input type="password" id="confirm-password" placeholder="Confirm Password" />
-
-                    <button class="btn-main" onclick="createAccount()">Create Account</button>
-                    <button class="btn-secondary" onclick="goBack()">Back</button>
+                <div class="password-wrapper">
+                    <input type="password" id="new-password" placeholder="Password" />
+                    <button type="button" class="toggle-password" id="show-password"
+                        onclick="toggleVisibility('new-password', this)">
+                        👁️
+                    </button>
                 </div>
 
-                <div id="create-personal" class="hidden step">
-                    <h3>Tell us about you</h3>
+                <ul class="requirements-list">
+                    <li id="req-length" class="req-item">At least 8 characters</li>
+                    <li id="req-lower" class="req-item">At least one lowercase letter</li>
+                    <li id="req-upper" class="req-item">At least one uppercase letter</li>
+                    <li id="req-num" class="req-item">At least one number</li>
+                </ul>
 
-                    <label>Full Name</label>
-                    <div style="display: flex; gap: 10px;">
-                        <input type="text" id="fname" placeholder="First Name" required />
-                        <input type="text" id="lname" placeholder="Last Name" required />
-                    </div>
+                <input type="password" id="confirm-password" placeholder="Confirm Password" />
 
-                    <label>Date of Birth</label>
-                    <input type="date" id="dob" required />
-                    <p class="hint">You must be at least 16 years old.</p>
-
-                    <button class="btn-main" onclick="createPersonal()">Next: Interests</button>
-                    <button class="btn-secondary" onclick="goBack('create-pass')">Back</button>
-                </div>
-
-                <div id="create-interests" class="hidden step">
-                    <h3>Customize your Feed</h3>
-
-                    <label><strong>Experience Level:</strong></label>
-                    <div class="radio-group">
-                        <label><input type="radio" name="experience" value="beginner" checked> Beginner (New to
-                            coding)</label>
-                        <label><input type="radio" name="experience" value="intermediate"> Intermediate (Some
-                            experience)</label>
-                        <label><input type="radio" name="experience" value="advanced"> Advanced (Professional)</label>
-                    </div>
-                    <br>
-                    <label><strong>I am interested in (Select all that apply):</strong></label>
-                    <div class="checkbox-group" id="interests-container">
-                    </div>
-
-                    <button class="btn-main" onclick="createInterests()">Review & Submit</button>
-                    <button class="btn-secondary" onclick="goBack('create-personal')">Back</button>
-                </div>
-
-                <div id="create-review" class="hidden step">
-                    <h3>Confirm Details</h3>
-                    <div id="summary-content" class="summary-box">
-                    </div>
-
-                    <div class="checkbox-group">
-                        <label style="margin-top: 15px; display:block;">
-                            <input type="checkbox" id="terms" /> I agree to the <a
-                                href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Terms &
-                                Conditions</a>
-                        </label>
-
-                    </div>
-
-                    <button class="btn-main" onclick="finalizeAccount()">Confirm & Create Account</button>
-                    <button class="btn-secondary" onclick="goBack('create-interests')">Edit</button>
-                </div>
-
-                <p id="message"></p>
+                <button class="btn-main" onclick="createAccount()">Create Account</button>
+                <button class="btn-secondary" onclick="goBack()">Back</button>
             </div>
+
+            <div id="create-personal" class="hidden step">
+                <h3>Tell us about you</h3>
+
+                <label>Full Name</label>
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" id="fname" placeholder="First Name" required />
+                    <input type="text" id="lname" placeholder="Last Name" required />
+                </div>
+
+                <label>Date of Birth</label>
+                <input type="date" id="dob" required />
+                <p class="hint">You must be at least 16 years old.</p>
+
+                <button class="btn-main" onclick="createPersonal()">Next: Interests</button>
+                <button class="btn-secondary" onclick="goBack('create-pass')">Back</button>
+            </div>
+
+            <div id="create-interests" class="hidden step">
+                <h3>Customize your Feed</h3>
+
+                <label><strong>Experience Level:</strong></label>
+                <div class="radio-group">
+                    <label><input type="radio" name="experience" value="beginner" checked> Beginner (New to
+                        coding)</label>
+                    <label><input type="radio" name="experience" value="intermediate"> Intermediate (Some
+                        experience)</label>
+                    <label><input type="radio" name="experience" value="advanced"> Advanced (Professional)</label>
+                </div>
+                <br>
+                <label><strong>I am interested in (Select all that apply):</strong></label>
+                <div class="checkbox-group" id="interests-container">
+                </div>
+
+                <button class="btn-main" onclick="createInterests()">Review & Submit</button>
+                <button class="btn-secondary" onclick="goBack('create-personal')">Back</button>
+            </div>
+
+            <div id="create-review" class="hidden step">
+                <h3>Confirm Details</h3>
+                <div id="summary-content" class="summary-box">
+                </div>
+
+                <div class="checkbox-group">
+                    <label style="margin-top: 15px; display:block;">
+                        <input type="checkbox" id="terms" /> I agree to the <a
+                            href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Terms &
+                            Conditions</a>
+                    </label>
+
+                </div>
+
+                <button class="btn-main" onclick="finalizeAccount()">Confirm & Create Account</button>
+                <button class="btn-secondary" onclick="goBack('create-interests')">Edit</button>
+            </div>
+
+            <p id="message"></p>
         </div>
     </main>
     <div id="overlay" onclick="closeNav('sideMenu')"></div>
