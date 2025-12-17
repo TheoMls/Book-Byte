@@ -157,7 +157,10 @@ function checkBook(book) {
         courseInput = course.getElementsByTagName("input")[0]
         if (courseInput.checked) {
             allEmpty = false
-            if (book.Course === course.getElementsByTagName("label")[0].textContent)
+            console.log(book.Course)
+            console.log(course.getElementsByTagName("label")[0].textContent)
+            console.log(book.Course.includes(parseInt(course.getElementsByTagName("label")[0].textContent)))
+            if (book.Course.includes(parseInt(course.getElementsByTagName("label")[0].textContent)))
                 isValid = true
         }
     }
