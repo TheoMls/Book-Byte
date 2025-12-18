@@ -52,15 +52,14 @@ function renderCourseDetails(course) {
     const container = document.getElementById("courseDetailsContainer")
 
     container.innerHTML = `
-        <div class="course-card">
+        <div class="course-info">
             <div class="course-meta-tags">
                 <span class="badge" style="background:#007bff">${catName}</span>
                 <span class="badge" style="background:${getDiffColor(course.level)}">${diffLabel}</span>
             </div>
-            <p class="teacher-name">👨‍🏫 Taught by <strong>${course.teacher}</strong></p>
-            <p class="duration-info">⏳ Duration: ${course.duration} Weeks</p>
+            <p class="teacher-name">Taught by <strong>${course.teacher}</strong></p>
+            <p class="duration-info">Duration: ${course.duration} Weeks</p>
         </div>
-
         <div class="course-description-section">
             <h2>About this Course</h2>
             <p>${course.description}</p>

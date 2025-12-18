@@ -621,6 +621,12 @@ ul.courses-container {
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
 }
 
+.course-info {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
 .course-header {
     display: flex;
     justify-content: space-between;
@@ -726,13 +732,6 @@ input[type="range"]:disabled {
 }
 
 /* Course Details Specifics */
-.course-card {
-    background: #f9f9f9;
-    padding: 20px;
-    border-radius: 8px;
-    border-left: 5px solid #007bff;
-    margin-bottom: 30px;
-}
 
 .course-meta-tags {
     margin-bottom: 15px;

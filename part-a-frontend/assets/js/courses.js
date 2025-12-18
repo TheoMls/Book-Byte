@@ -1,6 +1,24 @@
 document.addEventListener("DOMContentLoaded", () => {
     populateCategoryFilters()
-    renderCourses(coursesJSON)
+
+    const params = new URLSearchParams(window.location.search)
+    const categoryParam = params.get("courseCategory")
+    let initialFilterApplied = false
+
+    if (categoryParam) {
+        const checkbox = document.querySelector(`#categories input[value="${categoryParam}"]`)
+
+        // 3. If found, check it and apply filters immediately
+        if (checkbox) {
+            checkbox.checked = true
+            applyCourseFilters()
+            initialFilterApplied = true
+        }
+    }
+
+    if (!initialFilterApplied) {
+        renderCourses(coursesJSON)
+    }
 
     // Apply Button
     document.getElementById("applyBtn").addEventListener("click", applyCourseFilters)
@@ -105,6 +123,8 @@ function applyCourseFilters() {
     })
 
     renderCourses(filtered)
+    const baseUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+    window.history.replaceState({ path: baseUrl }, '', baseUrl);
 }
 
 function toggleSlider(sliderId, checkbox) {
