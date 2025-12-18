@@ -39,7 +39,7 @@ function display_book(book) {
     const courseLinks = book.Course.map(courseId => {
         const courseObj = coursesJSON.find(c => c.id == courseId)
         const title = courseObj ? courseObj.title : "Unknown Course"
-        return `<a href="./course-details.html?id=${courseId}">${title}</a>`
+        return `<a href="./course-details.html?courseId=${courseId}">${title}</a>`
     }).join(", ")
 
     li.innerHTML = `
