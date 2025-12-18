@@ -16,6 +16,12 @@ window.onload = function init() {
     renderBooks(books)
 
     document.getElementById("applyBtn").addEventListener("click", applyFilters)
+
+    document.querySelector('input[name="search"]').addEventListener("keypress", (e) => {
+        if (e.key === "Enter") applyFilters()
+
+    })
+    document.querySelector('.search-container button').addEventListener("click", applyFilters())
 }
 
 function renderBooks(booksToDisplay) {
@@ -39,7 +45,7 @@ function display_book(book) {
     const courseLinks = book.Course.map(courseId => {
         const courseObj = coursesJSON.find(c => c.id == courseId)
         const title = courseObj ? courseObj.title : "Unknown Course"
-        return `<a href="./course-details.html?courseId=${courseId}" style="text-decoration: none;">${title}</a>`
+        return `<a href="./course-details.html?courseId=${courseId}" style="text-decoration: none">${title}</a>`
     }).join(", ")
 
     li.innerHTML = `
@@ -106,6 +112,9 @@ function updateExpandedFilter(containerId, labelText, value) {
 
 
 function applyFilters() {
+    const searchInput = document.querySelector('input[name="search"]')
+    const searchText = searchInput ? searchInput.value.toLowerCase() : ""
+
     const onlyAvailable = document.getElementById("available").checked
 
     const maxYearInput = document.getElementById("maxYear")
@@ -118,12 +127,18 @@ function applyFilters() {
         .map(cb => cb.value)
 
     const filteredBooks = books.filter(book => {
+        const matchesSearch = book.Title.toLowerCase().includes(searchText) ||
+            book.Description.toLowerCase().includes(searchText) ||
+            book.Publisher.toLowerCase().includes(searchText)
+
+        if (!matchesSearch) return false
+
         if (onlyAvailable && book.Availability === 0) return false
 
-        
+
         if (book.publicationYear > maxYear && !maxYearInput.disabled) return false
 
-        
+
         if (checkedCourseIds.length > 0) {
             const hasMatch = book.Course.some(id => checkedCourseIds.includes(id))
             if (!hasMatch) return false
