@@ -77,9 +77,9 @@
     color: #333;
     cursor: pointer;
     transition: background-color 0.2s;
-    margin-left: 30%;
     height: auto;
     width: auto !important;
+    margin: 0;
 }
 
 .filters-btn:hover {
@@ -147,7 +147,7 @@
     gap: 0;
     margin: 10px 10px;
     width: 100%;
-    max-width: 500px;
+    max-width: 50vw;
 }
 
 .search-container input[type=text] {
@@ -178,6 +178,7 @@
     cursor: pointer;
     transition: background 0.3s;
     margin-top: 0;
+    margin-bottom: 0;
 }
 
 .search-container button:hover {
@@ -250,12 +251,11 @@
     padding: 4px;
 }
 
-/* Books list */
+/* Course list */
 ul.course-container {
     display: grid;
     grid-template-columns: auto auto;
     background-color: #ffffff;
-    /* number of columns */
 }
 
 li.course-container {
@@ -297,47 +297,69 @@ li.course-container {
     grid-template-columns: auto auto;
 }
 
-/* Course list */
-.book-container {
-    display: grid;
-    grid-template-columns: 60% auto;
-    background-color: #b6b6b6;
-    text-align: center;
-    border-radius: 5px;
-    padding: 5px;
-    margin: 5px 5px;
+/* Book list */
+ul.books-container {
+    padding-left: 5%;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
-.book-container .img {
-    grid-row: 1 / span 2;
+.book-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 15px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.book-img {
+    width: 160px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    flex-shrink: 0;
 }
 
 .book-info {
-    display: grid;
-    grid-template-rows: auto auto;
-    grid-template-columns: auto;
-    text-align: center;
-    font-size: 15px;
+    width: 100%;
+    min-width: 0;
 }
 
-.book-info * {
-    word-wrap: break-word;
-    max-width: 125px;
-    background-color: #cccccc;
-    color: #1b1b1b;
-    border: 0.05mm solid #6e6e6e;
+.book-title {
+    margin: 0 0 10px 0;
+    font-size: 1.2rem;
+    color: #333;
 }
 
-.book-important-info {
-    display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: auto auto;
+.book-desc {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 15px;
+    line-height: 1.4;
 }
 
 .book-secondary-info {
-    display: grid;
-    grid-template-columns: auto auto;
-    font-size: x-small;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+    font-size: 0.85rem;
+    color: #555;
+}
+
+.book-availability {
+    color: #188038;
+    font-weight: bold;
 }
 
 
@@ -408,6 +430,7 @@ input {
 button {
     width: 100%;
     padding: 10px;
+    margin-bottom: 10px;
     border-radius: 5px;
     font-size: 1rem;
     cursor: pointer;
@@ -602,4 +625,12 @@ button {
 .filters .expanded-filter {
     display: flex;
     justify-content: center;
+}
+
+.toolbar {
+    justify-content: space-between;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }

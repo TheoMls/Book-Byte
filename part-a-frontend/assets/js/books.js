@@ -1,9 +1,9 @@
-books = []
-titleList = []
-courses = new Set()
-publicationYearSet = new Set()
-publishers = new Set()
-availabilityList = []
+let books = []
+let titleList = []
+let courses = new Set()
+let publicationYearSet = new Set()
+let publishers = new Set()
+let availabilityList = []
 
 window.onload = function get_book_data() {
     booksJSON.forEach(book => load_books(book))

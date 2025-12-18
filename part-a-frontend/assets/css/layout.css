@@ -39,7 +39,9 @@ main>* {
     grid-template-columns: 1fr;
     width: 100%;
     margin: 0 auto;
-
+    padding-left: 5%;
+    padding-right: 5%;
+    gap: 20px;
 }
 
 html {
@@ -147,6 +149,32 @@ html {
 
     .category-link {
         min-width: 150px;
+    }
+
+    .book-container {
+        flex-direction: row;
+        align-items: start;
+        text-align: left;
+        gap: 20px;
+        padding: 15px;
+    }
+
+    .book-img {
+        width: 120px;
+        height: 160px;
+        margin-bottom: 0;
+    }
+
+    .book-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+    }
+
+    .book-secondary-info {
+        justify-content: flex-start;
+        padding-top: 10px;
     }
 }
 
