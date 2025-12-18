@@ -62,7 +62,7 @@ function renderCourses(courses) {
 
         li.innerHTML = `
             <div class="course-header">
-                <span class="badge" style="background-color: #007bff">${catName}</span>
+                <span class="badge" style="background-color: #745151ff">${catName}</span>
                 <span class="badge" style="background-color: ${diffInfo.color}">${diffInfo.label}</span>
             </div>
             

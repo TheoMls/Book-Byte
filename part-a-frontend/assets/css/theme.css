@@ -7,7 +7,7 @@ body {
 
 /* --- Header & Navigation Colors --- */
 .header-bar {
-    background-color: #8a8a8a;
+    background-color: #563232;
 }
 
 .header-bar h1 {
@@ -35,8 +35,8 @@ body {
 }
 
 .topnav a.active {
-    background-color: #2b5bdd !important;
-    border: 2px solid #0b2a7e !important;
+    background-color: #572727 !important;
+    border: 2px solid #351e1e !important;
     color: white !important;
     border-radius: 5px;
 }
@@ -111,4 +111,8 @@ body {
 .suggested-menu a:hover {
     background-color: #616161;
     color: #fff;
+}
+
+.search-container input[type=text]:focus {
+    border-color: #853b3b;
 }

@@ -161,19 +161,15 @@
     transition: border-color 0.3s;
 }
 
-.search-container input[type=text]:focus {
-    border-color: #007bff;
-}
 
 /* The Search Button */
 .search-container button {
     width: auto !important;
     flex-shrink: 0;
     padding: 10px 15px;
-    background: #2c93ec;
-    color: #0056b3;
+    background: #572727;
     font-size: 16px;
-    border: 1.5px solid #3e93de;
+    border: 1.5px solid #351e1e;
     border-radius: 0 5px 5px 0;
     cursor: pointer;
     transition: background 0.3s;
@@ -182,8 +178,8 @@
 }
 
 .search-container button:hover {
-    background: #0a69cf;
-    border-color: #00448c;
+    background: #853b3b;
+    border-color: #572727;
 }
 
 
@@ -392,13 +388,13 @@ button {
 }
 
 .btn-main {
-    background-color: #007bff;
+    background-color: #313131;
     color: white;
     border: none;
 }
 
 .btn-main:hover {
-    background-color: #0056b3;
+    background-color: #494949;
 }
 
 .btn-secondary {
@@ -475,9 +471,9 @@ button {
 }
 
 .category-link:hover {
-    background-color: #007bff;
+    background-color: #572727;
     color: white;
-    border-color: #007bff;
+    border-color: #351e1e;
     transform: translateY(-3px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
@@ -690,7 +686,7 @@ ul.courses-container {
 }
 
 .details-btn {
-    background-color: #007bff;
+    background-color: #572727 ;
     text-decoration: none;
     color: white;
     border: none;
@@ -704,7 +700,7 @@ ul.courses-container {
 }
 
 .details-btn:hover {
-    background-color: #0056b3;
+    background-color: #853b3b;
 }
 
 .filter-header {

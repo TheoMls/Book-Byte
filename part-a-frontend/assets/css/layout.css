@@ -26,7 +26,7 @@ main>* {
 .header-bar h1 {
     margin: auto 10vh;
     text-align: center;
-    min-width: 10vw;
+    min-width: 20vw;
 }
 
 .header-bar span {
