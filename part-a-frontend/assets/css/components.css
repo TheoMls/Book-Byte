@@ -140,6 +140,10 @@
     text-align: center;
 }
 
+.filters .apply:hover {
+    background-color: #b9b9b9;
+}
+
 /* Search bar */
 .search-container {
     display: flex;
