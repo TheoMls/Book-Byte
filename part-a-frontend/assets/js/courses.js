@@ -28,18 +28,13 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("applyBtn").addEventListener("click", applyCourseFilters)
     document.getElementById("clearBtn").addEventListener("click", clearFilters)
 
-    const searchInput = document.querySelector('input[name="search"]')
-    if (searchInput) {
-        searchInput.addEventListener("keypress", (e) => {
-            if (e.key === "Enter") applyCourseFilters()
-        })
-    }
-
     // Search Button
-    const searchBtn = document.querySelector('.search-container button')
-    if (searchBtn) {
-        searchBtn.addEventListener("click", applyCourseFilters)
-    }
+    document.querySelector('input[name="search"]').addEventListener("keypress", (e) => {
+        if (e.key === "Enter") applyCourseFilters()
+    })
+
+    document.querySelector('.search-container button').addEventListener("click", applyCourseFilters)
+
 })
 
 const difficultyMap = {

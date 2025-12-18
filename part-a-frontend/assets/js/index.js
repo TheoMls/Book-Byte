@@ -22,10 +22,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // make random book suggestions
     const suggestionsMenu = document.getElementById('suggestionsMenu')
+    const books = booksJSON
     for (suggestion of suggestionsMenu.children) {
-        r = Math.random()
-        r *= booksJSON.length
-        r = Math.floor(r)
-        suggestion.children[0].src = booksJSON[r].image
+        if (!books.length) break
+        const randomIndex = Math.floor(Math.random() * books.length)
+        suggestion.children[0].src = books[randomIndex].image
+        books.splice(randomIndex, 1)
     }
 })

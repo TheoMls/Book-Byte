@@ -54,7 +54,7 @@ function renderCourseDetails(course) {
     container.innerHTML = `
         <div class="course-info">
             <div class="course-meta-tags">
-                <span class="badge" style="background:#853b3b">${catName}</span>
+                <span class="badge" style="background:#745151ff">${catName}</span>
                 <span class="badge" style="background:${getDiffColor(course.level)}">${diffLabel}</span>
             </div>
             <p class="teacher-name">Taught by <strong>${course.teacher}</strong></p>

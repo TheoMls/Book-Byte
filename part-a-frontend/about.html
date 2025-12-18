@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="el">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About</title>
+    <title>About Us</title>
+    <link rel="icon" type="image/x-icon" href="assets/img/hat.ico">
     <script type="text/javascript" src="assets/js/ui/menu.js"></script>
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/theme.css">
@@ -19,7 +20,7 @@
             <a href="index.html">
                 <img class="logo" src="assets/img/logo.png" width="48" height="48">
             </a>
-            <h1>Title</h1>
+            <h1>Book & Byte</h1>
         </div>
     </header>
 
@@ -40,13 +41,47 @@
         <a href="./sign_up.html">Sign Up / Sign In</a>
     </div>
 
-    <div>
-        <section>
-            <p>Information text</p>
-            <p>More information text</p>
+    <main class="main-content-fluid">
+
+        <section class="project-info">
+            <h2>Σχετικά με την Εργασία</h2>
+            <p>
+                Μάθημα: <strong>Τεχνολογίες και Προγραμματισμός Εφαρμογών στον Ιστό</strong><br>
+                Διδάσκων: κ. Στεργιόπουλος <br>
+                Ακαδημαϊκό Έτος: 2024-2025
+            </p>
         </section>
-    </div>
+
+        <div class="student-card">
+            <div class="student-name">Ανδρέας Χαράλαμπος Παναγόπουλος</div>
+            <div class="student-id">p3220145</div>
+        </div>
+
+        <div class="student-card">
+            <div class="student-name">Θοδωρής Μαλέας</div>
+            <div class="student-id">p3220113</div>
+        </div>
+
+        <section class="project-info">
+            <h2>Info</h2>
+            <p>
+                Στην δημιουργεία αυτής της ιστοσελίδας χρισημοποιήθκαν public εικόνες για icons και logos, εξώφυλλα πραγματικών βιβλίων και generative AI για την δημιουργεία των dummy courses & books.
+            </p>
+        </section>
+
+    </main>
+
     <div id="overlay" onclick="closeNav('sideMenu')"></div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const container = document.querySelector('.main-content')
+            const cards = Array.from(container.querySelectorAll('.student-card'))
+            cards.sort(() => Math.random() - 0.5)
+            cards.forEach(card => {
+                container.appendChild(card);
+            })
+        })
+    </script>
 </body>
 
 </html>

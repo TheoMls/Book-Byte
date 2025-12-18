@@ -54,12 +54,18 @@
 
 .suggested-menu li {
     flex: 0 0 auto;
-    padding: 8% 3%;
+    padding: 1% 1%;
+    margin: 1% 1%;
     background-color: #c9c9c9;
     color: #000;
     text-decoration: none;
     border-radius: 10px;
     zoom: 0.3;
+}
+
+.suggested-menu li img {
+    width: 420px;
+    height: 600px;
 }
 
 .suggested-menu li:hover {
@@ -391,13 +397,13 @@ button {
 }
 
 .btn-main {
-    background-color: #313131;
+    background-color: #572727;
     color: white;
     border: none;
 }
 
 .btn-main:hover {
-    background-color: #494949;
+    background-color: #853b3b;
 }
 
 .btn-secondary {
@@ -748,6 +754,80 @@ input[type="range"]:disabled {
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 15px;
     padding: 0;
+}
+
+/* Project Info Section */
+.project-info {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    margin-bottom: 40px;
+    border-left: 5px solid #5a1a1a;
+}
+
+.project-info h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #3d1313;
+}
+
+.project-info p {
+    color: #666;
+    font-size: 1.1rem;
+}
+
+/* Student Cards */
+.student-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.student-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.student-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.student-id {
+    color: #888;
+    font-weight: 500;
+    background-color: #f0f2f5;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    display: inline-block;
+}
+
+.welcome-section {
+    max-width: 800px;
+    margin: 60px auto;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.welcome-section h2 {
+    font-size: 2.5rem;
+    color: #371414;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.welcome-section p {
+    font-size: 1.2rem;
+    line-height: 1.4;
+    color: #524545;
 }
 
 .logo {
