@@ -97,7 +97,7 @@ function fixFilters() {
     let publicationYearFilter = document.getElementById('publicationYear')
     publicationYearFilter.setAttribute('min', minPublicationYear)
     publicationYearFilter.setAttribute('max', maxPublicationYear)
-    courses.forEach(courseId => updateExpandedFilter(coursesJSON.find(course => course.id === courseId).title, 'courses'));
+    courses.forEach(courseId => updateExpandedFilter(coursesJSON.find(course => course.id === courseId), 'courses'));
     publishers.forEach(publisher => updateExpandedFilter(publisher, 'publishers'))
 }
 
@@ -109,16 +109,16 @@ function updateExpandedFilter(item, id) {
 
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
-    if (id === 'courses')
-        checkboxId = 'course'
-    else if (id === 'publishers')
-        checkboxId = 'publisher'
-
-    checkbox.id = checkboxId;
-
     const label = document.createElement('label');
+    if (id === 'courses') {
+        checkbox.id = item.id.toString()
+        label.textContent = item.name;
+    }
+    else if (id === 'publishers') {
+        checkbox.id = item.replace(/\s+/g, '-').toLowerCase()
+        label.textContent = item;
+    }
     label.setAttribute('for', checkbox.id);
-    label.textContent = item;
 
     // Build structure
     li.appendChild(label);

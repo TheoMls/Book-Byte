@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (categoryParam) {
         const checkbox = document.querySelector(`#categories input[value="${categoryParam}"]`)
 
-        // 3. If found, check it and apply filters immediately
         if (checkbox) {
             checkbox.checked = true
             applyCourseFilters()
