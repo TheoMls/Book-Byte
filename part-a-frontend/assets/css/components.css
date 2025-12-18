@@ -54,12 +54,18 @@
 
 .suggested-menu li {
     flex: 0 0 auto;
-    padding: 8% 3%;
+    padding: 1% 1%;
+    margin: 1% 1%;
     background-color: #c9c9c9;
     color: #000;
     text-decoration: none;
     border-radius: 10px;
     zoom: 0.3;
+}
+
+.suggested-menu li img {
+    width: 420px;
+    height: 600px;
 }
 
 .suggested-menu li:hover {
