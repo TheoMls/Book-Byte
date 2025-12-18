@@ -5,16 +5,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Courses</title>
-    <script type="text/javascript" src="assets/js/data/courses.js"></script>
-    <script type="text/javascript" src="assets/js/courses.js"></script>
     <script type="text/javascript" src="assets/js/ui/menu.js"></script>
+    <script type="text/javascript" src="assets/js/data/books.js"></script>
+    <script type="text/javascript" src="assets/js/data/courses.js"></script>
+    <script type="text/javascript" src="assets/js/data/categories.js"></script>
+    <script type="text/javascript" src="assets/js/courses.js"></script>
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/theme.css">
     <link rel="stylesheet" href="assets/css/components.css">
     <link rel="stylesheet" href="assets/css/layout.css">
 </head>
 
-<body>
 <body>
     <header class="header-bar">
         <div class="logo-title">
@@ -46,83 +47,53 @@
     <div>
         <header class="header-bar">
             <h1>Courses</h1>
-        </header>
-        <div class="main-content">
-            <h2 class="filters-btn" onclick="openNav('filtersList')">Filters</h2>
-            <aside class="filters" id="filtersList">
-                <h2>Filters</h2>
-                <a class="closebtn" onclick="closeNav('filtersList')">×</a>
+            <div class="toolbar">
                 <nav class="search-container">
-                    <button type="submit">&#128270;</button>
                     <input type="text" placeholder="Search..." name="search">
+                    <div class="btn-text">
+                        <p class="hide">Search</p>
+                        <button type="submit">&#128270;</button>
+                    </div>
                 </nav>
-                <ul class="filter-list">
-                    <li class="regular-filter">
-                        <label for="available">available</label>
-                        <input type="checkbox" id="available">
-                    </li>
-                    <li class="regular-filter">
-                        <label for="publicationYear">year of publication</label>
-                        <input type="number" max="2025" step="1" value="2025" id="publicationYear">
-                    </li>
-                    <li class="expanded-filter">
-                        <button class="dropbtn">courses</button>
-                        <ul class="expanded-filter-list" id="courses"></ul>
-                    </li>
-                    <li class="expanded-filter">
-                        <button class="dropbtn">publishers</button>
-                        <ul class="expanded-filter-list" id="publishers"></ul>
-                    </li>
-                </ul>
-            </aside>
-            <ul class="course-container" id="courseListUl">
-                <li class="course-container">
-                    <img class="course-img" src="assets/img/books/book1.png">
-                    <div class="course-info">
-                        <div class="course-important-info">
-                            <h3 class="course-title">Title 1</h3>
-                            <p class="course-decr">desc: descr...</p>
-                        </div>
-                        <div class="course-secondary-info">
-                            <p class="course-publisher">publisher1</p>
-                            <p class="course-course">course: course1</p>
-                            <p class="course-publication-year">published at: 2024</p>
-                            <p class="course-availability">avilability: 0</p>
-                        </div>
-                    </div>
+                <div class="btn-text">
+                    <p class="hide">Filters</p>
+                    <button class="filters-btn" onclick="openNav('filtersList', false)">✏️</button>
+                </div>
+            </div>
+        </header>
+        <aside class="filters" id="filtersList">
+            <h2>Filters</h2>
+            <a class="closebtn" onclick="closeNav('filtersList')">×</a>
+            <ul class="filter-list">
+                <li class="expanded-filter">
+                    <button class="dropbtn">Categories</button>
+                    <ul class="expanded-filter-list" id="categories"></ul>
                 </li>
-                <li class="course-container">
-                    <img class="course-img" src="assets/img/books/book2.png">
-                    <div class="course-info">
-                        <div class="course-important-info">
-                            <h3 class="course-title">Title 2</h3>
-                            <p class="course-decr">desc: descr...</p>
-                        </div>
-                        <div class="course-secondary-info">
-                            <p class="course-publisher">by publisher2</p>
-                            <p class="course-course">course: course2</p>
-                            <p class="course-publication-year">published at: 2022</p>
-                            <p class="course-availability">avilability: 1</p>
-                        </div>
+                <li class="regular-filter">
+                    <div class="filter-header">
+                        <input type="checkbox" id="enableDuration" onchange="toggleSlider('maxDuration', this)">
+
+                        <label for="maxDuration">Max Duration: <span id="durationVal">10</span></label>
                     </div>
+
+                    <input type="range" min="1" max="20" step="1" value="10" id="maxDuration" disabled
+                        oninput="document.getElementById('durationVal').textContent = this.value">
                 </li>
-                <li class="course-container">
-                    <img class="course-img" src="assets/img/books/book3.png">
-                    <div class="course-info">
-                        <div class="course-important-info">
-                            <h3 class="course-title">Title 3</h3>
-                            <p class="course-decr">desc: descr...</p>
-                        </div>
-                        <div class="course-secondary-info">
-                            <p class="course-publisher">by publisher3</p>
-                            <p class="course-course">course: course3</p>
-                            <p class="course-publication-year">published at: 2020</p>
-                            <p class="course-availability">avilability: 2</p>
-                        </div>
+
+                <li class="regular-filter">
+                    <div class="filter-header">
+                        <input type="checkbox" id="enableDifficulty" onchange="toggleSlider('maxDifficulty', this)">
+
+                        <label for="maxDifficulty">Max Difficulty: <span id="difficultyVal">2</span></label>
                     </div>
+
+                    <input type="range" min="1" max="3" step="1" value="2" id="maxDifficulty" disabled
+                        oninput="document.getElementById('difficultyVal').textContent = this.value">
                 </li>
             </ul>
-        </div>
+            <button class="apply" id="applyBtn">apply</button>
+        </aside>
+        <ul class="courses-container main-content" id="coursessList"></ul>
     </div>
     <div id="overlay" onclick="closeNav('sideMenu')"></div>
 </body>

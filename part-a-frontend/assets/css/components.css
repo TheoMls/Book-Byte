@@ -251,52 +251,6 @@
     padding: 4px;
 }
 
-/* Course list */
-ul.course-container {
-    display: grid;
-    grid-template-columns: auto auto;
-    background-color: #ffffff;
-}
-
-li.course-container {
-    display: grid;
-    grid-template-columns: auto auto;
-    background-color: #f1f1f1;
-    text-align: center;
-    border-radius: 5px;
-    padding: 5px;
-}
-
-.course-container div * {
-    padding: 10px;
-    color: #000000;
-}
-
-.course-container .img {
-    grid-row: 1 / span 2;
-}
-
-.course-info {
-    display: grid;
-    grid-template-rows: auto auto;
-    grid-template-columns: auto;
-    background-color: #f1f1f1;
-    text-align: center;
-    padding: 10px;
-    font-size: 15px;
-}
-
-.course-important-info {
-    display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: auto auto;
-}
-
-.course-secondary-info {
-    display: grid;
-    grid-template-columns: auto auto;
-}
-
 /* Book list */
 ul.books-container {
     padding-left: 5%;
@@ -633,4 +587,168 @@ button {
     display: flex;
     align-items: center;
     gap: 15px;
+}
+
+/* Slider Styling */
+input[type=range] {
+    width: 100%;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+/* Course Card */
+
+ul.courses-container {
+    list-style: none;
+    padding: 5%;
+    gap: 20px;
+}
+
+.course-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid #eaeaea;
+}
+
+.course-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.course-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.badge {
+    color: white;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.course-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.course-teacher {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 15px;
+    font-style: italic;
+}
+
+.course-desc {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.5;
+    flex-grow: 1;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.course-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+    margin-top: auto;
+}
+
+.course-footer span {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #444;
+}
+
+.details-btn {
+    background-color: #007bff;
+    text-decoration: none;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    width: auto !important;
+    margin: 0;
+    transition: background 0.2s;
+}
+
+.details-btn:hover {
+    background-color: #0056b3;
+}
+
+.filter-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.filter-header label {
+    flex-grow: 1;
+    cursor: pointer;
+}
+
+input[type="range"]:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    filter: grayscale(100%);
+}
+
+.filter-header input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+/* Course Details Specifics */
+.course-card {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 5px solid #007bff;
+    margin-bottom: 30px;
+}
+
+.course-meta-tags {
+    margin-bottom: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.related-books {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+}
+
+.related-books .books-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 15px;
+    padding: 0;
 }

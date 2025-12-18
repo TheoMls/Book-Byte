@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Courses</title>
+    <script type="text/javascript" src="assets/js/ui/menu.js"></script>
+    <script type="text/javascript" src="assets/js/data/books.js"></script>
+    <script type="text/javascript" src="assets/js/data/courses.js"></script>
+    <script type="text/javascript" src="assets/js/data/categories.js"></script>
+    <script type="text/javascript" src="assets/js/course-details.js"></script>
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/theme.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+
+<body>
+    <header class="header-bar">
+        <div class="logo-title">
+            <span class="sidenav-btn" onclick="openNav('sideMenu')">☰</span>
+            <a href="index.html">
+                <img src="assets/img/logo.jpg" width="48" height="48">
+            </a>
+            <h1>Title</h1>
+        </div>
+    </header>
+
+    <nav class="topnav">
+        <a href="./index.html">Home</a>
+        <a href="./courses.html">Courses</a>
+        <a href="./books.html">Books</a>
+        <a href="./about.html">About</a>
+        <a href="./sign_up.html">Sign Up / Sign In</a>
+    </nav>
+
+    <div id="sideMenu" class="sidenav">
+        <a class="closebtn" onclick="closeNav('sideMenu')">×</a>
+        <a href="./index.html">Home</a>
+        <a href="./courses.html">Courses</a>
+        <a href="./books.html">Books</a>
+        <a href="./about.html">About Us</a>
+        <a href="./sign_up.html">Sign Up / Sign In</a>
+    </div>
+
+    <div>
+        <header class="header-bar">
+            <a href="courses.html" class="btn-text" title="Back to Course List" , style="text-decoration: none;">◀</a>
+            <h1 id="courseTitle"></h1>
+        </header>
+    </div>
+    <main class="main-content">
+        <div id="courseDetailsContainer">
+        </div>
+    </main>
+    <div id="overlay" onclick="closeNav('sideMenu')"></div>
+</body>
+
+</html>

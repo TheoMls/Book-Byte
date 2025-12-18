@@ -1,96 +1,115 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const queryString = window.location.search
-    
-    const urlParams = new URLSearchParams(queryString)
-    
-    const categoryID = urlParams.get('courseCategory') 
-    
-    if (categoryID) {
-        console.log("Selected Category:", categoryID)
+document.addEventListener("DOMContentLoaded", () => {
+    populateCategoryFilters()
+    renderCourses(coursesJSON)
+
+    // Apply Button
+    document.getElementById("applyBtn").addEventListener("click", applyCourseFilters)
+
+    const searchInput = document.querySelector('input[name="search"]')
+    if (searchInput) {
+        searchInput.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") applyCourseFilters()
+        })
+    }
+
+    // Search Button
+    const searchBtn = document.querySelector('.search-container button')
+    if (searchBtn) {
+        searchBtn.addEventListener("click", applyCourseFilters)
     }
 })
-books = [
-    '{ "id": 1, "Title": "Book 1", "Description": "Test", "Course": "Course 1", "publicationYear": "2022", "Publisher": "Tziola", "image": "assets/img/books/book1", "Availability": 0 }',
-    '{ "id": 2, "Title": "Book 2", "Description": "Test", "Course": "Course 2", "publicationYear": "2020", "Publisher": "Klidarithmos", "image": "assets/img/books/book2", "Availability": 1 }',
-    '{ "id": 3, "Title": "Book 3", "Description": "Test", "Course": "Course 3", "publicationYear": "2024", "Publisher": "Pattaki", "image": "assets/img/books/book2", "Availability": 2 }'
-]
-titleList = []
-courses = new Set()
-publicationYearSet = new Set()
-publishers = new Set()
-availabilityList = []
 
-window.onload = function get_book_data() {
-    books.forEach(book => load_books(book))
-    console.log("books loaded")
-    fixFilters()
-    console.log("updated filters")
+const difficultyMap = {
+    1: { label: "Beginner", color: "#28a745" },
+    2: { label: "Intermediate", color: "#fd7e14" },
+    3: { label: "Advanced", color: "#dc3545" }
 }
 
+function renderCourses(courses) {
+    const listContainer = document.getElementById("coursessList")
+    listContainer.innerHTML = ""
 
-function load_books(book) {
-    // load book data
-    book = JSON.parse(book)
-    id = book["id"]
-    title = book["Title"]
-    titleList.push([id, title])
-    description = book["Description"]
-    course = book["Course"]
-    courses.add(course)
-    publicationYear = book["publicationYear"]
-    publicationYearSet.add(publicationYear)
-    publisher = book["Publisher"]
-    publishers.add(publisher)
-    image = book["image"]
-    availability = book["Availability"]
-    availabilityList.push([id, availability])
+    if (courses.length === 0) {
+        listContainer.innerHTML = "<p style='width:100% text-align:center padding:20px'>No courses found.</p>"
+        return
+    }
 
-    // show books on page
-    //display_book(title, description, course)
+    courses.forEach(course => {
+        const catObj = categoriesData.find(c => c.id === course.category)
+        const catName = catObj ? catObj.name : course.category
+
+        const diffInfo = difficultyMap[course.level] || { label: "Unknown", color: "#333" }
+
+        const li = document.createElement("li")
+        li.className = "course-card"
+
+        li.innerHTML = `
+            <div class="course-header">
+                <span class="badge" style="background-color: #007bff">${catName}</span>
+                <span class="badge" style="background-color: ${diffInfo.color}">${diffInfo.label}</span>
+            </div>
+            
+            <h3 class="course-title">${course.title}</h3>
+            <p class="course-teacher">${course.teacher}</p>
+            
+            <p class="course-desc">${course.description}</p>
+            
+            <div class="course-footer">
+                <span>${course.duration} Weeks</span>
+                <a href="course-details.html?courseId=${course.id}" class="details-btn">View Details</a>
+            </div>
+        `
+
+        listContainer.appendChild(li)
+    })
 }
 
-// TODO: needs rebuilt with cresteElement() not innerHTML 
-function display_book(title, description, course) {
-    li = '<h2>' + title + '</h2>' + '<p>' + description + '</p>' + '<h3>' + course + '</h3>'
-    document.getElementById('book').innerHTML += li
+function populateCategoryFilters() {
+    const catList = document.getElementById("categories")
+    if (!catList) return
+
+    categoriesData.forEach(cat => {
+        const li = document.createElement("li")
+        li.innerHTML = `
+            <label>
+                <input type="checkbox" value="${cat.id}"> ${cat.name}
+            </label>
+        `
+        catList.appendChild(li)
+    })
 }
 
-// fix filters according to book data
-function fixFilters() {
-    minPublicationYear = Math.min(...publicationYearSet)
-    maxPublicationYear = Math.max(...publicationYearSet)
-    let publicationYearFilter = document.getElementById('publicationYear')
-    publicationYearFilter.setAttribute('min', minPublicationYear)
-    publicationYearFilter.setAttribute('max', maxPublicationYear)
-    publicationYearFilter.setAttribute('value', maxPublicationYear)
+function applyCourseFilters() {
+    const searchText = document.querySelector('input[name="search"]').value.toLowerCase()
 
-    courses.forEach(course => updateExpandedFilter(course, 'courses'))
-    publishers.forEach(publisher => updateExpandedFilter(publisher, 'publishers'))
+    const enableDuration = document.getElementById("enableDuration").checked
+    const maxDuration = parseInt(document.getElementById("maxDuration").value)
+
+    const enableDifficulty = document.getElementById("enableDifficulty").checked
+    const maxDifficulty = parseInt(document.getElementById("maxDifficulty").value)
+
+    const checkedCats = Array.from(document.querySelectorAll("#categories input:checked")).map(cb => cb.value)
+
+    const filtered = coursesJSON.filter(course => {
+        const matchesSearch = course.title.toLowerCase().includes(searchText) ||
+            course.description.toLowerCase().includes(searchText) ||
+            course.teacher.toLowerCase().includes(searchText)
+
+        const matchesDuration = enableDuration ? (course.duration <= maxDuration) : true
+
+        const matchesDifficulty = enableDifficulty ? (course.level <= maxDifficulty) : true
+
+        const matchesCategory = checkedCats.length === 0 || checkedCats.includes(course.category)
+
+        return matchesSearch && matchesDuration && matchesDifficulty && matchesCategory
+    })
+
+    renderCourses(filtered)
 }
 
-function updateExpandedFilter(item, id) {
-    let list = document.getElementById(id)
+function toggleSlider(sliderId, checkbox) {
+    const slider = document.getElementById(sliderId)
+    slider.disabled = !checkbox.checked
 
-    // Create elements
-    const li = document.createElement('li')
-
-    const checkbox = document.createElement('input')
-    checkbox.type = 'checkbox'
-    if (id === 'courses')
-        checkboxId = 'course'
-    else if (id === 'publishers')
-        checkboxId = 'publisher'
-
-    checkbox.id = checkboxId
-
-    const label = document.createElement('label')
-    label.setAttribute('for', checkbox.id)
-    label.textContent = item
-
-    // Build structure
-    li.appendChild(label)
-    li.appendChild(checkbox)
-
-    // Add to DOM
-    list.appendChild(li)
+    applyCourseFilters()
 }
