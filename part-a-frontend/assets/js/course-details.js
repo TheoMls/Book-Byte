@@ -33,7 +33,7 @@ function renderCourseDetails(course) {
             <h3>Available Books</h3>
             <div class="books-horizontal-list">
                 ${relatedBooks.map(book =>
-                    `<div class="book-scroll-item">
+            `<div class="book-scroll-item">
                         <img class="book-img" src="${book.image}" alt="${book.Title}">
                         <div class="book-info">
                             <h3 class="book-title" style="font-size:1rem">${book.Title}</h3>
@@ -54,7 +54,7 @@ function renderCourseDetails(course) {
     container.innerHTML = `
         <div class="course-info">
             <div class="course-meta-tags">
-                <span class="badge" style="background:#007bff">${catName}</span>
+                <span class="badge" style="background:#853b3b">${catName}</span>
                 <span class="badge" style="background:${getDiffColor(course.level)}">${diffLabel}</span>
             </div>
             <p class="teacher-name">Taught by <strong>${course.teacher}</strong></p>

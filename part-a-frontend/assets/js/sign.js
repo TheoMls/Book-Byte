@@ -45,6 +45,7 @@ function login() {
     if (getPassDb(email) == password) {
         msg.textContent = "Logged in successfully!"
         msg.style.color = "green"
+        window.location.href = "index.html"
     } else {
         msg.textContent = "Incorrect password."
         msg.style.color = "red"

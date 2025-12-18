@@ -55,7 +55,7 @@
             <form id="login-step" class="hidden step" onsubmit="event.preventDefault(); login()">
                 <input type="password" id="login-password" placeholder="Password"
                     oninput="this.value = this.value.replace(/\s/g, '')" />
-                <button onclick="window.location = 'index.html'" type="submit" class="btn-main">Login</button>
+                <button onclick="login()" type="submit" class="btn-main">Login</button>
                 <button type="button" class="btn-secondary" onclick="goBack()">Back</button>
             </form>
 
