@@ -65,12 +65,18 @@
             <a class="closebtn" onclick="closeNav('filtersList')">×</a>
             <ul class="filter-list">
                 <li class="regular-filter">
-                    <label for="available">available</label>
+                    <label for="available">Available</label>
                     <input type="checkbox" id="available">
                 </li>
                 <li class="regular-filter">
-                    <label for="publicationYear"> maximum publication year</label>
-                    <input type="number" max="2025" step="1" id="publicationYear">
+                    <div class="filter-header">
+                        <input type="checkbox" id="enablePubYear" onchange="toggleSlider('maxYear', this)">
+
+                        <label for="maxYear">Published up to: <span id="publicationYear">2025</span></label>
+                    </div>
+
+                    <input type="range"step="1" value="2025" id="maxYear" disabled
+                        oninput="document.getElementById('publicationYear').textContent = this.value">
                 </li>
                 <li class="expanded-filter">
                     <button class="dropbtn">Courses</button>

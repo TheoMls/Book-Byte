@@ -1,191 +1,147 @@
 let books = []
-let titleList = []
-let courses = new Set()
+let coursesSet = new Set()
 let publicationYearSet = new Set()
-let publishers = new Set()
-let availabilityList = []
+let publishersSet = new Set()
 
-window.onload = function get_book_data() {
-    booksJSON.forEach(book => load_books(book))
-    console.log("books loaded")
+window.onload = function init() {
+    booksJSON.forEach(book => {
+        books.push(book)
+
+        book.Course.forEach(cID => coursesSet.add(cID))
+        publicationYearSet.add(book.publicationYear)
+        publishersSet.add(book.Publisher)
+    })
+
     fixFilters()
-    console.log("updated filters")
-    apply = document.getElementById("applyBtn").addEventListener("click", applyFilters);
+    renderBooks(books)
+
+    document.getElementById("applyBtn").addEventListener("click", applyFilters)
 }
 
+function renderBooks(booksToDisplay) {
+    const bookList = document.getElementById("booksList")
+    bookList.innerHTML = ""
 
-function load_books(book) {
-    // load book data
-    books.push(book)
-    id = book["id"]
-    title = book["Title"]
-    titleList.push([id, title])
-    description = book["Description"]
-    course = book["Course"]
-    course.forEach(item => { courses.add(item) })
-    publicationYear = book["publicationYear"]
-    publicationYearSet.add(publicationYear)
-    publisher = book["Publisher"]
-    publishers.add(publisher)
-    image = book["image"]
-    availability = book["Availability"]
-    availabilityList.push([id, availability])
+    if (booksToDisplay.length === 0) {
+        bookList.innerHTML = "<p>No books found.</p>"
+        return
+    }
 
-    // show books on page
-    display_book(book)
+    booksToDisplay.forEach(book => display_book(book))
 }
 
 function display_book(book) {
-    let bookList = document.getElementById("booksList")
+    const bookList = document.getElementById("booksList")
 
-    // Create elements
-    const li = document.createElement('li');
-    const img = document.createElement('img');
-    const bookInfo = document.createElement('div');
-    const importantInfo = document.createElement('div');
-    const secondaryInfo = document.createElement('div');
-    const title = document.createElement('h3');
-    const desc = document.createElement('p');
-    const course = document.createElement('p');
-    const publisher = document.createElement('p');
-    const publicationYear = document.createElement('p');
-    const availability = document.createElement('p');
+    const li = document.createElement('li')
+    li.className = 'book-container'
 
-    // Set classes
-    li.classList.add('book-container');
-    img.classList.add('book-img');
-    bookInfo.classList.add('book-info');
-    importantInfo.classList.add('book-important-info');
-    secondaryInfo.classList.add('book-secondary-info');
-    title.classList.add('book-title');
-    desc.classList.add('book-desc');
-    course.classList.add('book-course');
-    publisher.classList.add('book-publisher');
-    publicationYear.classList.add('book-publication-year');
-    availability.classList.add('book-availability');
+    const courseLinks = book.Course.map(courseId => {
+        const courseObj = coursesJSON.find(c => c.id == courseId)
+        const title = courseObj ? courseObj.title : "Unknown Course"
+        return `<a href="./course-details.html?id=${courseId}">${title}</a>`
+    }).join(", ")
 
-    // Set attributes
-    img.setAttribute('src', book.image);
-    title.textContent = book.Title;
-    desc.textContent = book.Description;
-    course.innerHTML = "Course: " + book.Course.map(courseId => `<a href="./course-details.html?courseId=${courseId}">${coursesJSON.find(course => course.id === courseId).title}</a>`).join(", ")
-    publisher.textContent = book.Publisher;
-    publicationYear.textContent = "published: " + book.publicationYear;
-    availability.textContent = "available: " + book.Availability;
+    li.innerHTML = `
+        <img class="book-img" src="${book.image}" alt="${book.Title}">
+        <div class="book-info">
+            <div class="book-important-info">
+                <h3 class="book-title">${book.Title}</h3>
+                <p class="book-desc">${book.Description}</p>
+            </div>
+            <div class="book-secondary-info">
+                <p class="book-publisher">${book.Publisher}</p>
+                <p class="book-course"><strong>Course:</strong> ${courseLinks}</p>
+                <p class="book-publication-year">Published: ${book.publicationYear}</p>
+                <p class="book-availability">
+                    In Stock: ${book.Availability}
+                </p>
+            </div>
+        </div>
+    `
 
-    // Build structure
-    li.appendChild(img);
-    li.appendChild(bookInfo);
-    bookInfo.appendChild(importantInfo);
-    bookInfo.appendChild(secondaryInfo);
-    importantInfo.appendChild(title);
-    importantInfo.appendChild(desc);
-    secondaryInfo.appendChild(publisher);
-    secondaryInfo.appendChild(course);
-    secondaryInfo.appendChild(publicationYear);
-    secondaryInfo.appendChild(availability);
-
-    // Add to DOM
-    bookList.appendChild(li);
-    console.log("book added")
+    bookList.appendChild(li)
 }
 
-// fix filters according to book data
+
 function fixFilters() {
-    minPublicationYear = Math.min(...publicationYearSet);
-    maxPublicationYear = Math.max(...publicationYearSet);
-    let publicationYearFilter = document.getElementById('publicationYear')
-    publicationYearFilter.setAttribute('min', minPublicationYear)
-    publicationYearFilter.setAttribute('max', maxPublicationYear)
-    courses.forEach(courseId => updateExpandedFilter(coursesJSON.find(course => course.id === courseId), 'courses'));
-    publishers.forEach(publisher => updateExpandedFilter(publisher, 'publishers'))
+    if (publicationYearSet.size > 0) {
+        const minYear = Math.min(...publicationYearSet)
+        const maxYear = Math.max(...publicationYearSet)
+        const yearInput = document.getElementById('maxYear')
+        if (yearInput) {
+            yearInput.setAttribute('min', minYear)
+            yearInput.setAttribute('max', maxYear)
+            yearInput.value = maxYear
+        }
+    }
+
+    coursesSet.forEach(courseId => {
+        const courseObj = coursesJSON.find(c => c.id === courseId)
+        if (courseObj) {
+            updateExpandedFilter('courses', courseObj.title, courseId)
+        }
+    })
+
+    publishersSet.forEach(pubName => {
+        updateExpandedFilter('publishers', pubName, pubName)
+    })
 }
 
-function updateExpandedFilter(item, id) {
-    let list = document.getElementById(id)
+function updateExpandedFilter(containerId, labelText, value) {
+    const list = document.getElementById(containerId)
+    const li = document.createElement('li')
 
-    // Create elements
-    const li = document.createElement('li');
+    const safeValue = value.toString().replace(/\s+/g, '-').toLowerCase()
+    const uniqueId = `filter-${containerId}-${safeValue}`
 
-    const checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    const label = document.createElement('label');
-    if (id === 'courses') {
-        checkbox.id = item.id.toString()
-        label.textContent = item.name;
-    }
-    else if (id === 'publishers') {
-        checkbox.id = item.replace(/\s+/g, '-').toLowerCase()
-        label.textContent = item;
-    }
-    label.setAttribute('for', checkbox.id);
+    li.innerHTML = `
+        <label for="${uniqueId}">
+            <input type="checkbox" id="${uniqueId}" value="${value}"> ${labelText}
+        </label>
+    `
 
-    // Build structure
-    li.appendChild(label);
-    li.appendChild(checkbox);
-
-    // Add to DOM
-    list.appendChild(li);
+    list.appendChild(li)
 }
 
-// apply filters
+
 function applyFilters() {
-    // remove every book
-    let bookList = document.getElementById("booksList")
-    while (bookList.hasChildNodes())
-        bookList.removeChild(bookList.firstChild)
+    const onlyAvailable = document.getElementById("available").checked
 
-    // apply filters to show correct books
-    books.forEach(book => checkBook(book))
-    console.log("filters applied")
+    const maxYearInput = document.getElementById("maxYear")
+    const maxYear = maxYearInput.value ? parseInt(maxYearInput.value) : 2025
+
+    const checkedCourseIds = Array.from(document.querySelectorAll('#courses input:checked'))
+        .map(cb => parseInt(cb.value))
+
+    const checkedPublishers = Array.from(document.querySelectorAll('#publishers input:checked'))
+        .map(cb => cb.value)
+
+    const filteredBooks = books.filter(book => {
+        if (onlyAvailable && book.Availability === 0) return false
+
+        
+        if (book.publicationYear > maxYear && !maxYearInput.disabled) return false
+
+        
+        if (checkedCourseIds.length > 0) {
+            const hasMatch = book.Course.some(id => checkedCourseIds.includes(id))
+            if (!hasMatch) return false
+        }
+
+        if (checkedPublishers.length > 0) {
+            if (!checkedPublishers.includes(book.Publisher)) return false
+        }
+
+        return true
+    })
+
+    renderBooks(filteredBooks)
 }
 
-function checkBook(book) {
-    // check availability
-    availableFilter = document.getElementById("available").checked
-    if (availableFilter && book.Availability === 0)
-        return
+function toggleSlider(sliderId, checkbox) {
+    const slider = document.getElementById(sliderId)
+    slider.disabled = !checkbox.checked
 
-    // check publication year
-    publicationYearFilter = document.getElementById("publicationYear").value
-    if (book.publicationYear > publicationYearFilter && publicationYearFilter !== "")
-        return
-
-    // check courses
-    coursesButton = document.getElementById("courses")
-    coursesFilter = coursesButton.children
-    isValid = false
-    allEmpty = true
-    for (course of coursesFilter) {
-        courseInput = course.getElementsByTagName("input")[0]
-        if (courseInput.checked) {
-            allEmpty = false
-            console.log(book.Course)
-            console.log(course.getElementsByTagName("label")[0].textContent)
-            console.log(book.Course.includes(parseInt(coursesJSON.find(c => c.title === course.getElementsByTagName("label")[0].textContent).id)))
-            if (book.Course.includes(parseInt(coursesJSON.find(c => c.title === course.getElementsByTagName("label")[0].textContent).id)))
-                isValid = true
-        }
-    }
-    if (!isValid && !allEmpty)
-        return
-
-    // check publisherss
-    publishersButton = document.getElementById("publishers")
-    publishersFilter = publishersButton.children
-    isValid = false
-    allEmpty = true
-    for (publisher of publishersFilter) {
-        publisherInput = publisher.getElementsByTagName("input")[0]
-        if (publisherInput.checked) {
-            allEmpty = false
-            if (book.Publisher === publisher.getElementsByTagName("label")[0].textContent)
-                isValid = true
-        }
-    }
-    if (!isValid && !allEmpty)
-        return
-
-    display_book(book)
-    return
+    applyFilters()
 }
