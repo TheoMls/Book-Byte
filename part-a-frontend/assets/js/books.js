@@ -16,6 +16,7 @@ window.onload = function init() {
     renderBooks(books)
 
     document.getElementById("applyBtn").addEventListener("click", applyFilters)
+    document.getElementById("clearBtn").addEventListener("click", clearFilters)
 }
 
 function renderBooks(booksToDisplay) {
@@ -76,6 +77,8 @@ function fixFilters() {
         }
     }
 
+    updateRangeFilters()
+
     coursesSet.forEach(courseId => {
         const courseObj = coursesJSON.find(c => c.id === courseId)
         if (courseObj) {
@@ -120,10 +123,10 @@ function applyFilters() {
     const filteredBooks = books.filter(book => {
         if (onlyAvailable && book.Availability === 0) return false
 
-        
+
         if (book.publicationYear > maxYear && !maxYearInput.disabled) return false
 
-        
+
         if (checkedCourseIds.length > 0) {
             const hasMatch = book.Course.some(id => checkedCourseIds.includes(id))
             if (!hasMatch) return false
@@ -137,6 +140,20 @@ function applyFilters() {
     })
 
     renderBooks(filteredBooks)
+}
+
+function updateRangeFilters() {
+    document.getElementById("enablePubYear").checked = false
+    document.getElementById("maxYear").value = Math.max(...publicationYearSet)
+    document.getElementById("publicationYear").textContent = Math.max(...publicationYearSet)
+}
+
+function clearFilters() {
+    document.getElementById("available").checked = false
+    document.querySelectorAll('#courses input:checked').forEach(cb => cb.checked = false)
+    document.querySelectorAll('#publishers input:checked').forEach(cb => cb.checked = false)
+    updateRangeFilters()
+    applyFilters()
 }
 
 function toggleSlider(sliderId, checkbox) {

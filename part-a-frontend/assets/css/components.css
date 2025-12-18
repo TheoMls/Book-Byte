@@ -71,10 +71,9 @@
 .filters-btn {
     padding: 10px 20px;
     font-size: 16px;
-    border: 2px solid #b7b7b7;
+    background-color: #b55656;
+    border: 2px solid #b55656;
     border-radius: 5px;
-    background-color: #b0b0b0;
-    color: #333;
     cursor: pointer;
     transition: background-color 0.2s;
     height: auto;
@@ -83,8 +82,8 @@
 }
 
 .filters-btn:hover {
-    background-color: #494949;
-    border-color: #adb5bd;
+    border: 2px solid #853b3b;
+    background-color: #853b3b;
 }
 
 .filters-btn:hover .hide {
@@ -171,9 +170,9 @@
     width: auto !important;
     flex-shrink: 0;
     padding: 10px 15px;
-    background: #572727;
+    background: #b55656;
     font-size: 16px;
-    border: 1.5px solid #351e1e;
+    border: 1.5px solid #b55656;
     border-radius: 0 5px 5px 0;
     cursor: pointer;
     transition: background 0.3s;
@@ -183,7 +182,7 @@
 
 .search-container button:hover {
     background: #853b3b;
-    border-color: #572727;
+    border-color: #853b3b;
 }
 
 
@@ -471,7 +470,6 @@ button {
 
     transition: all 0.3s ease;
     transition: background-color 0.3s;
-
 }
 
 .category-link:hover {
@@ -750,4 +748,14 @@ input[type="range"]:disabled {
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 15px;
     padding: 0;
+}
+
+.logo {
+    border-radius: 5px;
+}
+
+.filter-icon {
+    height: 19px;
+    width: 19px;
+    border-radius: 5px;
 }

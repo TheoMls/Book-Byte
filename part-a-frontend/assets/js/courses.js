@@ -1,3 +1,6 @@
+const durationSet = new Set()
+const difficultySet = new Set()
+
 document.addEventListener("DOMContentLoaded", () => {
     populateCategoryFilters()
 
@@ -19,8 +22,11 @@ document.addEventListener("DOMContentLoaded", () => {
         renderCourses(coursesJSON)
     }
 
+    updateRangeFilters()
+
     // Apply Button
     document.getElementById("applyBtn").addEventListener("click", applyCourseFilters)
+    document.getElementById("clearBtn").addEventListener("click", clearFilters)
 
     const searchInput = document.querySelector('input[name="search"]')
     if (searchInput) {
@@ -52,6 +58,9 @@ function renderCourses(courses) {
     }
 
     courses.forEach(course => {
+        durationSet.add(course.duration)
+        difficultySet.add(course.level)
+
         const catObj = categoriesData.find(c => c.id === course.category)
         const catName = catObj ? catObj.name : course.category
 
@@ -124,6 +133,23 @@ function applyCourseFilters() {
     renderCourses(filtered)
     const baseUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
     window.history.replaceState({ path: baseUrl }, '', baseUrl);
+}
+
+function updateRangeFilters() {
+    const maxDuration = Math.max(...durationSet)
+    const maxDifficulty = Math.max(...difficultySet)
+    document.getElementById("enableDuration").checked = false
+    document.getElementById("maxDuration").value = maxDuration
+    document.getElementById("durationVal").textContent = maxDuration
+    document.getElementById("enableDifficulty").checked = false
+    document.getElementById("maxDifficulty").value = maxDifficulty
+    document.getElementById("difficultyVal").textContent = maxDifficulty
+}
+
+function clearFilters() {
+    document.querySelectorAll('#categories input:checked').forEach(category => category.checked = false)
+    updateRangeFilters()
+    applyCourseFilters()
 }
 
 function toggleSlider(sliderId, checkbox) {
