@@ -53,13 +53,13 @@
         </section>
 
         <div class="student-card">
-            <div class="student-name">Ανδρέας Χαράλαμπος Παναγόπουλος</div>
-            <div class="student-id">p3220145</div>
+            <div class="student-name">Θοδωρής Μαλέας</div>
+            <div class="student-id">p3220113</div>
         </div>
 
         <div class="student-card">
-            <div class="student-name">Θοδωρής Μαλέας</div>
-            <div class="student-id">p3220113</div>
+            <div class="student-name">Ανδρέας Χαράλαμπος Παναγόπουλος</div>
+            <div class="student-id">p3220145</div>
         </div>
 
         <section class="project-info">
@@ -72,16 +72,6 @@
     </main>
 
     <div id="overlay" onclick="closeNav('sideMenu')"></div>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const container = document.querySelector('.main-content')
-            const cards = Array.from(container.querySelectorAll('.student-card'))
-            cards.sort(() => Math.random() - 0.5)
-            cards.forEach(card => {
-                container.appendChild(card);
-            })
-        })
-    </script>
 </body>
 
 </html>
