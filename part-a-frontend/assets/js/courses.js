@@ -143,6 +143,7 @@ function updateRangeFilters() {
 
 function clearFilters() {
     document.querySelectorAll('#categories input:checked').forEach(category => category.checked = false)
+    document.querySelectorAll('input[type="range"]').forEach(cb => cb.disabled = true)
     updateRangeFilters()
     applyCourseFilters()
 }

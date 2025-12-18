@@ -167,6 +167,7 @@ function clearFilters() {
     document.getElementById("available").checked = false
     document.querySelectorAll('#courses input:checked').forEach(cb => cb.checked = false)
     document.querySelectorAll('#publishers input:checked').forEach(cb => cb.checked = false)
+    document.querySelectorAll('input[type="range"]').forEach(cb => cb.disabled = true)
     updateRangeFilters()
     applyFilters()
 }
