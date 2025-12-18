@@ -156,12 +156,13 @@ function createPersonal() {
 
     const age = Date.now() - new Date(dobInput).getTime()
 
-    // (16 years * 365.25 days (.25 due to 1/4 leap years) * 24 hours * 60 min * 60 sec * 1000 ms)
-    if (age < 16 * 365.25 * 24 * 60 * 60 * 1000) {
+    // (365.25 days (.25 due to 1/4 leap years) * 24 hours * 60 min * 60 sec * 1000 ms)
+    const msInYear = 365.25 * 24 * 60 * 60 * 1000
+    if (age < 16 * msInYear) {
         msg.textContent = "You must be at least 16 years old to create an account."
         msg.style.color = "red"
         return
-    } else if (age > 120 * 365.25 * 24 * 60 * 60 * 1000) {
+    } else if (age > 120 * msInYear) {
         msg.textContent = "Seems unlikely."
         msg.style.color = "red"
         return

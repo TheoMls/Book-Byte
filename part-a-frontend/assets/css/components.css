@@ -811,3 +811,23 @@ input[type="range"]:disabled {
     font-size: 0.9rem;
     display: inline-block;
 }
+
+.welcome-section {
+    max-width: 800px;
+    margin: 60px auto;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.welcome-section h2 {
+    font-size: 2.5rem;
+    color: #371414;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.welcome-section p {
+    font-size: 1.2rem;
+    line-height: 1.4;
+    color: #524545;
+}
