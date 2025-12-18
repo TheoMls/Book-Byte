@@ -17,9 +17,9 @@ main>* {
 }
 
 .header-bar {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+    display: grid;
+    grid-template-rows: auto auto;
+    justify-items: start;
     padding: 1% 5%;
 }
 
@@ -121,6 +121,13 @@ html {
         grid-column: 1 / -1;
     }
 
+    .header-bar {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 1% 5%;
+    }
+
     .open {
         width: 45vw;
     }
@@ -141,7 +148,6 @@ html {
     .category-link {
         min-width: 150px;
     }
-
 }
 
 /* Desktop - 3 Στήλες*/

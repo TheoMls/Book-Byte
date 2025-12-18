@@ -67,11 +67,11 @@ function display_book(book) {
     // Set attributes
     img.setAttribute('src', book.image);
     title.textContent = book.Title;
-    desc.textContent = book.Description + " 123456789123456789123456789";
-    course.textContent = book.Course;
+    desc.textContent = book.Description;
+    course.textContent = "Course: " + book.Course;
     publisher.textContent = book.Publisher;
-    publicationYear.textContent = book.publicationYear;
-    availability.textContent = book.Availability;
+    publicationYear.textContent = "published: " + book.publicationYear;
+    availability.textContent = "available: " + book.Availability;
 
     // Build structure
     li.appendChild(img);
@@ -141,14 +141,17 @@ function applyFilters() {
 }
 
 function checkBook(book) {
+    // check availability
     availableFilter = document.getElementById("available").checked
     if (availableFilter && book.Availability === 0)
         return
 
+    // check publication year
     publicationYearFilter = document.getElementById("publicationYear").value
     if (book.publicationYear > publicationYearFilter && publicationYearFilter !== "")
         return
 
+    // check courses
     coursesButton = document.getElementById("courses")
     coursesFilter = coursesButton.children
     isValid = false
@@ -167,6 +170,7 @@ function checkBook(book) {
     if (!isValid && !allEmpty)
         return
 
+    // check publisherss
     publishersButton = document.getElementById("publishers")
     publishersFilter = publishersButton.children
     isValid = false

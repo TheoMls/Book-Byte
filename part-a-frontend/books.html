@@ -47,9 +47,15 @@
             <h1>Books</h1>
             <nav class="search-container">
                 <input type="text" placeholder="Search..." name="search">
-                <button type="submit">&#128270;</button>
+                <div class="btn-text">
+                    <p class="hide">Search</p>
+                    <button type="submit">&#128270;</button>
+                </div>
             </nav>
-            <button class="filters-btn" onclick="openNav('filtersList', false)">✏️</button>
+            <div class="btn-text">
+                <p class="hide">Filters</p>
+                <button class="filters-btn" onclick="openNav('filtersList', false)">✏️</button>
+            </div>
         </header>
         <aside class="filters" id="filtersList">
             <h2>Filters</h2>

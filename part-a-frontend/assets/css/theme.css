@@ -2,6 +2,7 @@
 body {
     font-family: Arial, sans-serif;
     color: #000;
+    background-color: #b6b6b6;
 }
 
 /* --- Header & Navigation Colors --- */
@@ -27,13 +28,17 @@ body {
 }
 
 .topnav a:hover {
-    background-color: #363636;
+    background-color: #444444 !important;
+    border: 2px solid #000000;
     color: #efefef;
+    border-radius: 5px;
 }
 
 .topnav a.active {
-    background-color: #5c5c5b;
-    color: white;
+    background-color: #2b5bdd !important;
+    border: 2px solid #0b2a7e !important;
+    color: white !important;
+    border-radius: 5px;
 }
 
 /* Side Menu */

@@ -20,4 +20,12 @@ document.addEventListener('DOMContentLoaded', () => {
         categoryList.appendChild(li)
     })
 
+    // make random book suggestions
+    const suggestionsMenu = document.getElementById('suggestionsMenu')
+    for (suggestion of suggestionsMenu.children) {
+        r = Math.random()
+        r *= booksJSON.length
+        r = Math.floor(r)
+        suggestion.children[0].src = booksJSON[r].image
+    }
 })
