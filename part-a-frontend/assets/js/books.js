@@ -68,7 +68,7 @@ function display_book(book) {
     img.setAttribute('src', book.image);
     title.textContent = book.Title;
     desc.textContent = book.Description;
-    course.innerHTML = "Course: " + book.Course.map(courseId => `<a href="./courses-details.html?courseId=${courseId}">${coursesJSON.find(course => course.id === courseId).title}</a>`).join(", ")
+    course.innerHTML = "Course: " + book.Course.map(courseId => `<a href="./course-details.html?courseId=${courseId}">${coursesJSON.find(course => course.id === courseId).title}</a>`).join(", ")
     publisher.textContent = book.Publisher;
     publicationYear.textContent = "published: " + book.publicationYear;
     availability.textContent = "available: " + book.Availability;
