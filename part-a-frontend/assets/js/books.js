@@ -68,7 +68,7 @@ function display_book(book) {
     img.setAttribute('src', book.image);
     title.textContent = book.Title;
     desc.textContent = book.Description;
-    course.textContent = "Course: " + book.Course;
+    course.innerHTML = "Course: " + book.Course.map(courseId => `<a href="./courses-details.html?course=${courseId}">${coursesJSON.find(course => course.id === courseId).title}</a>`).join(", ")
     publisher.textContent = book.Publisher;
     publicationYear.textContent = "published: " + book.publicationYear;
     availability.textContent = "available: " + book.Availability;
@@ -97,7 +97,7 @@ function fixFilters() {
     let publicationYearFilter = document.getElementById('publicationYear')
     publicationYearFilter.setAttribute('min', minPublicationYear)
     publicationYearFilter.setAttribute('max', maxPublicationYear)
-    courses.forEach(course => updateExpandedFilter(course, 'courses'));
+    courses.forEach(courseId => updateExpandedFilter(coursesJSON.find(course => course.id === courseId).title, 'courses'));
     publishers.forEach(publisher => updateExpandedFilter(publisher, 'publishers'))
 }
 
@@ -162,8 +162,8 @@ function checkBook(book) {
             allEmpty = false
             console.log(book.Course)
             console.log(course.getElementsByTagName("label")[0].textContent)
-            console.log(book.Course.includes(parseInt(course.getElementsByTagName("label")[0].textContent)))
-            if (book.Course.includes(parseInt(course.getElementsByTagName("label")[0].textContent)))
+            console.log(book.Course.includes(parseInt(coursesJSON.find(c => c.title === course.getElementsByTagName("label")[0].textContent).id)))
+            if (book.Course.includes(parseInt(coursesJSON.find(c => c.title === course.getElementsByTagName("label")[0].textContent).id)))
                 isValid = true
         }
     }
