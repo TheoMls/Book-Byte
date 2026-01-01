@@ -13,7 +13,7 @@ app.use(express.json())
 
 // Routes
 const bookRoutes = require('./routes/books.routes')
-const courseRoutes = require('./routes/course.routes')
+const courseRoutes = require('./routes/courses.routes')
 
 // Mount routes
 app.use('/api/books', bookRoutes)
