@@ -12,10 +12,12 @@ app.use(cors())
 app.use(express.json())
 
 // Routes
-const bookRoutes = require('./routes/book.routes')
+const bookRoutes = require('./routes/books.routes')
+const courseRoutes = require('./routes/course.routes')
 
 // Mount routes
 app.use('/api/books', bookRoutes)
+app.use('/api/courses', courseRoutes)
 
 app.get('/', (req, res) => {
   res.send('API is running...')
