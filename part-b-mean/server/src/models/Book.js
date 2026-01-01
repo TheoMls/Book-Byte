@@ -17,6 +17,10 @@ const bookSchema = new mongoose.Schema({
         required: [true, 'Please add a publisher'],
         trim: true
     },
+    course: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Course'
+    }],
     isbn: {
         type: String,
         required: [true, 'Please add an ISBN'],
@@ -29,7 +33,7 @@ const bookSchema = new mongoose.Schema({
         min: [0, 'Stock cannot be negative']
     },
     publishedDate: {
-        type: Date
+        type: Number
     },
     coverImage: {
         type: String,
