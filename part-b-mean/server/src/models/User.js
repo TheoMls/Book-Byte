@@ -52,6 +52,7 @@ const userSchema = new mongoose.Schema({
 
 // Encrypt password using bcrypt
 userSchema.pre('save', async function (next) {
+    // Only run this function if password was modified (not on other updates)
     if (!this.isModified('password')) {
         next()
     }
