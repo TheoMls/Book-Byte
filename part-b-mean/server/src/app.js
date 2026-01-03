@@ -14,10 +14,16 @@ app.use(express.json())
 // Routes
 const bookRoutes = require('./routes/books.routes')
 const courseRoutes = require('./routes/courses.routes')
+const categoryRoutes = require('./routes/category.routes')
 
 // Mount routes
 app.use('/api/books', bookRoutes)
 app.use('/api/courses', courseRoutes)
+app.use('/api/categories', categoryRoutes)
+
+// Error Handler Middleware
+const errorHandler = require('./middleware/errorHandler')
+app.use(errorHandler)
 
 app.get('/', (req, res) => {
   res.send('API is running...')

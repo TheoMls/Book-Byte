@@ -1,18 +1,13 @@
 const Category = require('../models/Category');
+const asyncHandler = require('express-async-handler');
 
-const getAllCategories = async (req, res) => {
-    try {
-        const categories = await Category.find();
-        res.status(200).json({
-            success: true,
-            data: categories
-        });
-    } catch (error) {
-        res.status(500).json({
-            success: false,
-            error: error.message
-        });
-    }
-};
+const getAllCategories = asyncHandler(async (req, res, next) => {
+    const categories = await Category.find().sort({ name: 1 });
+
+    res.status(200).json({
+        success: true,
+        data: categories
+    });
+});
 
 module.exports = { getAllCategories };

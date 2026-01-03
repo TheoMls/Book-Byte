@@ -1,31 +1,31 @@
 const Book = require('../models/Book');
+const asyncHandler = require('express-async-handler');
 
-async function getBook(req, res) {
-    try {
-        if (req.query.limit) {
-            const limit = req.query.limit;
-            const books = await Book.aggregate([
-                { $sample: { size: limit } }
-            ]);
-            return res.status(200).json({
-                success: true,
-                data: books
-            });
-
-        }
-        const filters = req.bookFilters || {};
-        const books = await Book.find(filters).populate('course', 'title');
-        res.status(200).json({
+const getBook = asyncHandler(async (req, res, next) => {
+    if (req.query.limit) {
+        const limit = req.query.limit;
+        const books = await Book.aggregate([
+            { $sample: { size: limit } }
+        ]);
+        return res.status(200).json({
             success: true,
             data: books
         });
-    } catch (error) {
-        res.status(500).json({
-            success: false,
-            message: 'Server error',
-            error: error.message
-        });
+
     }
-}
+    const filters = req.bookFilters || {};
+    const books = await Book.find(filters).populate('course', 'title');
+
+    if (books.length === 0) {
+        const err = new Error('Books not found');
+        err.statusCode = 404;
+        return next(err);
+    }
+
+    res.status(200).json({
+        success: true,
+        data: books
+    });
+});
 
 module.exports = { getBook };

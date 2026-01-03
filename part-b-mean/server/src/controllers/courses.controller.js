@@ -1,50 +1,37 @@
 const Course = require('../models/Course')
+const asyncHandler = require('express-async-handler');
 
-async function getCourses(req, res) {
-    try {
-        const filters = req.courseFilters || {};
-        const courses = await Course.find(filters)
-            .populate('category', 'name');
-        res.status(200).json({
-            success: true,
-            data: courses
-        });
-    } catch (error) {
-        res.status(500).json({
-            success: false,
-            message: 'Server error',
-            error: error.message
-        });
-    }
-}
+// Get courses with optional filters
+const getCourses = asyncHandler(async (req, res, next) => {
+    const filters = req.courseFilters || {};
+    const courses = await Course.find(filters)
+        .populate('category', 'name');
+    res.status(200).json({
+        success: true,
+        data: courses
+    });
+});
 
-// Get course by ID occures when we see course details page
-async function getCourseById(req, res) {
-    try {
-        const course = await Course.findById(req.params.id)
-            .populate('category', 'name')
-            .populate({
-                path: 'books',
-                select: 'title description coverImage'
-            });
-        if (!course) {
-            return res.status(404).json({
-                success: false,
-                message: 'Course not found'
-            });
-        }
-        res.status(200).json({
-            success: true,
-            data: course
+// Get course by ID occurs when we see course details page
+const getCourseById = asyncHandler(async (req, res, next) => {
+    const course = await Course.findById(req.params.id)
+        .populate('category', 'name')
+        .populate({
+            path: 'books',
+            select: 'title description coverImage'
         });
-    } catch (error) {
-        res.status(500).json({
-            success: false,
-            message: 'Server error',
-            error: error.message
-        });
+
+    if (!course) {
+        const error = new Error('Course not found');
+        error.statusCode = 404;
+        return next(error);
     }
-}
+
+    res.status(200).json({
+        success: true,
+        data: course
+    });
+});
 
 module.exports = {
     getCourses,
