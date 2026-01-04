@@ -23,4 +23,8 @@ export class App {
       document.body.classList.remove("no-scroll");
     }
   }
+  closeMenu() {
+    this.isMenuOpen.set(false);
+    document.body.classList.remove("no-scroll");
+  }
 }
