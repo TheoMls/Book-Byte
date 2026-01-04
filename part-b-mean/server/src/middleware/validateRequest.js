@@ -89,4 +89,66 @@ const validateCourseQuery = (req, res, next) => {
     return next();
 };
 
-module.exports = { validateBookQuery, validateCourseQuery };
+const validateRegister = (req, res, next) => {
+    const { fname, lname, email, password, dateOfBirth } = req.body;
+
+    if (!fname || !lname || !email || !password || !dateOfBirth) {
+        return res.status(400).json({
+            success: false,
+            message: 'All fields are required.'
+        });
+    }
+
+    const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (!email || !emailRegex.test(email)) {
+        return res.status(400).json({
+            success: false,
+            message: 'Invalid email format.'
+        });
+    }
+
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+    if (!password || !passwordRegex.test(password)) {
+        return res.status(400).json({
+            success: false,
+            message: 'Invalid password. It must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one number.'
+        });
+    }
+
+    if (isNaN(Date.parse(dateOfBirth))) {
+        return res.status(400).json({
+            success: false,
+            message: 'Invalid date of birth format.'
+        });
+    }
+
+    // Calculate Age
+    const age = Date.now() - new Date(dateOfBirth).getTime()
+
+    // (365.25 days (.25 due to 1/4 leap years) * 24 hours * 60 min * 60 sec * 1000 ms)
+    const msInYear = 365.25 * 24 * 60 * 60 * 1000
+
+    if (age < 16 * msInYear || age > 120 * msInYear) {
+        return res.status(400).json({
+            success: false,
+            message: 'Registration failed. Age must be between 16 and 120 years old. (Current age: ${Math.round(age / msInYear)})'
+        })
+    }
+
+    return next();
+};
+
+const validateLogin = (req, res, next) => {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+        return res.status(400).json({
+            success: false,
+            message: 'Email and password are required.'
+        });
+    }
+
+    return next();
+};
+
+module.exports = { validateBookQuery, validateCourseQuery, validateRegister, validateLogin };

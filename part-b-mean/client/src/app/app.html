@@ -1,0 +1,32 @@
+<header class="header-bar">
+  <div class="logo-title">
+    <span class="sidenav-btn" (click)="toggleMenu()">☰</span>
+    <a routerLink="/">
+      <img class="logo" src="assets/img/logo.png" width="48" height="48">
+    </a>
+    <h1>Book & Byte</h1>
+  </div>
+</header>
+
+<nav class="topnav">
+  <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+  <a routerLink="/courses" routerLinkActive="active">Courses</a>
+  <a routerLink="/books" routerLinkActive="active">Books</a>
+  <a routerLink="/about" routerLinkActive="active">About</a>
+  <a routerLink="/register" routerLinkActive="active">Sign Up / Sign In</a>
+</nav>
+
+<div id="sideMenu" class="sidenav" [class.open]="isMenuOpen()">
+  <a class="closebtn" (click)="toggleMenu()">×</a>
+  <a routerLink="/" routerLinkActive="active">Home</a>
+  <a routerLink="/courses" routerLinkActive="active">Courses</a>
+  <a routerLink="/books" routerLinkActive="active">Books</a>
+  <a routerLink="/about" routerLinkActive="active">About Us</a>
+  <a routerLink="/register" routerLinkActive="active">Sign Up / Sign In</a>
+</div>
+
+<div id="overlay" [class.active]="isMenuOpen()" (click)="toggleMenu()"></div>
+
+<main>
+  <router-outlet></router-outlet>
+</main>
