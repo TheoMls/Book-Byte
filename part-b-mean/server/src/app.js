@@ -15,11 +15,13 @@ app.use(express.json())
 const bookRoutes = require('./routes/books.routes')
 const courseRoutes = require('./routes/courses.routes')
 const categoryRoutes = require('./routes/category.routes')
+const authRoutes = require('./routes/auth.routes')
 
 // Mount routes
 app.use('/api/books', bookRoutes)
 app.use('/api/courses', courseRoutes)
 app.use('/api/categories', categoryRoutes)
+app.use('/api/auth', authRoutes)
 
 // Error Handler Middleware
 const errorHandler = require('./middleware/errorHandler')
