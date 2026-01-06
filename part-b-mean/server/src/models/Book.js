@@ -32,8 +32,10 @@ const bookSchema = new mongoose.Schema({
         default: 0,
         min: [0, 'Stock cannot be negative']
     },
-    publishedDate: {
-        type: Number
+    publicationYear: {
+        type: Number,
+        max: [2030, 'Date cannot be too far in the future'],
+        min: [1900, 'Date cannot be older than 1900']
     },
     coverImage: {
         type: String,

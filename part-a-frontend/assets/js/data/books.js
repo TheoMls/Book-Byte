@@ -6,8 +6,9 @@ const booksJSON = [
         "Course": [1],
         "publicationYear": 2023,
         "Publisher": "Klidarithmos",
-        "image": "assets/img/books/book1.png",
-        "Availability": 5
+        "coverImage": "assets/img/books/book1.png",
+        "stock": 5,
+        "isbn": "123"
     },
     {
         "id": 2,
@@ -16,8 +17,9 @@ const booksJSON = [
         "Course": [1],
         "publicationYear": 2015,
         "Publisher": "Tziola",
-        "image": "assets/img/books/book2.png",
-        "Availability": 12
+        "coverImage": "assets/img/books/book2.png",
+        "stock": 12,
+        "isbn": "12233"
     },
     {
         "id": 3,
@@ -26,8 +28,9 @@ const booksJSON = [
         "Course": [2],
         "publicationYear": 2022,
         "Publisher": "Klidarithmos",
-        "image": "assets/img/books/book3.png",
-        "Availability": 3
+        "coverImage": "assets/img/books/book3.png",
+        "stock": 3,
+        "isbn": "12453"
     },
     {
         "id": 4,
@@ -36,8 +39,9 @@ const booksJSON = [
         "Course": [2],
         "publicationYear": 2023,
         "Publisher": "Tziola",
-        "image": "assets/img/books/book4.png",
-        "Availability": 0
+        "coverImage": "assets/img/books/book4.png",
+        "stock": 0,
+        "isbn": "125673"
     },
     {
         "id": 5,
@@ -46,8 +50,9 @@ const booksJSON = [
         "Course": [3, 6],
         "publicationYear": 2024,
         "Publisher": "Tziola",
-        "image": "assets/img/books/book5.png",
-        "Availability": 8
+        "coverImage": "assets/img/books/book5.png",
+        "stock": 8,
+        "isbn": "127893"
     },
     {
         "id": 6,
@@ -56,8 +61,9 @@ const booksJSON = [
         "Course": [3],
         "publicationYear": 2021,
         "Publisher": "Klidarithmos",
-        "image": "assets/img/books/book6.png",
-        "Availability": 15
+        "coverImage": "assets/img/books/book6.png",
+        "stock": 15,
+        "isbn": "19023"
     },
     {
         "id": 7,
@@ -66,8 +72,9 @@ const booksJSON = [
         "Course": [4],
         "publicationYear": 2023,
         "Publisher": "Klidarithmos",
-        "image": "assets/img/books/book7.png",
-        "Availability": 2
+        "coverImage": "assets/img/books/book7.png",
+        "stock": 2,
+        "isbn": "12890"
     },
     {
         "id": 8,
@@ -76,8 +83,9 @@ const booksJSON = [
         "Course": [5],
         "publicationYear": 2015,
         "Publisher": "Tziola",
-        "image": "assets/img/books/book8.png",
-        "Availability": 6
+        "coverImage": "assets/img/books/book8.png",
+        "stock": 6,
+        "isbn": "127563"
     },
     {
         "id": 9,
@@ -86,8 +94,9 @@ const booksJSON = [
         "Course": [6],
         "publicationYear": 2020,
         "Publisher": "Klidarithmos",
-        "image": "assets/img/books/book9.png",
-        "Availability": 4
+        "coverImage": "assets/img/books/book9.png",
+        "stock": 4,
+        "isbn": "14523"
     },
     {
         "id": 10,
@@ -96,7 +105,8 @@ const booksJSON = [
         "Course": [7],
         "publicationYear": 2025,
         "Publisher": "Klidarithmos",
-        "image": "assets/img/books/book10.png",
-        "Availability": 9
+        "coverImage": "assets/img/books/book10.png",
+        "stock": 9,
+        "isbn": "1666423"
     }
 ];

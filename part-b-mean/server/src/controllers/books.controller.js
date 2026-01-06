@@ -3,7 +3,7 @@ const asyncHandler = require('express-async-handler');
 
 const getBook = asyncHandler(async (req, res, next) => {
     if (req.query.limit) {
-        const limit = req.query.limit;
+        const limit = parseInt(req.query.limit);
         const books = await Book.aggregate([
             { $sample: { size: limit } }
         ]);

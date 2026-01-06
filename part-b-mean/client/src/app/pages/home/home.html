@@ -9,7 +9,7 @@
     <nav class="category-list-section">
         <h2>Browse Courses by Category</h2>
         <ul id="category-list" class="category-links">
-            @for (cat of categories; track cat.id) {
+            @for (cat of categories(); track cat.id) {
             <li>
                 <a [routerLink]="['/courses']" [queryParams]="{ courseCategory: cat.id }" class="category-link">
                     {{ cat.name }}

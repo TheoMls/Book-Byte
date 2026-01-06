@@ -1,7 +1,7 @@
-import { Component, OnInit, viewChild, ElementRef, AfterViewInit, inject, signal } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit, viewChild, signal, inject, ElementRef, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-home',
@@ -10,42 +10,36 @@ import { RouterLink } from '@angular/router';
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
-export class Home {
-
-  private http = inject(HttpClient);
+export class Home implements OnInit, AfterViewInit {
+  private apiService = inject(ApiService);
   suggestedBooks = signal<any[]>([]);
-
-  categories = [
-    { id: 'cs', name: 'Computer Science' },
-    { id: 'business', name: 'Business' },
-    { id: 'design', name: 'Design' },
-    { id: 'marketing', name: 'Marketing' }
-  ];
-
-  ngOnInit() {
-    // TODO: load random books from backend API
-    //this.http.get<any[]>('/api/books/random?count=6').subscribe({
-    //  next: (data) => {
-    //    this.suggestedBooks.set(data);
-    //  },
-    //  error: (err) => {
-    //    console.error('Error loading books:', err);
-    //  }
-    //});
-    // TODO: load categories from backend API
-
-    const dummyBooks = [
-      { id: 1, title: 'Book 1', image: 'assets/img/book1.png' },
-      { id: 2, title: 'Book 2', image: 'assets/img/book1.png' },
-      { id: 3, title: 'Book 3', image: 'assets/img/book1.png' },
-      { id: 4, title: 'Book 4', image: 'assets/img/book1.png' },
-      { id: 5, title: 'Book 5', image: 'assets/img/book1.png' },
-      { id: 6, title: 'Book 6', image: 'assets/img/book1.png' },
-    ];
-    this.suggestedBooks.set(dummyBooks);
-  }
+  categories = signal<any[]>([]);
 
   readonly horizontalMenu = viewChild<ElementRef>('horizontalMenuContainer');
+
+  ngOnInit() {
+    this.fetchData();
+  }
+
+  fetchData() {
+    this.apiService.getBooks(6).subscribe({
+      next: (response) => {
+        if (response.success) {
+          this.suggestedBooks.set(response.data);
+        }
+      },
+      error: (err) => console.error('Error loading books:', err)
+    });
+
+    this.apiService.getCategories().subscribe({
+      next: (response) => {
+        if (response.success) {
+          this.categories.set(response.data);
+        }
+      },
+      error: (err) => console.error('Error loading categories:', err)
+    });
+  }
 
   ngAfterViewInit() {
 
