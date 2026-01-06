@@ -6,7 +6,7 @@ const booksJSON = [
         "Course": [1],
         "publicationYear": 2023,
         "Publisher": "Klidarithmos",
-        "coverImage": "assets/img/books/book1.png",
+        "coverImage": "book1.png",
         "stock": 5,
         "isbn": "123"
     },
@@ -17,7 +17,7 @@ const booksJSON = [
         "Course": [1],
         "publicationYear": 2015,
         "Publisher": "Tziola",
-        "coverImage": "assets/img/books/book2.png",
+        "coverImage": "book2.png",
         "stock": 12,
         "isbn": "12233"
     },
@@ -28,7 +28,7 @@ const booksJSON = [
         "Course": [2],
         "publicationYear": 2022,
         "Publisher": "Klidarithmos",
-        "coverImage": "assets/img/books/book3.png",
+        "coverImage": "book3.png",
         "stock": 3,
         "isbn": "12453"
     },
@@ -39,7 +39,7 @@ const booksJSON = [
         "Course": [2],
         "publicationYear": 2023,
         "Publisher": "Tziola",
-        "coverImage": "assets/img/books/book4.png",
+        "coverImage": "book4.png",
         "stock": 0,
         "isbn": "125673"
     },
@@ -50,7 +50,7 @@ const booksJSON = [
         "Course": [3, 6],
         "publicationYear": 2024,
         "Publisher": "Tziola",
-        "coverImage": "assets/img/books/book5.png",
+        "coverImage": "book5.png",
         "stock": 8,
         "isbn": "127893"
     },
@@ -61,7 +61,7 @@ const booksJSON = [
         "Course": [3],
         "publicationYear": 2021,
         "Publisher": "Klidarithmos",
-        "coverImage": "assets/img/books/book6.png",
+        "coverImage": "book6.png",
         "stock": 15,
         "isbn": "19023"
     },
@@ -72,7 +72,7 @@ const booksJSON = [
         "Course": [4],
         "publicationYear": 2023,
         "Publisher": "Klidarithmos",
-        "coverImage": "assets/img/books/book7.png",
+        "coverImage": "book7.png",
         "stock": 2,
         "isbn": "12890"
     },
@@ -83,7 +83,7 @@ const booksJSON = [
         "Course": [5],
         "publicationYear": 2015,
         "Publisher": "Tziola",
-        "coverImage": "assets/img/books/book8.png",
+        "coverImage": "book8.png",
         "stock": 6,
         "isbn": "127563"
     },
@@ -94,7 +94,7 @@ const booksJSON = [
         "Course": [6],
         "publicationYear": 2020,
         "Publisher": "Klidarithmos",
-        "coverImage": "assets/img/books/book9.png",
+        "coverImage": "book9.png",
         "stock": 4,
         "isbn": "14523"
     },
@@ -105,7 +105,7 @@ const booksJSON = [
         "Course": [7],
         "publicationYear": 2025,
         "Publisher": "Klidarithmos",
-        "coverImage": "assets/img/books/book10.png",
+        "coverImage": "book10.png",
         "stock": 9,
         "isbn": "1666423"
     }
