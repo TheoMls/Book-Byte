@@ -22,7 +22,7 @@
         <ul class="suggested-menu" id="suggestionsMenu">
             @for (book of suggestedBooks(); track book.id) {
             <li>
-                <img [src]='http://localhost:5000/img/' + book.coverImage>
+                <img [src]="'http://localhost:5000/img/' + book.coverImage">
             </li>
             }
         </ul>
