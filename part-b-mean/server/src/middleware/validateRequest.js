@@ -28,7 +28,7 @@ const validateBookQuery = (req, res, next) => {
                 message: 'Invalid maxPublishedYear parameter.'
             });
         }
-        filters.publishedDate = { $lte: year };
+        filters.publicationYear = { $lte: year };
     }
     if (courseId) {
         if (courseId.match(/^[0-9a-fA-F]{24}$/)) {
