@@ -8,7 +8,6 @@ import { ApiService } from '../../services/api.service';
   standalone: true,
   imports: [CommonModule, RouterLink],
   templateUrl: './home.html',
-  styleUrl: './home.css',
 })
 export class Home implements OnInit, AfterViewInit {
   private apiService = inject(ApiService);

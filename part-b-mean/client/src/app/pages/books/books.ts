@@ -9,7 +9,6 @@ import { ApiService } from '../../services/api.service';
   standalone: true,
   imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './books.html',
-  styleUrl: './books.css',
 })
 export class Books implements OnInit {
   private apiService = inject(ApiService);
@@ -19,7 +18,7 @@ export class Books implements OnInit {
   // Data Signals
   allBooks = signal<any[]>([]);
   allCourses = signal<any[]>([]);
-  
+
   // UI State
   isFilterMenuOpen = signal(false);
 
@@ -60,9 +59,9 @@ export class Books implements OnInit {
 
     // Search
     if (search) {
-      books = books.filter(b => 
-        b.title.toLowerCase().includes(search) || 
-        b.description.toLowerCase().includes(search) || 
+      books = books.filter(b =>
+        b.title.toLowerCase().includes(search) ||
+        b.description.toLowerCase().includes(search) ||
         b.publisher.toLowerCase().includes(search)
       );
     }
@@ -84,7 +83,7 @@ export class Books implements OnInit {
 
     // Courses
     if (this.activeCourses().size > 0) {
-      books = books.filter(b => 
+      books = books.filter(b =>
         b.course?.some((c: any) => this.activeCourses().has(typeof c === 'string' ? c : c._id))
       );
     }
@@ -145,12 +144,12 @@ export class Books implements OnInit {
       next: (res: any) => {
         if (res.success) {
           this.allBooks.set(res.data);
-          
+
           // Initialize sliders if not active
           if (!this.activeEnableYearFilter()) {
-             const max = this.maxYearAvailable();
-             this.stagedYear.set(max);
-             this.activeYear.set(max);
+            const max = this.maxYearAvailable();
+            this.stagedYear.set(max);
+            this.activeYear.set(max);
           }
         }
       },
@@ -169,7 +168,7 @@ export class Books implements OnInit {
   toggleFilters() {
     const newState = !this.isFilterMenuOpen();
     this.isFilterMenuOpen.set(newState);
-    
+
     if (newState) {
       document.body.classList.add('no-scroll');
     } else {
@@ -208,11 +207,11 @@ export class Books implements OnInit {
     if (this.stagedSearchQuery()) queryParams.title = this.stagedSearchQuery();
     if (this.stagedOnlyAvailable()) queryParams.inStock = 'true';
     if (this.stagedEnableYearFilter()) queryParams.maxYear = this.stagedYear();
-    
+
     if (this.stagedPublishers().size > 0) {
       queryParams.publisher = Array.from(this.stagedPublishers());
     }
-    
+
     if (this.stagedCourses().size > 0) {
       queryParams.course = Array.from(this.stagedCourses());
     }
@@ -223,10 +222,10 @@ export class Books implements OnInit {
 
   resetFilters() {
     this.router.navigate(['/books']);
-    
+
     this.stagedEnableYearFilter.set(false);
     this.stagedYear.set(this.maxYearAvailable());
-    
+
     this.closeFilters();
   }
 }
