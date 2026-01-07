@@ -1,6 +1,6 @@
 const validateBookQuery = (req, res, next) => {
 
-    const { limit, title, publisher, courseId, inStock, maxPublishedYear } = req.query;
+    const { limit, title, publisher, course, inStock, maxPublishedYear } = req.query;
 
     if (limit !== undefined) {
         const parsedLimit = parseInt(limit);
@@ -28,17 +28,19 @@ const validateBookQuery = (req, res, next) => {
                 message: 'Invalid maxPublishedYear parameter.'
             });
         }
-        filters.publishedDate = { $lte: year };
+        filters.publicationYear = { $lte: year };
     }
-    if (courseId) {
-        if (courseId.match(/^[0-9a-fA-F]{24}$/)) {
-            filters.course = courseId;
-        } else {
-            return res.status(400).json({
-                success: false,
-                message: "Invalid Course ID"
-            });
+    if (course) {
+        const courseIds = course.split(',');
+        for (let courseId of courseIds) {
+            if (!courseId.match(/^[0-9a-fA-F]{24}$/)) {
+                return res.status(400).json({
+                    success: false,
+                    message: "Invalid Course ID"
+                });
+            }
         }
+        filters.course = { $in: courseIds };
     }
 
     req.bookFilters = filters;
@@ -60,8 +62,17 @@ const validateCourseQuery = (req, res, next) => {
     const { category, maxDuration, maxDifficulty, title } = req.query;
     const filters = {};
 
-    if (category && category.match(/^[0-9a-fA-F]{24}$/)) {
-        filters.category = category;
+    if (category) {
+        const categoryIds = category.split(',');
+        for (let categoryId of categoryIds) {
+            if (!categoryId.match(/^[0-9a-fA-F]{24}$/)) {
+                return res.status(400).json({
+                    success: false,
+                    message: "Invalid Category ID"
+                });
+            }
+        }
+        filters.category = { $in: categoryIds };
     }
     if (maxDuration) {
         const duration = parseInt(maxDuration);

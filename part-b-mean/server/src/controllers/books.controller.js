@@ -14,13 +14,8 @@ const getBook = asyncHandler(async (req, res, next) => {
 
     }
     const filters = req.bookFilters || {};
+    console.log('Final Filters applying to Books:', JSON.stringify(filters, null, 2));
     const books = await Book.find(filters).populate('course', 'title');
-
-    if (books.length === 0) {
-        const err = new Error('Books not found');
-        err.statusCode = 404;
-        return next(err);
-    }
 
     res.status(200).json({
         success: true,
