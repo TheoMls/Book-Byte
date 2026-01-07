@@ -43,10 +43,4 @@ export class ApiService {
     if (limit) params = params.append('limit', limit);
     return this.http.get(`${this.apiUrl}/books`, { params });
   }
-
-  // Enrollments
-  enroll(userId: string, courseId: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/enrollments`, { userId, courseId });
-  }
-
 }
