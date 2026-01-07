@@ -14,12 +14,12 @@
   <a routerLink="/books" routerLinkActive="active">Books</a>
   <a routerLink="/about" routerLinkActive="active">About</a>
 
-  @if (authService.currentUser()) {
-      <a style="cursor: pointer" (click)="logout()">
-         Sign Out {{ authService.currentUser().email }}
-      </a>
+  @if (authService.currentUser(); as user) {
+  <a style="cursor: pointer" (click)="logout()">
+    Sign Out {{ user.fname}}
+  </a>
   } @else {
-      <a routerLink="/register" routerLinkActive="active">Sign Up / Sign In</a>
+  <a routerLink="/register" routerLinkActive="active">Sign Up / Sign In</a>
   }
 </nav>
 
@@ -30,9 +30,9 @@
   <a routerLink="/books" (click)="closeMenu()" routerLinkActive="active">Books</a>
   <a routerLink="/about" (click)="closeMenu()" routerLinkActive="active">About Us</a>
   @if (authService.currentUser()) {
-      <a (click)="logout()">Sign Out</a>
+  <a (click)="logout()">Sign Out</a>
   } @else {
-      <a routerLink="/register" (click)="closeMenu()" routerLinkActive="active">Sign Up / Sign In</a>
+  <a routerLink="/register" (click)="closeMenu()" routerLinkActive="active">Sign Up / Sign In</a>
   }
 </div>
 
