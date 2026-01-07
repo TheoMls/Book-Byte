@@ -20,6 +20,10 @@ export class Courses implements OnInit {
   coursesList = signal<any[]>([]);
   categories = signal<any[]>([]);
 
+  // TODO dynamic
+  limitDuration = 20;
+  readonly limitDifficulty = 3;
+
   // Filter State
   searchQuery = '';
   maxDuration = 20;
@@ -27,13 +31,11 @@ export class Courses implements OnInit {
   enableDuration = false;
   enableDifficulty = false;
 
-  // Use a Set to track multiple selected categories
   selectedCategories = new Set<string>();
 
   // UI State
   isFilterMenuOpen = signal(false);
 
-  // Helper for rendering badges (ported from your old JS)
   difficultyMap: any = {
     1: { label: "Beginner", color: "#28a745" },
     2: { label: "Intermediate", color: "#fd7e14" },
@@ -43,15 +45,54 @@ export class Courses implements OnInit {
   ngOnInit() {
     this.fetchCategories();
 
+    this.fetchLimits();
+
     this.route.queryParams.subscribe(params => {
-      // Restore state from URL
-      if (params['category']) {
-        const cats = Array.isArray(params['category']) ? params['category'] : [params['category']];
+      this.selectedCategories.clear();
+      this.searchQuery = params['title'] || '';
+
+      const incomingCategory = params['category'] || params['courseCategory'];
+
+      if (incomingCategory) {
+        const cats = Array.isArray(incomingCategory) ? incomingCategory : [incomingCategory];
         cats.forEach((c: string) => this.selectedCategories.add(c));
       }
-      if (params['title']) this.searchQuery = params['title'];
 
-      this.fetchCourses(params);
+      if (params['maxDuration']) {
+        this.maxDuration = Number(params['maxDuration']);
+        this.enableDuration = true;
+      } else {
+        this.enableDuration = false;
+        this.maxDuration = this.limitDuration; // Reset to limit
+      }
+
+      if (params['maxDifficulty']) {
+        this.maxDifficulty = Number(params['maxDifficulty']);
+        this.enableDifficulty = true;
+      } else {
+        this.enableDifficulty = false;
+        this.maxDifficulty = this.limitDifficulty; // Reset to limit
+      }
+
+      const apiFilters: any = {};
+
+      if (this.selectedCategories.size > 0) {
+        apiFilters.category = Array.from(this.selectedCategories);
+      }
+
+      if (this.searchQuery) {
+        apiFilters.title = this.searchQuery;
+      }
+
+      if (this.enableDuration) {
+        apiFilters.maxDuration = this.maxDuration;
+      }
+
+      if (this.enableDifficulty) {
+        apiFilters.maxDifficulty = this.maxDifficulty;
+      }
+
+      this.fetchCourses(apiFilters);
     });
   }
 
@@ -64,12 +105,27 @@ export class Courses implements OnInit {
     });
   }
 
+  fetchLimits() {
+    // Fetch all courses to find max values
+    this.apiService.getCourses().subscribe({
+      next: (res) => {
+        if (res.success && res.data.length > 0) {
+          const maxDur = Math.max(...res.data.map((c: any) => c.duration || 0));
+          this.limitDuration = maxDur;
+
+          if (!this.enableDuration) this.maxDuration = this.limitDuration;
+        }
+      },
+      error: (err) => console.error('Error fetching limits:', err)
+    });
+  }
+
   fetchCourses(filters: any) {
     this.apiService.getCourses(filters).subscribe({
       next: (res) => {
         if (res.success) this.coursesList.set(res.data);
         if (Object.keys(filters).length === 0) {
-          this.updateCoursesFilters();
+          this.resetFilters();
         }
       },
       error: (err) => console.error('Error courses:', err)
@@ -106,8 +162,8 @@ export class Courses implements OnInit {
     return cat ? cat.name : id;
   }
 
-  getDifficultyInfo(level: number) {
-    return this.difficultyMap[level] || { label: "Unknown", color: "#333" };
+  getDifficultyInfo(difficulty: number) {
+    return this.difficultyMap[difficulty] || { label: "Unknown", color: "#333" };
   }
 
   applyFilters() {
@@ -128,20 +184,13 @@ export class Courses implements OnInit {
 
   resetFilters() {
     this.searchQuery = '';
-    this.updateCoursesFilters();
+    // Reset to the limits defined
+    this.maxDuration = this.limitDuration;
+    this.maxDifficulty = this.limitDifficulty;
     this.enableDuration = false;
     this.enableDifficulty = false;
     this.selectedCategories.clear();
-  }
 
-  updateCoursesFilters() {
-    if (this.coursesList().length === 0) return;
-    this.maxDuration = this.coursesList().reduce((max, course) => Math.max(max, course.duration), 0);
-    this.maxDifficulty = this.coursesList().reduce((max, course) => Math.max(max, course.difficulty), 0);
-  }
-
-  clearFilters() {
-    this.resetFilters();
     this.router.navigate(['/courses']);
     this.closeFilters();
   }

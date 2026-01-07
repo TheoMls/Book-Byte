@@ -8,10 +8,10 @@ import { Books } from './pages/books/books';
 import { CourseDetails } from './pages/course-details/course-details';
 
 export const routes: Routes = [
-    { path: '', component: Home },
-    { path: 'register', component: Register },
-    { path: 'courses', component: Courses },
-    { path: 'about', component: About },
-    { path: 'books', component: Books },
-    { path: 'course-details/:id', component: CourseDetails },
+    { path: '', component: Home, title: 'Home - Book & Byte' },
+    { path: 'register', component: Register, title: 'Sign Up / Sign In - Book & Byte' },
+    { path: 'courses', component: Courses, title: 'Courses - Book & Byte' },
+    { path: 'about', component: About, title: 'About Us - Book & Byte' },
+    { path: 'books', component: Books, title: 'Books - Book & Byte' },
+    { path: 'course-details/:id', component: CourseDetails, title: 'Course - Book & Byte' },
 ];

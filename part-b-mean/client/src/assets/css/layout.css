@@ -100,6 +100,10 @@ html {
     width: 60vw !important;
 }
 
+.filters.open {
+    width: 60vw;
+}
+
 .closebtn:hover {
     cursor: pointer;
 }
@@ -124,6 +128,10 @@ html {
     }
 
     .open {
+        width: 45vw;
+    }
+
+    .filters.open {
         width: 45vw;
     }
 
@@ -193,6 +201,10 @@ html {
     }
 
     .open {
+        width: 30vw;
+    }
+
+    .filters.open {
         width: 30vw;
     }
 
