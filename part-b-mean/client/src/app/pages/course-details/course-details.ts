@@ -17,7 +17,7 @@ export class CourseDetails implements OnInit {
   course = signal<any>(null);
 
   ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id');
+    const id = this.route.snapshot.paramMap.get('_id');
     if (id) {
       this.apiService.getCourseById(id).subscribe({
         next: (res) => {
