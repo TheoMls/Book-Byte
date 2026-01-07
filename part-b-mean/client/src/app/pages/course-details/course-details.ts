@@ -17,18 +17,21 @@ export class CourseDetails implements OnInit {
   course = signal<any>(null);
 
   ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('_id');
-    if (id) {
-      this.apiService.getCourseById(id).subscribe({
-        next: (res) => {
-          if (res.success) {
-            this.course.set(res.data);
-          }
-        },
-        error: (err) => console.error('Error fetching course details:', err)
-      });
-    }
+  const id = this.route.snapshot.paramMap.get('id'); 
+  
+  if (id) {
+    this.apiService.getCourseById(id).subscribe({
+      next: (res) => {
+        if (res.success) {
+          this.course.set(res.data);
+        }
+      },
+      error: (err) => console.error('Error fetching course details:', err)
+    });
+  } else {
+    console.error('No ID found in URL route parameters');
   }
+}
 
   getDifficultyColor(level: number): string {
     if (level === 1) return "#28a745";
