@@ -23,6 +23,7 @@ export class CourseDetails implements OnInit {
         next: (res) => {
           if (res.success) {
             this.course.set(res.data);
+            console.log(res.data)
           }
         },
         error: (err) => console.error('Error fetching course details:', err)
