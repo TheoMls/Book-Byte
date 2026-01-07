@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ApiService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:5000/api';
+  private apiUrl = 'http:// 5000/api';
 
   // Users / Auth
   register(userData: any): Observable<any> {
@@ -18,7 +18,7 @@ export class ApiService {
     return this.http.post(`${this.apiUrl}/auth/login`, credentials);
   }
 
-checkEmail(email: string): Observable<any> {
+  checkEmail(email: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/auth/check-email`, { email });
   }
 

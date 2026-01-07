@@ -34,8 +34,7 @@
               "src/assets/css/reset.css",
               "src/assets/css/layout.css",
               "src/assets/css/components.css",
-              "src/assets/css/theme.css",
-              "src/styles.css"
+              "src/assets/css/theme.css"
             ]
           },
           "configurations": {

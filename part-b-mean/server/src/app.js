@@ -30,10 +30,6 @@ app.use('/api/auth', authRoutes)
 const errorHandler = require('./middleware/errorHandler')
 app.use(errorHandler)
 
-app.get('/', (req, res) => {
-  res.send('API is running...')
-})
-
 // Server
 const PORT = process.env.PORT || 5000
 app.listen(PORT, () => {
