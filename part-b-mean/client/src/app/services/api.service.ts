@@ -18,6 +18,10 @@ export class ApiService {
     return this.http.post(`${this.apiUrl}/auth/login`, credentials);
   }
 
+checkEmail(email: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/auth/check-email`, { email });
+  }
+
   // Courses
   getCourses(filters?: any): Observable<any> {
     let params = new HttpParams();

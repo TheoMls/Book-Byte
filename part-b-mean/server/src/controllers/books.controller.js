@@ -14,7 +14,7 @@ const getBook = asyncHandler(async (req, res, next) => {
 
     }
     const filters = req.bookFilters || {};
-    console.log('Final Filters applying to Books:', JSON.stringify(filters, null, 2));
+    // console.log('Final Filters applying to Books:', JSON.stringify(filters, null, 2));
     const books = await Book.find(filters).populate('course', 'title');
 
     res.status(200).json({

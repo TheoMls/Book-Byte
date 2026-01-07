@@ -43,4 +43,19 @@ const login = asyncHandler(async (req, res, next) => {
     });
 });
 
-module.exports = { register, login };
+const checkEmail = asyncHandler(async (req, res, next) => {
+    const { email } = req.body;
+
+    if (!email) {
+        return res.status(400).json({ success: false, message: 'Please provide an email' });
+    }
+
+    const user = await User.findOne({ email });
+
+    res.status(200).json({
+        success: true,
+        exists: !!user // returns true if user found, false otherwise
+    });
+});
+
+module.exports = { register, login, checkEmail };

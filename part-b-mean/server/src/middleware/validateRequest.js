@@ -162,4 +162,17 @@ const validateLogin = (req, res, next) => {
     return next();
 };
 
-module.exports = { validateBookQuery, validateCourseQuery, validateRegister, validateLogin };
+const validateEmailCheck = (req, res, next) => {
+    const { email } = req.body;
+    const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (!email || !emailRegex.test(email)) {
+        return res.status(400).json({
+            success: false,
+            message: 'Invalid email format'
+        });
+    }
+
+    return next();
+};
+
+module.exports = { validateBookQuery, validateCourseQuery, validateRegister, validateLogin, validateEmailCheck };
