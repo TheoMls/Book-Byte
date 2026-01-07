@@ -26,12 +26,12 @@ export class Courses implements OnInit {
   maxDifficulty = 3;
   enableDuration = false;
   enableDifficulty = false;
-  
+
   // Use a Set to track multiple selected categories
   selectedCategories = new Set<string>();
 
   // UI State
-  isFilterMenuOpen = false;
+  isFilterMenuOpen = signal(false);
 
   // Helper for rendering badges (ported from your old JS)
   difficultyMap: any = {
@@ -50,7 +50,7 @@ export class Courses implements OnInit {
         cats.forEach((c: string) => this.selectedCategories.add(c));
       }
       if (params['title']) this.searchQuery = params['title'];
-      
+
       this.fetchCourses(params);
     });
   }
@@ -68,15 +68,28 @@ export class Courses implements OnInit {
     this.apiService.getCourses(filters).subscribe({
       next: (res) => {
         if (res.success) this.coursesList.set(res.data);
+        if (Object.keys(filters).length === 0) {
+          this.updateCoursesFilters();
+        }
       },
       error: (err) => console.error('Error courses:', err)
     });
   }
 
   // UI Handlers
-
   toggleFilters() {
-    this.isFilterMenuOpen = !this.isFilterMenuOpen;
+    const newFilterState = !this.isFilterMenuOpen();
+    this.isFilterMenuOpen.set(newFilterState);
+
+    if (newFilterState) {
+      document.body.classList.add("no-scroll");
+    } else {
+      document.body.classList.remove("no-scroll");
+    }
+  }
+  closeFilters() {
+    this.isFilterMenuOpen.set(false);
+    document.body.classList.remove("no-scroll");
   }
 
   updateCategory(categoryId: string, event: Event) {
@@ -89,7 +102,7 @@ export class Courses implements OnInit {
   }
 
   getCategoryName(id: string): string {
-    const cat = this.categories().find(c => c.id === id);
+    const cat = this.categories().find(c => c._id === id);
     return cat ? cat.name : id;
   }
 
@@ -99,29 +112,37 @@ export class Courses implements OnInit {
 
   applyFilters() {
     const queryParams: any = {};
-    
+
     if (this.searchQuery) queryParams.title = this.searchQuery;
-    
+
     if (this.selectedCategories.size > 0) {
       queryParams.category = Array.from(this.selectedCategories);
     }
-    
+
     if (this.enableDuration) queryParams.maxDuration = this.maxDuration;
     if (this.enableDifficulty) queryParams.maxDifficulty = this.maxDifficulty;
 
     this.router.navigate(['/courses'], { queryParams });
-    this.isFilterMenuOpen = false;
+    this.closeFilters();
   }
 
-  clearFilters() {
+  resetFilters() {
     this.searchQuery = '';
-    this.maxDuration = 20;
-    this.maxDifficulty = 3;
+    this.updateCoursesFilters();
     this.enableDuration = false;
     this.enableDifficulty = false;
     this.selectedCategories.clear();
-    
+  }
+
+  updateCoursesFilters() {
+    if (this.coursesList().length === 0) return;
+    this.maxDuration = this.coursesList().reduce((max, course) => Math.max(max, course.duration), 0);
+    this.maxDifficulty = this.coursesList().reduce((max, course) => Math.max(max, course.difficulty), 0);
+  }
+
+  clearFilters() {
+    this.resetFilters();
     this.router.navigate(['/courses']);
-    this.isFilterMenuOpen = false;
+    this.closeFilters();
   }
 }

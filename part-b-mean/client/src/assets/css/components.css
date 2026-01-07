@@ -15,7 +15,6 @@
     left: 0;
     background-color: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(4px);
-    z-index: 1;
 }
 
 #overlay.active {
@@ -163,7 +162,7 @@
     flex-grow: 1;
     padding: 10px 15px;
     font-size: 16px;
-    border: 3px solid #ccc;
+    border: 3px solid #ccc !important;
     border-right: none;
     border-radius: 5px 0 0 5px;
     outline: none;
@@ -187,8 +186,8 @@
 }
 
 .search-container button:hover {
-    background: #853b3b;
-    border-color: #853b3b;
+    background: #853b3b !important;
+    border-color: #853b3b !important;
 }
 
 

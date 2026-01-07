@@ -9,9 +9,9 @@
     <nav class="category-list-section">
         <h2>Browse Courses by Category</h2>
         <ul id="category-list" class="category-links">
-            @for (cat of categories(); track cat.id) {
+            @for (cat of categories(); track cat._id) {
             <li>
-                <a [routerLink]="['/courses']" [queryParams]="{ courseCategory: cat.id }" class="category-link">
+                <a [routerLink]="['/courses']" [queryParams]="{ courseCategory: cat._id }" class="category-link">
                     {{ cat.name }}
                 </a>
             </li>
@@ -20,7 +20,7 @@
     </nav>
     <article class="suggested-menu-container" #horizontalMenuContainer>
         <ul class="suggested-menu" id="suggestionsMenu">
-            @for (book of suggestedBooks(); track book.id) {
+            @for (book of suggestedBooks(); track book._id) {
             <li>
                 <img [src]="'http://localhost:5000/img/' + book.coverImage">
             </li>
