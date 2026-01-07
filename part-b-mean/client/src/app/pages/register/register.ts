@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { ApiService } from '../../services/api.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -15,6 +16,7 @@ export class Register implements OnInit {
   private fb = inject(FormBuilder);
   private apiService = inject(ApiService);
   private router = inject(Router);
+  private authService = inject(AuthService);
 
   // State Signals
   currentStep = signal(1);
@@ -103,7 +105,7 @@ export class Register implements OnInit {
 
     if (!email || !password) return;
 
-    this.apiService.login({ email, password }).subscribe({
+    this.authService.login({ email, password }).subscribe({
       next: (res) => {
         console.log('Login success', res);
         this.router.navigate(['/']);
@@ -157,7 +159,8 @@ export class Register implements OnInit {
         ...this.registerForm.value,
         skillLevel: Number(this.registerForm.value.skillLevel)
       };
-      this.apiService.register(payload).subscribe({
+
+      this.authService.register(payload).subscribe({
         next: (res) => this.router.navigate(['/']),
         error: (err) => alert('Registration failed: ' + err.message)
       });

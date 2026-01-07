@@ -1,5 +1,6 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, inject } from '@angular/core';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 })
 export class App {
   protected readonly title = signal('client');
-
+  authService = inject(AuthService);
   // sidenavbar toggler
   isMenuOpen = signal(false);
 
@@ -26,5 +27,10 @@ export class App {
   closeMenu() {
     this.isMenuOpen.set(false);
     document.body.classList.remove("no-scroll");
+  }
+
+  logout() {
+    this.authService.logout();
+    this.closeMenu();
   }
 }
