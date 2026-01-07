@@ -1,0 +1,17 @@
+<div class="page-container">
+  @if (course()) {
+    <div class="course-header">
+       <h1>{{ course().title }}</h1>
+       
+       <p class="instructor">Instructor: {{ course().instructor }}</p>
+       <p class="description">{{ course().description }}</p>
+       
+       <div class="meta">
+         <span>Duration: {{ course().duration }} weeks</span>
+         <span>Difficulty: {{ course().difficulty }}</span>
+       </div>
+    </div>
+  } @else {
+    <p>Loading course details...</p>
+  }
+</div>
