@@ -23,7 +23,6 @@ export class CourseDetails implements OnInit {
         next: (res) => {
           if (res.success) {
             this.course.set(res.data);
-            console.log(res.data)
           }
         },
         error: (err) => console.error('Error fetching course details:', err)
@@ -31,7 +30,18 @@ export class CourseDetails implements OnInit {
     }
   }
 
-  // TODO: Function to handle enrollment
-  onEnroll() {
+  getDifficultyColor(level: number): string {
+    if (level === 1) return "#28a745";
+    if (level === 2) return "#fd7e14";
+    return "#dc3545";
+  }
+
+  getDifficultyLabel(level: number): string {
+    const map: { [key: number]: string } = { 1: "Beginner", 2: "Intermediate", 3: "Advanced" };
+    return map[level] || "Unknown";
+  }
+
+  getCategoryName(course: any): string {
+    return course?.category?.name || 'Uncategorized';
   }
 }
