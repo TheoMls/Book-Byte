@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ApiService {
   private http = inject(HttpClient);
-  private apiUrl = 'http:// 5000/api';
+  private apiUrl = 'http://localhost:5000/api';
 
   // Users / Auth
   register(userData: any): Observable<any> {
