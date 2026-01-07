@@ -25,7 +25,7 @@
   <a routerLink="/register" (click)="closeMenu()" routerLinkActive="active">Sign Up / Sign In</a>
 </div>
 
-<div [class.active]="isMenuOpen()" (click)="toggleMenu()"></div>
+<div id="overlay" [class.active]="isMenuOpen()" (click)="toggleMenu()"></div>
 
 <main>
   <router-outlet></router-outlet>
