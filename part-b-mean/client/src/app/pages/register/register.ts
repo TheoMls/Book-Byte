@@ -16,13 +16,13 @@ export class Register implements OnInit {
   private apiService = inject(ApiService);
   private router = inject(Router);
 
-  // --- State Signals ---
+  // State Signals
   currentStep = signal(1);
   passwordVisible = signal(false);
   isLoginMode = signal(false);
   categories = signal<any[]>([]);
-  
-  // --- Form Definition ---
+
+  // Form Definition
   registerForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(8), this.passwordComplexityValidator]],
@@ -31,7 +31,7 @@ export class Register implements OnInit {
     lname: ['', Validators.required],
     dateOfBirth: ['', [Validators.required, this.ageValidator]],
     skillLevel: ['1', Validators.required],
-    categoriesInterested: this.fb.control<string[]>([], { nonNullable: true }), 
+    categoriesInterested: this.fb.control<string[]>([], { nonNullable: true }),
     terms: [false, Validators.requiredTrue]
   }, { validators: this.passwordMatchValidator });
 
@@ -46,15 +46,15 @@ export class Register implements OnInit {
 
   get f() { return this.registerForm.controls; }
 
-  // --- Navigation Logic ---
+  // Navigation Logic
   nextStep() {
     const step = this.currentStep();
-    
+
     if (step === 1) {
       if (this.f.email.invalid) return this.f.email.markAsTouched();
 
       const email = this.f.email.value;
-      
+
       this.apiService.checkEmail(email!).subscribe({
         next: (res: any) => {
           if (res.exists) {
@@ -62,23 +62,23 @@ export class Register implements OnInit {
             this.isLoginMode.set(true);
             this.currentStep.set(2);
           } else {
-            // New User -> Registration Mode
+            // Registration Mode
             this.isLoginMode.set(false);
             this.currentStep.set(2);
           }
         },
         error: (err) => console.error('API Error:', err)
       });
-      return; 
+      return;
     }
 
     if (step === 2 && !this.isLoginMode()) {
-       const passValid = this.f.password.valid && this.f.confirmPassword.valid && !this.registerForm.errors?.['mismatch'];
-       if (!passValid) {
-         this.f.password.markAsTouched();
-         this.f.confirmPassword.markAsTouched();
-         return;
-       }
+      const passValid = this.f.password.valid && this.f.confirmPassword.valid && !this.registerForm.errors?.['mismatch'];
+      if (!passValid) {
+        this.f.password.markAsTouched();
+        this.f.confirmPassword.markAsTouched();
+        return;
+      }
     }
 
     if (step === 3) {
@@ -89,7 +89,7 @@ export class Register implements OnInit {
         return;
       }
     }
-    
+
     this.currentStep.update(s => s + 1);
   }
 
@@ -106,7 +106,7 @@ export class Register implements OnInit {
     this.apiService.login({ email, password }).subscribe({
       next: (res) => {
         console.log('Login success', res);
-        this.router.navigate(['/']); 
+        this.router.navigate(['/']);
       },
       error: (err) => alert('Login failed: ' + (err.error?.message || 'Invalid credentials'))
     });
@@ -119,7 +119,7 @@ export class Register implements OnInit {
   onCategoryChange(catId: string, event: Event) {
     const isChecked = (event.target as HTMLInputElement).checked;
     const currentCats = this.f.categoriesInterested.value || [];
-    
+
     if (isChecked) {
       this.f.categoriesInterested.setValue([...currentCats, catId]);
     } else {
@@ -128,27 +128,27 @@ export class Register implements OnInit {
   }
 
   passwordComplexityValidator(control: AbstractControl): ValidationErrors | null {
-      const value = control.value || '';
-      const hasUpper = /[A-Z]/.test(value);
-      const hasLower = /[a-z]/.test(value);
-      const hasNum = /\d/.test(value);
-      return (hasUpper && hasLower && hasNum) ? null : { complexity: true };
+    const value = control.value || '';
+    const hasUpper = /[A-Z]/.test(value);
+    const hasLower = /[a-z]/.test(value);
+    const hasNum = /\d/.test(value);
+    return (hasUpper && hasLower && hasNum) ? null : { complexity: true };
   }
 
   passwordMatchValidator(group: AbstractControl): ValidationErrors | null {
-      const pass = group.get('password')?.value;
-      const confirm = group.get('confirmPassword')?.value;
-      return pass === confirm ? null : { mismatch: true };
+    const pass = group.get('password')?.value;
+    const confirm = group.get('confirmPassword')?.value;
+    return pass === confirm ? null : { mismatch: true };
   }
 
   ageValidator(control: AbstractControl): ValidationErrors | null {
-      if (!control.value) return null;
-      const dob = new Date(control.value).getTime();
-      const age = Date.now() - dob;
-      const msInYear = 365.25 * 24 * 60 * 60 * 1000;
-      if (age < 16 * msInYear) return { tooYoung: true };
-      if (age > 120 * msInYear) return { tooOld: true };
-      return null;
+    if (!control.value) return null;
+    const dob = new Date(control.value).getTime();
+    const age = Date.now() - dob;
+    const msInYear = 365.25 * 24 * 60 * 60 * 1000;
+    if (age < 16 * msInYear) return { tooYoung: true };
+    if (age > 120 * msInYear) return { tooOld: true };
+    return null;
   }
 
   onSubmit() {
