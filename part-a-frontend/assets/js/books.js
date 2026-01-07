@@ -50,7 +50,7 @@ function display_book(book) {
     }).join(", ")
 
     li.innerHTML = `
-        <img class="book-img" src="${book.image}" alt="${book.Title}">
+        <img class="book-img" src=assets/img/books/${book.coverImage} alt="${book.Title}">
         <div class="book-info">
             <div class="book-important-info">
                 <h3 class="book-title">${book.Title}</h3>
@@ -61,7 +61,7 @@ function display_book(book) {
                 <p class="book-course"><strong>Course:</strong> ${courseLinks}</p>
                 <p class="book-publication-year">Published: ${book.publicationYear}</p>
                 <p class="book-availability">
-                    In Stock: ${book.Availability}
+                    In Stock: ${book.stock}
                 </p>
             </div>
         </div>

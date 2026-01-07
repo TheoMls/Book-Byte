@@ -18,7 +18,7 @@
 
 <div class="sidenav" [class.open]="isMenuOpen()">
   <a class="closebtn" (click)="toggleMenu()">×</a>
-  <a routerLink="/" (click)="closeMenu()" routerLinkActive="active">Home</a>
+  <a routerLink="/" (click)="closeMenu()" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
   <a routerLink="/courses" (click)="closeMenu()" routerLinkActive="active">Courses</a>
   <a routerLink="/books" (click)="closeMenu()" routerLinkActive="active">Books</a>
   <a routerLink="/about" (click)="closeMenu()" routerLinkActive="active">About Us</a>

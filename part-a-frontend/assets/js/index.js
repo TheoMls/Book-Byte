@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     for (suggestion of suggestionsMenu.children) {
         if (!books.length) break
         const randomIndex = Math.floor(Math.random() * books.length)
-        suggestion.children[0].src = books[randomIndex].image
+        suggestion.children[0].src = `assets/img/books/${books[randomIndex].coverImage}`
         books.splice(randomIndex, 1)
     }
 })

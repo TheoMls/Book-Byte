@@ -1,1 +1,101 @@
-<p>courses works!</p>
+<div>
+    <header class="header-bar">
+        <h1>Courses</h1>
+        <div class="toolbar">
+            <nav class="search-container">
+                <input type="text" placeholder="Search..." [(ngModel)]="searchQuery" (keyup.enter)="applyFilters()">
+                <div class="btn-text">
+                    <p class="hide">Search</p>
+                    <button (click)="applyFilters()">
+                        <img src="assets/img/search-icon.png" style="width:19px; height:19px" alt="Search">
+                    </button>
+                </div>
+            </nav>
+            <div class="btn-text">
+                <p class="hide">Filters</p>
+                <button class="filters-btn" (click)="toggleFilters()">
+                    <img class="filter-icon" src="assets/img/filter-icon.png">
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <aside class="filters" id="filtersList" [class.open]="isFilterMenuOpen">
+        <h2>Filters</h2>
+        <a class="closebtn" (click)="toggleFilters()">×</a>
+        
+        <ul class="filter-list">
+            <li class="expanded-filter">
+                <button class="dropbtn">Categories</button>
+                <ul class="expanded-filter-list" id="categories">
+                    @for (cat of categories(); track cat.id) {
+                    <li>
+                        <label>
+                            <input type="checkbox" 
+                                   [value]="cat.id" 
+                                   [checked]="selectedCategories.has(cat.id)"
+                                   (change)="updateCategory(cat.id, $event)"> 
+                            {{ cat.name }}
+                        </label>
+                    </li>
+                    }
+                </ul>
+            </li>
+
+            <li class="regular-filter">
+                <div class="filter-header">
+                    <input type="checkbox" id="enableDuration" [(ngModel)]="enableDuration">
+                    <label for="maxDuration">Max Duration: <span>{{ maxDuration }}</span></label>
+                </div>
+                <input type="range" min="1" max="20" step="1" 
+                       [(ngModel)]="maxDuration" 
+                       [disabled]="!enableDuration" 
+                       id="maxDuration">
+            </li>
+
+            <li class="regular-filter">
+                <div class="filter-header">
+                    <input type="checkbox" id="enableDifficulty" [(ngModel)]="enableDifficulty">
+                    <label for="maxDifficulty">Max Difficulty: <span>{{ maxDifficulty }}</span></label>
+                </div>
+                <input type="range" min="1" max="3" step="1" 
+                       [(ngModel)]="maxDifficulty" 
+                       [disabled]="!enableDifficulty" 
+                       id="maxDifficulty">
+            </li>
+        </ul>
+        
+        <button class="apply" (click)="applyFilters()">Apply</button>
+        <button class="apply" (click)="clearFilters()">Clear</button>
+    </aside>
+
+    <ul class="courses-container main-content" id="coursessList">
+        @if (coursesList().length === 0) {
+            <p style="width:100%; text-align:center; padding:20px">No courses found.</p>
+        }
+
+        @for (course of coursesList(); track course.id) {
+            <li class="course-card">
+                <div class="course-header">
+                    <span class="badge" style="background-color: #745151ff">
+                        {{ getCategoryName(course.category) }}
+                    </span>
+                    <span class="badge" [style.background-color]="getDifficultyInfo(course.level).color">
+                        {{ getDifficultyInfo(course.level).label }}
+                    </span>
+                </div>
+                
+                <h3 class="course-title">{{ course.title }}</h3>
+                <p class="course-teacher">{{ course.teacher }}</p>
+                <p class="course-desc">{{ course.description }}</p>
+                
+                <div class="course-footer">
+                    <span>{{ course.duration }} Weeks</span>
+                    <a [routerLink]="['/course-details', course.id]" class="details-btn">View Details</a>
+                </div>
+            </li>
+        }
+    </ul>
+</div>
+
+<div id="overlay" [class.active]="isFilterMenuOpen" (click)="toggleFilters()"></div>
