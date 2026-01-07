@@ -97,7 +97,7 @@ html {
 }
 
 .open {
-    width: 60vw;
+    width: 60vw !important;
 }
 
 .filters.open {

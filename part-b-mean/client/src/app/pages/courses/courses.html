@@ -20,10 +20,10 @@
         </div>
     </header>
 
-    <aside class="filters" id="filtersList" [class.open]="isFilterMenuOpen">
+    <aside class="filters" id="filtersList" [class.open]="isFilterMenuOpen()">
         <h2>Filters</h2>
-        <a class="closebtn" (click)="toggleFilters()">×</a>
-        
+        <a class="closebtn" (click)="closeFilters()">×</a>
+
         <ul class="filter-list">
             <li class="expanded-filter">
                 <button class="dropbtn">Categories</button>
@@ -94,4 +94,4 @@
     </ul>
 </div>
 
-<div id="overlay" [class.active]="isFilterMenuOpen" (click)="toggleFilters()"></div>
+<div id="overlay" [class.active]="isFilterMenuOpen()" (click)="closeFilters()"></div>

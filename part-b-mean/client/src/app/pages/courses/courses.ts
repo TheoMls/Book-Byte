@@ -34,7 +34,7 @@ export class Courses implements OnInit {
   selectedCategories = new Set<string>();
 
   // UI State
-  isFilterMenuOpen = false;
+  isFilterMenuOpen = signal(false);
 
   difficultyMap: any = {
     1: { label: "Beginner", color: "#28a745" },
@@ -124,15 +124,28 @@ export class Courses implements OnInit {
     this.apiService.getCourses(filters).subscribe({
       next: (res) => {
         if (res.success) this.coursesList.set(res.data);
+        if (Object.keys(filters).length === 0) {
+          this.resetFilters();
+        }
       },
       error: (err) => console.error('Error courses:', err)
     });
   }
 
   // UI Handlers
-
   toggleFilters() {
-    this.isFilterMenuOpen = !this.isFilterMenuOpen;
+    const newFilterState = !this.isFilterMenuOpen();
+    this.isFilterMenuOpen.set(newFilterState);
+
+    if (newFilterState) {
+      document.body.classList.add("no-scroll");
+    } else {
+      document.body.classList.remove("no-scroll");
+    }
+  }
+  closeFilters() {
+    this.isFilterMenuOpen.set(false);
+    document.body.classList.remove("no-scroll");
   }
 
   updateCategory(categoryId: string, event: Event) {
@@ -166,10 +179,10 @@ export class Courses implements OnInit {
     if (this.enableDifficulty) queryParams.maxDifficulty = this.maxDifficulty;
 
     this.router.navigate(['/courses'], { queryParams });
-    this.isFilterMenuOpen = false;
+    this.closeFilters();
   }
 
-  clearFilters() {
+  resetFilters() {
     this.searchQuery = '';
     // Reset to the limits defined
     this.maxDuration = this.limitDuration;
@@ -179,6 +192,6 @@ export class Courses implements OnInit {
     this.selectedCategories.clear();
 
     this.router.navigate(['/courses']);
-    this.isFilterMenuOpen = false;
+    this.closeFilters();
   }
 }
