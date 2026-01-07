@@ -1,14 +1,14 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './register.html',
   styleUrl: './register.css',
 })
@@ -23,6 +23,8 @@ export class Register implements OnInit {
   passwordVisible = signal(false);
   isLoginMode = signal(false);
   categories = signal<any[]>([]);
+  
+  loginError = signal('');
 
   // Form Definition
   registerForm = this.fb.group({
@@ -51,6 +53,7 @@ export class Register implements OnInit {
   // Navigation Logic
   nextStep() {
     const step = this.currentStep();
+    this.loginError.set(''); // Clear errors when changing steps
 
     if (step === 1) {
       if (this.f.email.invalid) return this.f.email.markAsTouched();
@@ -60,11 +63,9 @@ export class Register implements OnInit {
       this.apiService.checkEmail(email!).subscribe({
         next: (res: any) => {
           if (res.exists) {
-            // Switch to Login Mode
             this.isLoginMode.set(true);
             this.currentStep.set(2);
           } else {
-            // Registration Mode
             this.isLoginMode.set(false);
             this.currentStep.set(2);
           }
@@ -75,12 +76,12 @@ export class Register implements OnInit {
     }
 
     if (step === 2 && !this.isLoginMode()) {
-      const passValid = this.f.password.valid && this.f.confirmPassword.valid && !this.registerForm.errors?.['mismatch'];
-      if (!passValid) {
-        this.f.password.markAsTouched();
-        this.f.confirmPassword.markAsTouched();
-        return;
-      }
+       const passValid = this.f.password.valid && this.f.confirmPassword.valid && !this.registerForm.errors?.['mismatch'];
+       if (!passValid) {
+         this.f.password.markAsTouched();
+         this.f.confirmPassword.markAsTouched();
+         return;
+       }
     }
 
     if (step === 3) {
@@ -91,15 +92,18 @@ export class Register implements OnInit {
         return;
       }
     }
-
+    
     this.currentStep.update(s => s + 1);
   }
 
   prevStep() {
+    this.loginError.set('');
     this.currentStep.update(s => s - 1);
   }
 
   onLogin() {
+    this.loginError.set('');
+    
     const email = this.f.email.value;
     const password = this.f.password.value;
 
@@ -108,9 +112,11 @@ export class Register implements OnInit {
     this.authService.login({ email, password }).subscribe({
       next: (res) => {
         console.log('Login success', res);
-        this.router.navigate(['/']);
+        this.router.navigate(['/']); 
       },
-      error: (err) => alert('Login failed: ' + (err.error?.message || 'Invalid credentials'))
+      error: (err) => {
+        this.loginError.set(err.error?.message || 'Incorrect password or email.');
+      }
     });
   }
 
@@ -121,7 +127,7 @@ export class Register implements OnInit {
   onCategoryChange(catId: string, event: Event) {
     const isChecked = (event.target as HTMLInputElement).checked;
     const currentCats = this.f.categoriesInterested.value || [];
-
+    
     if (isChecked) {
       this.f.categoriesInterested.setValue([...currentCats, catId]);
     } else {
@@ -130,27 +136,27 @@ export class Register implements OnInit {
   }
 
   passwordComplexityValidator(control: AbstractControl): ValidationErrors | null {
-    const value = control.value || '';
-    const hasUpper = /[A-Z]/.test(value);
-    const hasLower = /[a-z]/.test(value);
-    const hasNum = /\d/.test(value);
-    return (hasUpper && hasLower && hasNum) ? null : { complexity: true };
+      const value = control.value || '';
+      const hasUpper = /[A-Z]/.test(value);
+      const hasLower = /[a-z]/.test(value);
+      const hasNum = /\d/.test(value);
+      return (hasUpper && hasLower && hasNum) ? null : { complexity: true };
   }
 
   passwordMatchValidator(group: AbstractControl): ValidationErrors | null {
-    const pass = group.get('password')?.value;
-    const confirm = group.get('confirmPassword')?.value;
-    return pass === confirm ? null : { mismatch: true };
+      const pass = group.get('password')?.value;
+      const confirm = group.get('confirmPassword')?.value;
+      return pass === confirm ? null : { mismatch: true };
   }
 
   ageValidator(control: AbstractControl): ValidationErrors | null {
-    if (!control.value) return null;
-    const dob = new Date(control.value).getTime();
-    const age = Date.now() - dob;
-    const msInYear = 365.25 * 24 * 60 * 60 * 1000;
-    if (age < 16 * msInYear) return { tooYoung: true };
-    if (age > 120 * msInYear) return { tooOld: true };
-    return null;
+      if (!control.value) return null;
+      const dob = new Date(control.value).getTime();
+      const age = Date.now() - dob;
+      const msInYear = 365.25 * 24 * 60 * 60 * 1000;
+      if (age < 16 * msInYear) return { tooYoung: true };
+      if (age > 120 * msInYear) return { tooOld: true };
+      return null;
   }
 
   onSubmit() {
@@ -159,7 +165,6 @@ export class Register implements OnInit {
         ...this.registerForm.value,
         skillLevel: Number(this.registerForm.value.skillLevel)
       };
-
       this.authService.register(payload).subscribe({
         next: (res) => this.router.navigate(['/']),
         error: (err) => alert('Registration failed: ' + err.message)

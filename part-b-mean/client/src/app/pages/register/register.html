@@ -33,6 +33,10 @@
                     </button>
                 </div>
 
+                @if (loginError()) {
+                    <p class="error-msg" style="margin-top: 5px;">{{ loginError() }}</p>
+                }
+
                 <div class="btn-group">
                     <button type="button" class="btn-main" (click)="onLogin()">Log In</button>
                     <button type="button" class="btn-secondary" (click)="prevStep()">Back</button>
