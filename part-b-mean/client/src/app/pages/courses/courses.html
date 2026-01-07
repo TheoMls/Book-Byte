@@ -3,7 +3,8 @@
         <h1>Courses</h1>
         <div class="toolbar">
             <nav class="search-container">
-                <input type="text" placeholder="Search..." [(ngModel)]="searchQuery" (keyup.enter)="applyFilters()">
+                <input type="text" placeholder="Search..." [(ngModel)]="searchQuery" (keyup.enter)="applyFilters()"
+                    name="search">
                 <div class="btn-text">
                     <p class="hide">Search</p>
                     <button (click)="applyFilters()">
