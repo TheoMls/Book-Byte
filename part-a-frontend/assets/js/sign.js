@@ -1,5 +1,5 @@
 const fakeDB = {
-    "p3220145@aueb.gr": { password: "123456Aa" }
+    "mail@aueb.gr": { password: "123456Aa" }
 }
 
 function inDb(email) {
